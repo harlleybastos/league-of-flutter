@@ -46,4 +46,4 @@ app.*.map.json
 /android/app/release
 
 #Api Services
-/lib/service/
+lib/service/champions_repository.dart
