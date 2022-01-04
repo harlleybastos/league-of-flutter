@@ -7,8 +7,8 @@ class ChampionDataModel {
   List<Champion> champions;
 
   ChampionDataModel({
-     this.name,
-     this.champions,
+     required this.name,
+     required this.champions,
   });
 
   Map<String, dynamic> toMap() {

@@ -1,18 +1,23 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:initial_app/models/champion.dart';
-import 'package:initial_app/models/champion_data_model.dart';
 import 'package:initial_app/repository/i_champions_repository.dart';
 import 'package:http/http.dart' as http;
 
-class ChampionsHttpRepository implements IChampionsRepository{
+class ChampionsHttpRepository implements IChampionsRepository {
   @override
-  Future<Map<String,dynamic>>listAllChampions() async {
-    final response = await http.get('http://ddragon.leagueoflegends.com/cdn/10.5.1/data/en_US/champion.json',headers: {
-      HttpHeaders.authorizationHeader:'RGAPI-88af2c5b-7e5d-4ac4-8a08-22bff0b758ba',
+  Future<List<Map<String,dynamic>>> listAllChampions() async {
+    final response = await http.get(
+        Uri.parse(
+            'http://ddragon.leagueoflegends.com/cdn/10.5.1/data/en_US/champion.json'),
+        headers: {
+          HttpHeaders.authorizationHeader:
+              'RGAPI-0132bd7e-811b-44e2-8bca-638e0d1a2223',
+        });
+    final Map<String, dynamic> responseList = jsonDecode(response.body)['data'];
+    final List<Map<String, dynamic>> item = [];
+    responseList.keys.forEach((key) {
+      item.add(responseList[key]);
     });
-    final Map<String,dynamic> responseList = jsonDecode(response.body)['data'];
-    return responseList;
+    return item;
   }
-
 }

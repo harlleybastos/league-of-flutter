@@ -17,16 +17,16 @@ class Champion {
   List<StatsChange> stats;
 
   Champion({
-    this.version,
-    this.id,
-    this.key,
-    this.title,
-    this.blurb,
-    this.info,
-    this.image,
-    this.tags,
-    this.partype,
-    this.stats,
+    required this.version,
+    required this.id,
+    required this.key,
+    required this.title,
+    required this.blurb,
+    required this.info,
+    required this.image,
+    required this.tags,
+    required this.partype,
+    required this.stats,
   });
 
   Map<String, dynamic> toMap() {

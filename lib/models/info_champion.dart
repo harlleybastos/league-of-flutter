@@ -7,10 +7,10 @@ class InfoChampion {
   String difficulty;
 
   InfoChampion({
-    this.attack,
-    this.defense,
-    this.magic,
-    this.difficulty,
+    required this.attack,
+    required this.defense,
+    required this.magic,
+    required this.difficulty,
   });
 
   Map<String, dynamic> toMap() {

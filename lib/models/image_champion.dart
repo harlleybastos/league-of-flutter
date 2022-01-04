@@ -9,13 +9,13 @@ class ImageChampion {
   String w;
   String h;
   ImageChampion({
-    this.full,
-    this.sprite,
-    this.group,
-    this.x,
-    this.y,
-    this.w,
-    this.h,
+    required this.full,
+    required this.sprite,
+    required this.group,
+    required this.x,
+    required this.y,
+    required this.w,
+    required this.h,
   });
 
   Map<String, dynamic> toMap() {
