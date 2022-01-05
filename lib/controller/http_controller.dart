@@ -1,9 +1,10 @@
 import 'package:get/state_manager.dart';
-
 import 'package:initial_app/repository/i_champions_repository.dart';
 
 class HttpController extends GetxController with StateMixin {
   final IChampionsRepository _httpRepository;
+  List<dynamic> championName = [].obs;
+  List<dynamic> skins = [].obs;
 
   HttpController(
     this._httpRepository,
@@ -25,8 +26,11 @@ class HttpController extends GetxController with StateMixin {
       change(resp, status: RxStatus.success());
     } catch (e) {
       // If the data is incorrect show the error
-      print(e);
       change([], status: RxStatus.error('Error'));
     }
+
+    
   }
+  
+  
 }
