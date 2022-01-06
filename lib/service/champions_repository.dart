@@ -11,7 +11,7 @@ class ChampionsHttpRepository implements IChampionsRepository {
             'http://ddragon.leagueoflegends.com/cdn/10.5.1/data/en_US/champion.json'),
         headers: {
           HttpHeaders.authorizationHeader:
-              'RGAPI-6ae13d4d-c696-4f59-8716-a8258652870a',
+              'RGAPI-784a63d4-af2e-4727-ae08-4112d02ea122',
         });
     final Map<String, dynamic> responseList = jsonDecode(response.body)['data'];
     final List<Map<String, dynamic>> item = [];
@@ -28,7 +28,7 @@ class ChampionsHttpRepository implements IChampionsRepository {
             'https://ddragon.leagueoflegends.com/cdn/12.1.1/data/en_US/champion/${championName}.json'),
         headers: {
           HttpHeaders.authorizationHeader:
-              'RGAPI-6ae13d4d-c696-4f59-8716-a8258652870a',
+              'RGAPI-784a63d4-af2e-4727-ae08-4112d02ea122',
         });
     final Map<String, dynamic> responseList = jsonDecode(response.body)['data'][championName];
     return responseList;

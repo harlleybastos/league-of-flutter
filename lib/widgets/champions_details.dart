@@ -11,12 +11,11 @@ class ChampionDetails extends StatefulWidget {
 }
 
 class _ChampionDetailsState extends State<ChampionDetails> {
-  int selectedIndex = -1;
+  int selectedIndex = 0;
   int championSkins = 0;
   String championName = "";
   Map<String, dynamic> championData = {};
-  Map<String,dynamic> resp = {};
-
+  Map<String, dynamic> resp = {};
 
   Future<Map<String, dynamic>> listAllSkins(String championName) async {
     final response = await http.get(
@@ -24,18 +23,20 @@ class _ChampionDetailsState extends State<ChampionDetails> {
             'https://ddragon.leagueoflegends.com/cdn/12.1.1/data/en_US/champion/${championName}.json'),
         headers: {
           HttpHeaders.authorizationHeader:
-              'RGAPI-6ae13d4d-c696-4f59-8716-a8258652870a',
+              'RGAPI-784a63d4-af2e-4727-ae08-4112d02ea122',
         });
     final Map<String, dynamic> responseList =
         jsonDecode(response.body)['data'][championName];
     return responseList;
   }
-@override
+
+  @override
   void initState() {
     super.initState();
     championData = Get.arguments['championData'];
     championSkins = Get.arguments['championSkins'];
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,10 +52,14 @@ class _ChampionDetailsState extends State<ChampionDetails> {
               child: Container(
                 width: double.maxFinite,
                 height: 350,
-                decoration:  BoxDecoration(
+                decoration: BoxDecoration(
                   image: DecorationImage(
                     image: NetworkImage(
-                        'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${championData['id']}_0.jpg'),
+                        'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${championData['id']}_${selectedIndex}.jpg',
+                        headers: {
+                          HttpHeaders.authorizationHeader:
+                              'RGAPI-784a63d4-af2e-4727-ae08-4112d02ea122',
+                        }),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -105,9 +110,9 @@ class _ChampionDetailsState extends State<ChampionDetails> {
                             ),
                           ),
                           Row(
-                            children: const [
+                            children: [
                               Text(
-                                'Fighter',
+                                '${championData['tags'][0]}',
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
@@ -116,13 +121,15 @@ class _ChampionDetailsState extends State<ChampionDetails> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Text(
-                                'Tank',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
+                              championData['tags'].length == 2
+                                  ? Text(
+                                      '${championData['tags'][1]}',
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    )
+                                  : Container(),
                               SizedBox(
                                 width: 10,
                               ),
@@ -168,34 +175,38 @@ class _ChampionDetailsState extends State<ChampionDetails> {
                     const SizedBox(
                       height: 10,
                     ),
-                    Wrap(
-                      children: List.generate(championSkins, (index) {
-                        return InkWell(
-                          onTap: () {
-                            setState(() {
-                              selectedIndex = index;
-                            });
-                          },
-                          child: Container(
-                            margin: const EdgeInsets.only(
-                              right: 10,
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      physics: BouncingScrollPhysics(),
+                      child: Wrap(
+                        children: List.generate(championSkins, (index) {
+                          return InkWell(
+                            onTap: () {
+                              setState(() {
+                                selectedIndex = index;
+                              });
+                            },
+                            child: Container(
+                              margin: const EdgeInsets.only(
+                                right: 10,
+                              ),
+                              child: SkinsButtons(
+                                size: 50,
+                                color: selectedIndex == index
+                                    ? Colors.white
+                                    : Colors.black,
+                                backgroundColor: selectedIndex == index
+                                    ? Colors.black
+                                    : Colors.grey,
+                                borderColor: selectedIndex == index
+                                    ? Colors.black
+                                    : Colors.grey,
+                                text: (index + 1).toString(),
+                              ),
                             ),
-                            child: SkinsButtons(
-                              size: 50,
-                              color: selectedIndex == index
-                                  ? Colors.white
-                                  : Colors.black,
-                              backgroundColor: selectedIndex == index
-                                  ? Colors.black
-                                  : Colors.grey,
-                              borderColor: selectedIndex == index
-                                  ? Colors.black
-                                  : Colors.grey,
-                              text: (index + 1).toString(),
-                            ),
-                          ),
-                        );
-                      }),
+                          );
+                        }),
+                      ),
                     ),
                     const SizedBox(
                       height: 20,
@@ -212,7 +223,7 @@ class _ChampionDetailsState extends State<ChampionDetails> {
                       height: 10,
                     ),
                     Text(
-                      'Aatrox is a legendary warrior, one of only five that remain of an ancient',
+                      '${championData['blurb']}',
                       style: TextStyle(
                         fontSize: 15,
                         color: Colors.black.withOpacity(0.5),
