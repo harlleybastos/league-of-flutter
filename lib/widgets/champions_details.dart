@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:initial_app/credentials/app_credentials.dart';
 import 'package:initial_app/widgets/skins_buttons.dart';
 import 'package:http/http.dart' as http;
 
@@ -16,6 +18,7 @@ class _ChampionDetailsState extends State<ChampionDetails> {
   String championName = "";
   Map<String, dynamic> championData = {};
   Map<String, dynamic> resp = {};
+  List<dynamic> championSkinsList = [];
 
   Future<Map<String, dynamic>> listAllSkins(String championName) async {
     final response = await http.get(
@@ -23,7 +26,7 @@ class _ChampionDetailsState extends State<ChampionDetails> {
             'https://ddragon.leagueoflegends.com/cdn/12.1.1/data/en_US/champion/${championName}.json'),
         headers: {
           HttpHeaders.authorizationHeader:
-              'RGAPI-784a63d4-af2e-4727-ae08-4112d02ea122',
+              AppCredentials.ApiKey,
         });
     final Map<String, dynamic> responseList =
         jsonDecode(response.body)['data'][championName];
@@ -34,7 +37,8 @@ class _ChampionDetailsState extends State<ChampionDetails> {
   void initState() {
     super.initState();
     championData = Get.arguments['championData'];
-    championSkins = Get.arguments['championSkins'];
+    championSkins = Get.arguments['championSkinsLength'];
+    championSkinsList = Get.arguments['championListSkins'];
   }
 
   @override
@@ -54,12 +58,13 @@ class _ChampionDetailsState extends State<ChampionDetails> {
                 height: 350,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: NetworkImage(
-                        'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${championData['id']}_${selectedIndex}.jpg',
-                        headers: {
-                          HttpHeaders.authorizationHeader:
-                              'RGAPI-784a63d4-af2e-4727-ae08-4112d02ea122',
-                        }),
+                    image: CachedNetworkImageProvider(
+                      'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${championData['id']}_${championSkinsList[selectedIndex]}.jpg',
+                      headers: {
+                        HttpHeaders.authorizationHeader:
+                            'RGAPI-784a63d4-af2e-4727-ae08-4112d02ea122',
+                      },
+                    ),
                     fit: BoxFit.cover,
                   ),
                 ),

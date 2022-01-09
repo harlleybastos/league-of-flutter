@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:initial_app/credentials/app_credentials.dart';
 import 'package:initial_app/repository/i_champions_repository.dart';
 import 'package:http/http.dart' as http;
 
@@ -11,7 +12,7 @@ class ChampionsHttpRepository implements IChampionsRepository {
             'http://ddragon.leagueoflegends.com/cdn/10.5.1/data/en_US/champion.json'),
         headers: {
           HttpHeaders.authorizationHeader:
-              'RGAPI-784a63d4-af2e-4727-ae08-4112d02ea122',
+              AppCredentials.ApiKey,
         });
     final Map<String, dynamic> responseList = jsonDecode(response.body)['data'];
     final List<Map<String, dynamic>> item = [];
@@ -28,7 +29,7 @@ class ChampionsHttpRepository implements IChampionsRepository {
             'https://ddragon.leagueoflegends.com/cdn/12.1.1/data/en_US/champion/${championName}.json'),
         headers: {
           HttpHeaders.authorizationHeader:
-              'RGAPI-784a63d4-af2e-4727-ae08-4112d02ea122',
+              AppCredentials.ApiKey,
         });
     final Map<String, dynamic> responseList = jsonDecode(response.body)['data'][championName];
     return responseList;

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class ChampionIcon extends StatelessWidget {
@@ -17,8 +18,8 @@ class ChampionIcon extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(20),
             child: ClipOval(
-              child: Image.network(
-                'https://ddragon.leagueoflegends.com/cdn/11.24.1/img/champion/${championData['id']}.png',
+              child: CachedNetworkImage(
+                imageUrl: 'https://ddragon.leagueoflegends.com/cdn/11.24.1/img/champion/${championData['id']}.png',
                 height: 50,
                 fit: BoxFit.contain,
               ),

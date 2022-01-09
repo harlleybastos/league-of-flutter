@@ -36,9 +36,12 @@ class ChampionContainer extends StatelessWidget {
       onTap: () async {
         final resp = await listAllSkins(championData['id']);
         int championSkins = resp['skins'].map((skin) => skin['name']).toList().length;
+        final championListSkins = resp['skins'].map((skin) => skin['num']).toList();
+
         Get.toNamed('/details', arguments: {
           'championData': championData,
-          'championSkins': championSkins,
+          'championSkinsLength': championSkins,
+          'championListSkins': championListSkins
         });
       },
       child: Container(

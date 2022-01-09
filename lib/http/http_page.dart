@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:initial_app/controller/http_controller.dart';
-import 'package:initial_app/repository/i_champions_repository.dart';
 import 'package:initial_app/widgets/champion_container.dart';
 
 class HttpPage extends GetView<HttpController> {
