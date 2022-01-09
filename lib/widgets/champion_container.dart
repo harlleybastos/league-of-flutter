@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
+import 'package:initial_app/credentials/app_credentials.dart';
 import 'package:initial_app/widgets/champion_gradient_background.dart';
 import 'package:initial_app/widgets/champion_icon.dart';
 import 'package:initial_app/widgets/champion_image_background.dart';
@@ -21,7 +22,7 @@ class ChampionContainer extends StatelessWidget {
             'https://ddragon.leagueoflegends.com/cdn/12.1.1/data/en_US/champion/${championName}.json'),
         headers: {
           HttpHeaders.authorizationHeader:
-              'RGAPI-6ae13d4d-c696-4f59-8716-a8258652870a',
+              AppCredentials.ApiKey,
         });
     final Map<String, dynamic> responseList =
         jsonDecode(response.body)['data'][championName];
@@ -38,7 +39,7 @@ class ChampionContainer extends StatelessWidget {
         int championSkins = resp['skins'].map((skin) => skin['name']).toList().length;
         final championListSkins = resp['skins'].map((skin) => skin['num']).toList();
 
-        Get.toNamed('/details', arguments: {
+        Get.toNamed('/champion-details', arguments: {
           'championData': championData,
           'championSkinsLength': championSkins,
           'championListSkins': championListSkins

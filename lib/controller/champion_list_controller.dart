@@ -1,12 +1,12 @@
 import 'package:get/state_manager.dart';
 import 'package:initial_app/repository/i_champions_repository.dart';
 
-class HttpController extends GetxController with StateMixin {
+class ChampionListController extends GetxController with StateMixin {
   final IChampionsRepository _httpRepository;
   List<dynamic> championName = [].obs;
   List<dynamic> skins = [].obs;
 
-  HttpController(
+  ChampionListController(
     this._httpRepository,
   );
   @override

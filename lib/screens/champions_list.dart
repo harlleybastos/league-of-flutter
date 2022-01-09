@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:initial_app/controller/http_controller.dart';
+import 'package:initial_app/controller/champion_list_controller.dart';
 import 'package:initial_app/widgets/champion_container.dart';
 
-class HttpPage extends GetView<HttpController> {
+class ChampionsList extends GetView<ChampionListController> {
   
   @override
   Widget build(BuildContext context) {

@@ -62,7 +62,7 @@ class _ChampionDetailsState extends State<ChampionDetails> {
                       'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${championData['id']}_${championSkinsList[selectedIndex]}.jpg',
                       headers: {
                         HttpHeaders.authorizationHeader:
-                            'RGAPI-784a63d4-af2e-4727-ae08-4112d02ea122',
+                            AppCredentials.ApiKey,
                       },
                     ),
                     fit: BoxFit.cover,

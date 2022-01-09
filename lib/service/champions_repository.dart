@@ -21,17 +21,4 @@ class ChampionsHttpRepository implements IChampionsRepository {
     });
     return item;
   }
-
-  @override
-  Future<Map<String,dynamic>> listAllSkins(String championName) async {
-    final response = await http.get(
-        Uri.parse(
-            'https://ddragon.leagueoflegends.com/cdn/12.1.1/data/en_US/champion/${championName}.json'),
-        headers: {
-          HttpHeaders.authorizationHeader:
-              AppCredentials.ApiKey,
-        });
-    final Map<String, dynamic> responseList = jsonDecode(response.body)['data'][championName];
-    return responseList;
-  }
 }

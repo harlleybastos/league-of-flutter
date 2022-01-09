@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:initial_app/controller/dashboard_page_controller.dart';
 import 'package:initial_app/home.dart';
+import 'package:initial_app/screens/home_page.dart';
 import 'package:initial_app/screens/search_page.dart';
 
 class DashboardPage extends StatelessWidget {
@@ -25,6 +26,7 @@ class DashboardPage extends StatelessWidget {
             currentIndex: controller.tabIndex,
             showSelectedLabels: false,
             showUnselectedLabels: false,
+            type: BottomNavigationBarType.fixed,
             items: [
               _bottomNavigationBarItem(Icons.home_outlined, "Home"),
               _bottomNavigationBarItem(Icons.search_outlined, "Search"),
