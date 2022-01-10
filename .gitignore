@@ -47,4 +47,6 @@ app.*.map.json
 
 #Api Services
 /lib/service
-/lib/credentials/app_credentials.dart
+
+
+/lib/credentials
