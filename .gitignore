@@ -47,5 +47,3 @@ app.*.map.json
 
 #Api Services
 /lib/service
-
-/lib/credentials
