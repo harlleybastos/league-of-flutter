@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:initial_app/controller/home_page_controller.dart';
 import 'package:initial_app/widgets/champion_gradient_background.dart';
-import 'package:initial_app/widgets/champion_icon.dart';
 import 'package:initial_app/widgets/champion_image_background.dart';
 
 class HomeSection extends GetView<HomePageController> {
@@ -13,13 +12,8 @@ class HomeSection extends GetView<HomePageController> {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        actionsIconTheme: const IconThemeData(color: Colors.black),
         title: const Text(
           'League of Flutter',
-          style: TextStyle(color: Colors.black),
         ),
       ),
       body: Column(
@@ -29,7 +23,7 @@ class HomeSection extends GetView<HomePageController> {
             child: Text(
               'Champion of the Day',
               style: TextStyle(
-                color: Colors.black,
+                color: Colors.white,
                 fontSize: 20,
                 fontWeight: FontWeight.w500
               ),

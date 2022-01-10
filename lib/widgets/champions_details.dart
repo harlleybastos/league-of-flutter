@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:initial_app/credentials/app_credentials.dart';
+import 'package:initial_app/widgets/champion_gradient_background.dart';
 import 'package:initial_app/widgets/skins_buttons.dart';
 import 'package:http/http.dart' as http;
 
@@ -19,14 +20,15 @@ class _ChampionDetailsState extends State<ChampionDetails> {
   Map<String, dynamic> championData = {};
   Map<String, dynamic> resp = {};
   List<dynamic> championSkinsList = [];
+  List<dynamic> championSpeels = [];
+  String championPassiveName = '';
 
   Future<Map<String, dynamic>> listAllSkins(String championName) async {
     final response = await http.get(
         Uri.parse(
             'https://ddragon.leagueoflegends.com/cdn/12.1.1/data/en_US/champion/${championName}.json'),
         headers: {
-          HttpHeaders.authorizationHeader:
-              AppCredentials.ApiKey,
+          HttpHeaders.authorizationHeader: AppCredentials.ApiKey,
         });
     final Map<String, dynamic> responseList =
         jsonDecode(response.body)['data'][championName];
@@ -36,9 +38,11 @@ class _ChampionDetailsState extends State<ChampionDetails> {
   @override
   void initState() {
     super.initState();
+    championPassiveName = Get.arguments['championPassive'];
     championData = Get.arguments['championData'];
     championSkins = Get.arguments['championSkinsLength'];
     championSkinsList = Get.arguments['championListSkins'];
+    championSpeels = Get.arguments['championSpells'];
   }
 
   @override
@@ -61,13 +65,34 @@ class _ChampionDetailsState extends State<ChampionDetails> {
                     image: CachedNetworkImageProvider(
                       'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${championData['id']}_${championSkinsList[selectedIndex]}.jpg',
                       headers: {
-                        HttpHeaders.authorizationHeader:
-                            AppCredentials.ApiKey,
+                        HttpHeaders.authorizationHeader: AppCredentials.ApiKey,
                       },
                     ),
                     fit: BoxFit.cover,
                   ),
                 ),
+              ),
+            ),
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 40,
+              child: Container(
+                height: 200,
+                decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(20),
+                      bottomRight: Radius.circular(20),
+                    ),
+                    gradient: LinearGradient(
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                      colors: [
+                        Colors.black.withOpacity(0.7),
+                        Colors.transparent,
+                      ],
+                    )),
               ),
             ),
             Positioned(
@@ -79,6 +104,43 @@ class _ChampionDetailsState extends State<ChampionDetails> {
                     onPressed: () => Get.back(),
                     icon: const Icon(Icons.arrow_back),
                     color: Colors.white,
+                  ),
+                ],
+              ),
+            ),
+            Positioned(
+              top: 260,
+              left: 70,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(left: 10),
+                    width: 40,
+                    child: ClipOval(
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            "https://ddragon.leagueoflegends.com/cdn/12.1.1/img/passive/${championPassiveName}",
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 40,
+                    child: ListView.builder(
+                        itemCount: championSpeels.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (_, index) {
+                          return Container(
+                            padding: EdgeInsets.only(left: 10),
+                            child: ClipOval(
+                              child: CachedNetworkImage(
+                                imageUrl:
+                                    "https://ddragon.leagueoflegends.com/cdn/12.1.1/img/spell/${championSpeels[index]['image']['full']}",
+                              ),
+                            ),
+                          );
+                        }),
                   ),
                 ],
               ),

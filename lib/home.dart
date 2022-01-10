@@ -7,18 +7,13 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFF111E2B),
       appBar: AppBar(
-        backgroundColor: Colors.white,
         title: const Text(
           'League of Flutter',
-          style: TextStyle(color: Colors.black),
         ),
-        centerTitle: true,
-        elevation: 0,
         leading: const Icon(
           Icons.menu,
-          color: Colors.black,
         ),
       ),
       body: Container(

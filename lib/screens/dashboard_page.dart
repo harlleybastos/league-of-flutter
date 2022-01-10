@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:initial_app/controller/dashboard_page_controller.dart';
 import 'package:initial_app/home.dart';
-import 'package:initial_app/screens/home_page.dart';
 import 'package:initial_app/screens/search_page.dart';
 
 class DashboardPage extends StatelessWidget {
+  const DashboardPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<DashboardPageController>(builder: (controller) {
@@ -20,13 +21,8 @@ class DashboardPage extends StatelessWidget {
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(
-            unselectedItemColor: Colors.black,
-            selectedItemColor: Colors.redAccent,
             onTap: controller.changeTabIndex,
             currentIndex: controller.tabIndex,
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            type: BottomNavigationBarType.fixed,
             items: [
               _bottomNavigationBarItem(Icons.home_outlined, "Home"),
               _bottomNavigationBarItem(Icons.search_outlined, "Search"),

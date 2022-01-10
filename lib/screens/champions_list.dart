@@ -2,26 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:initial_app/controller/champion_list_controller.dart';
 import 'package:initial_app/widgets/champion_container.dart';
+import 'package:initial_app/widgets/champion_gradient_background.dart';
+import 'package:initial_app/widgets/champion_image_background.dart';
 
 class ChampionsList extends GetView<ChampionListController> {
-  
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
 
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        actionsIconTheme: const IconThemeData(color: Colors.black),
         title: const Text(
           'Champions',
-          style: TextStyle(color: Colors.black),
         ),
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back,
-            color: Colors.black,
           ),
           onPressed: () => Get.back(),
         ),

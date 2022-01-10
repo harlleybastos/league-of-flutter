@@ -25,8 +25,36 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute:AppRoutes.Dashboard,
-      getPages:AppPages.list,
+      initialRoute: AppRoutes.Dashboard,
+      getPages: AppPages.list,
+      theme: ThemeData(
+        scaffoldBackgroundColor: Color(0xFF111E2B),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xFF111E2B),
+          elevation: 0,
+          centerTitle: true,
+          textTheme: TextTheme(
+            headline6: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          iconTheme: IconThemeData(
+            color: Colors.white,
+          ),
+          foregroundColor: Colors.white,
+          
+        ),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Color(0xFF6190a1),
+          showUnselectedLabels: false,
+          showSelectedLabels: false,
+        ),
+      ),
     );
   }
 }
