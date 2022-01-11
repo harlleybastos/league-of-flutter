@@ -40,10 +40,10 @@ class ChampionContainer extends StatelessWidget {
         final championListSkins = resp['skins'].map((skin) => skin['num']).toList();
         final championSpells = resp['spells'].map((spell) => spell).toList();
         final championPassive = resp['passive']['image']['full'];
-        print(championPassive);
+        print(resp['tags'][0]);
 
         Get.toNamed('/champion-details', arguments: {
-          'championData': championData,
+          'championData': resp,
           'championSkinsLength': championSkins,
           'championListSkins': championListSkins,
           'championSpells': championSpells,

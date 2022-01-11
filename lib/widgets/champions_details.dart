@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:initial_app/credentials/app_credentials.dart';
 import 'package:initial_app/widgets/champion_gradient_background.dart';
@@ -55,98 +56,7 @@ class _ChampionDetailsState extends State<ChampionDetails> {
         child: Stack(
           children: [
             Positioned(
-              left: 0,
-              right: 0,
-              child: Container(
-                width: double.maxFinite,
-                height: 350,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: CachedNetworkImageProvider(
-                      'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${championData['id']}_${championSkinsList[selectedIndex]}.jpg',
-                      headers: {
-                        HttpHeaders.authorizationHeader: AppCredentials.ApiKey,
-                      },
-                    ),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-            ),
-            Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 40,
-              child: Container(
-                height: 200,
-                decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(20),
-                      bottomRight: Radius.circular(20),
-                    ),
-                    gradient: LinearGradient(
-                      begin: Alignment.bottomCenter,
-                      end: Alignment.topCenter,
-                      colors: [
-                        Colors.black.withOpacity(0.7),
-                        Colors.transparent,
-                      ],
-                    )),
-              ),
-            ),
-            Positioned(
-              left: 20,
-              top: 70,
-              child: Row(
-                children: [
-                  IconButton(
-                    onPressed: () => Get.back(),
-                    icon: const Icon(Icons.arrow_back),
-                    color: Colors.white,
-                  ),
-                ],
-              ),
-            ),
-            Positioned(
-              top: 260,
-              left: 70,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(left: 10),
-                    width: 40,
-                    child: ClipOval(
-                      child: CachedNetworkImage(
-                        imageUrl:
-                            "https://ddragon.leagueoflegends.com/cdn/12.1.1/img/passive/${championPassiveName}",
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 40,
-                    child: ListView.builder(
-                        itemCount: championSpeels.length,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (_, index) {
-                          return Container(
-                            padding: EdgeInsets.only(left: 10),
-                            child: ClipOval(
-                              child: CachedNetworkImage(
-                                imageUrl:
-                                    "https://ddragon.leagueoflegends.com/cdn/12.1.1/img/spell/${championSpeels[index]['image']['full']}",
-                              ),
-                            ),
-                          );
-                        }),
-                  ),
-                ],
-              ),
-            ),
-            Positioned(
-              top: 320,
+              top: 350,
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 height: 500,
@@ -155,7 +65,7 @@ class _ChampionDetailsState extends State<ChampionDetails> {
                     topLeft: Radius.circular(30),
                     topRight: Radius.circular(30),
                   ),
-                  color: Colors.white,
+                  color: Color(0xFF040316),
                 ),
                 padding: const EdgeInsets.only(
                   right: 20,
@@ -165,58 +75,46 @@ class _ChampionDetailsState extends State<ChampionDetails> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            '${championData['name']}',
-                            style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black.withOpacity(0.8),
-                            ),
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                '${championData['tags'][0]}',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              championData['tags'].length == 2
-                                  ? Text(
-                                      '${championData['tags'][1]}',
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    )
-                                  : Container(),
-                              SizedBox(
-                                width: 10,
-                              ),
-                            ],
-                          ),
-                        ]),
-                    const SizedBox(
-                      width: 10,
+                    Container(
+                      width: 100,
+                      height: 100,
+                      child: SvgPicture.asset(
+                          "assets/fighter-01.svg",),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          '${championData['title']}',
-                          style: TextStyle(
-                            fontSize: 15,
-                            color: Colors.black.withOpacity(0.8),
-                          ),
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: Align(
+                        alignment: Alignment.topRight,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              width: 50,
+                              height: 50,
+                              color: Colors.transparent,
+                              child: SvgPicture.asset(
+                                'assets/img/Fighter.svg',
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            championData['tags'].length > 1
+                                ? Text(
+                                    '${championData['tags'][1]}',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                  )
+                                : Container(),
+                            SizedBox(
+                              width: 10,
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
                     const SizedBox(
                       height: 40,
@@ -225,7 +123,7 @@ class _ChampionDetailsState extends State<ChampionDetails> {
                       'Skins',
                       style: TextStyle(
                         fontSize: 20,
-                        color: Colors.black.withOpacity(0.8),
+                        color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -236,7 +134,7 @@ class _ChampionDetailsState extends State<ChampionDetails> {
                       'Number of Skins of this champion',
                       style: TextStyle(
                         fontSize: 15,
-                        color: Colors.black.withOpacity(0.5),
+                        color: Colors.white,
                       ),
                     ),
                     const SizedBox(
@@ -298,6 +196,217 @@ class _ChampionDetailsState extends State<ChampionDetails> {
                     )
                   ],
                 ),
+              ),
+            ),
+            Positioned(
+              left: 0,
+              right: 0,
+              child: Container(
+                width: double.maxFinite,
+                height: 360,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: CachedNetworkImageProvider(
+                      'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${championData['id']}_${championSkinsList[selectedIndex]}.jpg',
+                      headers: {
+                        HttpHeaders.authorizationHeader: AppCredentials.ApiKey,
+                      },
+                    ),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              left: 0,
+              right: 0,
+              top: 20,
+              child: Container(
+                height: 360,
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.bottomCenter,
+                    end: Alignment.topCenter,
+                    colors: [
+                      Color(0xFF040316),
+                      Colors.transparent,
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              left: 0,
+              top: 340,
+              child: Container(
+                height: 55,
+                width: 240,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [
+                      Color(0xFF9b455f),
+                      Colors.transparent,
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              left: 20,
+              top: 70,
+              child: Row(
+                children: [
+                  IconButton(
+                    onPressed: () => Get.back(),
+                    icon: const Icon(Icons.arrow_back),
+                    color: Colors.white,
+                  ),
+                ],
+              ),
+            ),
+            Positioned(
+              left: 10,
+              top: 340,
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(right: 5),
+                        child: Text(
+                          "Difficulty",
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: double.maxFinite,
+                        height: 30,
+                        child: ListView.builder(
+                            itemCount: 5,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (_, index) {
+                              return index > championData['info']['difficulty']
+                                  ? Icon(
+                                      Icons.star_border,
+                                      color: Colors.white,
+                                      size: 15,
+                                    )
+                                  : Icon(
+                                      Icons.star,
+                                      color: Colors.white,
+                                      size: 15,
+                                    );
+                            }),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(right: 22),
+                        child: Text(
+                          "Attack",
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: double.maxFinite,
+                        height: 20,
+                        child: ListView.builder(
+                            itemCount: 5,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (_, index) {
+                              return index > championData['info']['attack']
+                                  ? Icon(
+                                      Icons.star_border,
+                                      color: Colors.white,
+                                      size: 15,
+                                    )
+                                  : Icon(
+                                      Icons.star,
+                                      color: Colors.white,
+                                      size: 15,
+                                    );
+                            }),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Positioned(
+              top: 200,
+              left: 10,
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                child: Column(
+                  children: [
+                    Text(
+                      '${championData['name']}',
+                      style: const TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      '${championData['title']}',
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Positioned(
+              top: 260,
+              left: 70,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(left: 10),
+                    width: 40,
+                    child: ClipOval(
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            "https://ddragon.leagueoflegends.com/cdn/12.1.1/img/passive/${championPassiveName}",
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 40,
+                    child: ListView.builder(
+                        itemCount: championSpeels.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (_, index) {
+                          return Container(
+                            padding: EdgeInsets.only(left: 10),
+                            child: ClipOval(
+                              child: CachedNetworkImage(
+                                imageUrl:
+                                    "https://ddragon.leagueoflegends.com/cdn/12.1.1/img/spell/${championSpeels[index]['image']['full']}",
+                              ),
+                            ),
+                          );
+                        }),
+                  ),
+                ],
               ),
             ),
             Positioned.fill(
