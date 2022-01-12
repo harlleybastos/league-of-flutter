@@ -2,13 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:initial_app/controller/champion_list_controller.dart';
 import 'package:initial_app/widgets/champion_container.dart';
-import 'package:initial_app/widgets/champion_gradient_background.dart';
-import 'package:initial_app/widgets/champion_image_background.dart';
 
 class ChampionsList extends GetView<ChampionListController> {
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
 
     return Scaffold(
       appBar: AppBar(

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:initial_app/credentials/app_credentials.dart';
-import 'package:initial_app/widgets/champion_gradient_background.dart';
 import 'package:initial_app/widgets/skins_buttons.dart';
 import 'package:http/http.dart' as http;
 
@@ -23,18 +22,6 @@ class _ChampionDetailsState extends State<ChampionDetails> {
   List<dynamic> championSkinsList = [];
   List<dynamic> championSpeels = [];
   String championPassiveName = '';
-
-  Future<Map<String, dynamic>> listAllSkins(String championName) async {
-    final response = await http.get(
-        Uri.parse(
-            'https://ddragon.leagueoflegends.com/cdn/12.1.1/data/en_US/champion/${championName}.json'),
-        headers: {
-          HttpHeaders.authorizationHeader: AppCredentials.ApiKey,
-        });
-    final Map<String, dynamic> responseList =
-        jsonDecode(response.body)['data'][championName];
-    return responseList;
-  }
 
   @override
   void initState() {
@@ -56,7 +43,7 @@ class _ChampionDetailsState extends State<ChampionDetails> {
         child: Stack(
           children: [
             Positioned(
-              top: 350,
+              top: 320,
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 height: 500,
@@ -70,61 +57,31 @@ class _ChampionDetailsState extends State<ChampionDetails> {
                 padding: const EdgeInsets.only(
                   right: 20,
                   left: 20,
-                  top: 30,
+                  top: 90,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      width: 100,
-                      height: 100,
-                      child: SvgPicture.asset(
-                          "assets/fighter-01.svg",),
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      child: Align(
-                        alignment: Alignment.topRight,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Container(
-                              width: 50,
-                              height: 50,
-                              color: Colors.transparent,
-                              child: SvgPicture.asset(
-                                'assets/img/Fighter.svg',
-                              ),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            championData['tags'].length > 1
-                                ? Text(
-                                    '${championData['tags'][1]}',
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    ),
-                                  )
-                                : Container(),
-                            SizedBox(
-                              width: 10,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 40,
-                    ),
                     Text(
                       'Skins',
                       style: TextStyle(
                         fontSize: 20,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Container(
+                      height: 3,
+                      width: 60,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        gradient: LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [
+                              Color(0xFF35b8e1),
+                              Color(0xFF06102d),
+                            ]),
                       ),
                     ),
                     const SizedBox(
@@ -251,6 +208,36 @@ class _ChampionDetailsState extends State<ChampionDetails> {
                     ],
                   ),
                 ),
+              ),
+            ),
+            Positioned(
+              top: 330,
+              right: 25,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    width: 50,
+                    height: 50,
+                    child: SvgPicture.asset(
+                      'assets/${championData['tags'][0].toLowerCase()}.svg',
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    '${championData['tags'][0]}',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                ],
               ),
             ),
             Positioned(

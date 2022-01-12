@@ -13,6 +13,7 @@ class ChampionListController extends GetxController with StateMixin {
   void onInit() {
     // Wen the controller started
     super.onInit();
+
     findChampions();
   }
 

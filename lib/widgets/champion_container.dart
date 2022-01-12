@@ -19,7 +19,7 @@ class ChampionContainer extends StatelessWidget {
   Future<Map<String, dynamic>> listAllSkins(String championName) async {
     final response = await http.get(
         Uri.parse(
-            'https://ddragon.leagueoflegends.com/cdn/12.1.1/data/en_US/champion/${championName}.json'),
+            'https://ddragon.leagueoflegends.com/cdn/12.1.1/data/en_US/champion/$championName.json'),
         headers: {
           HttpHeaders.authorizationHeader:
               AppCredentials.ApiKey,
@@ -35,12 +35,12 @@ class ChampionContainer extends StatelessWidget {
 
     return GestureDetector(
       onTap: () async {
+        print(championData['id']);
         final resp = await listAllSkins(championData['id']);
         int championSkins = resp['skins'].map((skin) => skin['name']).toList().length;
         final championListSkins = resp['skins'].map((skin) => skin['num']).toList();
         final championSpells = resp['spells'].map((spell) => spell).toList();
         final championPassive = resp['passive']['image']['full'];
-        print(resp['tags'][0]);
 
         Get.toNamed('/champion-details', arguments: {
           'championData': resp,
