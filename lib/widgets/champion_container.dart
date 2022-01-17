@@ -35,7 +35,6 @@ class ChampionContainer extends StatelessWidget {
 
     return GestureDetector(
       onTap: () async {
-        print(championData['id']);
         final resp = await listAllSkins(championData['id']);
         int championSkins = resp['skins'].map((skin) => skin['name']).toList().length;
         final championListSkins = resp['skins'].map((skin) => skin['num']).toList();

@@ -20,7 +20,7 @@ class HomeSection extends GetView<HomePageController> {
         children: [
           Container(
             margin: const EdgeInsets.all(20),
-            child: Text(
+            child: const Text(
               'Champion of the Day',
               style: TextStyle(
                 color: Colors.white,
@@ -36,11 +36,11 @@ class HomeSection extends GetView<HomePageController> {
               height: 200,
               margin: const EdgeInsets.all(20),
               child: Stack(
-                children: [
+                children: const [
                   ChampionImageBackground(
                     championName: 'Aatrox',
                   ),
-                  const ChampionGradientBackground(),
+                 ChampionGradientBackground(),
                 ],
               ),
             ),

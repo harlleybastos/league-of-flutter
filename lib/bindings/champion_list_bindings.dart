@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:initial_app/controller/champion_list_controller.dart';
-import 'package:initial_app/repository/i_champions_repository.dart';
-import 'package:initial_app/service/champions_repository.dart';
+import '../controller/champion_list_controller.dart';
+import '../repository/i_champions_repository.dart';
+import '../service/champions_repository.dart';
 
 class ChampionsListBindings implements Bindings{
   @override

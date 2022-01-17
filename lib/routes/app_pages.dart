@@ -10,12 +10,12 @@ class AppPages {
   static var list = [
     GetPage(
         name: AppRoutes.Dashboard,
-        page: () => DashboardPage(),
+        page: () => const DashboardPage(),
         binding: DashboardBinding(),
         children: [
           GetPage(
             name: AppRoutes.ChampionList,
-            page: () => ChampionsList(),
+            page: () => const ChampionsList(),
             binding:ChampionsListBindings()
           ),
           GetPage(

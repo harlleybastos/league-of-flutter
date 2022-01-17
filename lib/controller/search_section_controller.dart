@@ -1,3 +1,6 @@
 import 'package:get/get.dart';
 
-class SearchSectionController extends GetxController{}
+class SearchSectionController extends GetxController with StateMixin{
+
+
+}

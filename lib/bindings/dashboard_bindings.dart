@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
-import 'package:initial_app/controller/dashboard_page_controller.dart';
-import 'package:initial_app/controller/home_page_controller.dart';
-import 'package:initial_app/controller/search_section_controller.dart';
+import '../controller/dashboard_page_controller.dart';
+import '../controller/home_page_controller.dart';
+import '../controller/search_section_controller.dart';
 
-class DashboardBinding extends Bindings {
+class DashboardBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<DashboardPageController>(() => DashboardPageController());

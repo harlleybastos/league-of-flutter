@@ -23,14 +23,14 @@ class Home extends StatelessWidget {
           children: [
             TextButton(
               onPressed: () => Get.toNamed("/champions-list"),
-              child: Text(
+              child: const Text(
                 'Champions',
                 style: TextStyle(fontSize: 20),
               ),
             ),
             TextButton(
               onPressed: () => Get.toNamed('/details'),
-              child: Text(
+              child: const Text(
                 'Details',
                 style: TextStyle(fontSize: 20),
               ),
