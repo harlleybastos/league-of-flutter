@@ -22,6 +22,7 @@ class _ChampionDetailsState extends State<ChampionDetails> {
   List<dynamic> championSkinsList = [];
   List<dynamic> championSpeels = [];
   String championPassiveName = '';
+  late FocusNode focusForDispose;
 
   @override
   void initState() {
@@ -31,6 +32,7 @@ class _ChampionDetailsState extends State<ChampionDetails> {
     championSkins = Get.arguments['championSkinsLength'];
     championSkinsList = Get.arguments['championListSkins'];
     championSpeels = Get.arguments['championSpells'];
+    focusForDispose = Get.arguments['focusForDispose'];
   }
 
   @override
@@ -246,7 +248,10 @@ class _ChampionDetailsState extends State<ChampionDetails> {
               child: Row(
                 children: [
                   IconButton(
-                    onPressed: () => Get.back(),
+                    onPressed: () {
+                      FocusManager.instance.primaryFocus?.unfocus();
+                      Get.back();
+                    },
                     icon: const Icon(Icons.arrow_back),
                     color: Colors.white,
                   ),

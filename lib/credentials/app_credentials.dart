@@ -1,3 +1,3 @@
 class AppCredentials {
-  static const String ApiKey = "RGAPI-de6f7d1d-c4e7-4faf-88af-57fbd2bdbf56";
+  static const String ApiKey = "RGAPI-2d1dd0ff-370c-4b82-8cf4-c65c3cc7d392";
 }

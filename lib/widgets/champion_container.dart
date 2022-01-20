@@ -11,9 +11,10 @@ import 'package:initial_app/widgets/champion_image_background.dart';
 
 class ChampionContainer extends StatelessWidget {
   final Map<String, dynamic> championData;
+  final FocusNode focusForDispose;
   int championSkins = 0;
 
-  ChampionContainer({Key? key, required this.championData})
+  ChampionContainer({Key? key, required this.championData, required this.focusForDispose})
       : super(key: key);
 
   Future<Map<String, dynamic>> listAllSkins(String championName) async {
@@ -47,6 +48,7 @@ class ChampionContainer extends StatelessWidget {
           'championListSkins': championListSkins,
           'championSpells': championSpells,
           'championPassive': championPassive,
+          'focusForDispose':focusForDispose,
         });
       },
       child: Container(

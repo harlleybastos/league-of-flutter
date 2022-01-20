@@ -8,7 +8,6 @@ class ChampionsList extends GetView<ChampionListController> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -26,36 +25,54 @@ class ChampionsList extends GetView<ChampionListController> {
         children: [
           Container(
             height: 50,
-            width: MediaQuery.of(context).size.width ,
-            margin: const EdgeInsets.only(left:30,right:30),
-            padding: const EdgeInsets.only(left:20),
-            child: const TextField(
-              decoration: InputDecoration(
-                hintText: 'Enter a Champion Name'
+            width: MediaQuery.of(context).size.width,
+            margin: const EdgeInsets.only(left: 30, right: 30),
+            padding: const EdgeInsets.only(left: 20),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20.0),
+              color: const Color(0xFF2d2c2c),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 2.0, bottom: 2.0, right: 9.0),
+              child: TextField(
+                focusNode: controller.focusNode,
+                style: const TextStyle(color: Colors.white, fontSize: 20),
+                decoration: const InputDecoration(
+                  hintText: 'Search a champion',
+                  border: InputBorder.none,
+                  hintStyle: TextStyle(
+                    color: Color(0xFF474646),
+                  ),
+                  suffixIcon: Icon(
+                    Icons.search,
+                    color: Color(0xFF939392),
+                    size: 30,
+                  ),
+                ),
               ),
             ),
           ),
           controller.obx(
-          (state) {
-            return Container(
-              margin: const EdgeInsets.only(top:50),
-               height:MediaQuery.of(context).size.height,
-              child: ListView.builder(
-                itemCount: state.length,
-                itemBuilder: (_, index) {
-                  return ChampionContainer(championData: state[index]);
-                },
-              ),
-            );
-          },
-          onError: (error) {
-            return Center(
-              child: Text(
-                error.toString(),
-              ),
-            );
-          },
-        )
+            (state) {
+              return Container(
+                margin: const EdgeInsets.only(top: 70),
+                height: MediaQuery.of(context).size.height,
+                child: ListView.builder(
+                  itemCount: state.length,
+                  itemBuilder: (_, index) {
+                    return ChampionContainer(championData: state[index],focusForDispose:controller.focusNode);
+                  },
+                ),
+              );
+            },
+            onError: (error) {
+              return Center(
+                child: Text(
+                  error.toString(),
+                ),
+              );
+            },
+          )
         ],
       ),
     );
