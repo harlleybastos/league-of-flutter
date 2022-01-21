@@ -7,6 +7,9 @@ class ChampionListController extends GetxController with StateMixin {
   List<dynamic> championName = [].obs;
   List<dynamic> skins = [].obs;
   final FocusNode focusNode = FocusNode();
+  TextEditingController textController = TextEditingController();
+  List<dynamic> searchResult = [];
+  List<dynamic> championsList = [];
 
   ChampionListController(
     this._httpRepository,
@@ -24,11 +27,29 @@ class ChampionListController extends GetxController with StateMixin {
     // Try to get the data when the app start
     try {
       final resp = await _httpRepository.listAllChampions();
+      championsList.addAll(resp);
+
+      championsList.forEach((champion) {
+        print(champion['name']);
+      });
       // If the data is correct populate the controller and show the success
-      change(resp, status: RxStatus.success());
+      change(championsList, status: RxStatus.success());
     } catch (e) {
       // If the data is incorrect show the error
       change([], status: RxStatus.error('Error'));
     }
+  }
+
+  void filterListOfChampionsByName(String name) async {
+    searchResult.clear();
+    if(name.isEmpty){
+      return;
+    }
+    championsList.forEach((champion) {
+      if(champion['name'].contains(name)){
+        searchResult.add(champion);
+      }
+    });
+
   }
 }

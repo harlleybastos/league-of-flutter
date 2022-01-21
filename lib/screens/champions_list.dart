@@ -36,6 +36,8 @@ class ChampionsList extends GetView<ChampionListController> {
               padding: const EdgeInsets.only(top: 2.0, bottom: 2.0, right: 9.0),
               child: TextField(
                 focusNode: controller.focusNode,
+                controller: controller.textController,
+                onChanged: controller.filterListOfChampionsByName,
                 style: const TextStyle(color: Colors.white, fontSize: 20),
                 decoration: const InputDecoration(
                   hintText: 'Search a champion',
@@ -57,12 +59,22 @@ class ChampionsList extends GetView<ChampionListController> {
               return Container(
                 margin: const EdgeInsets.only(top: 70),
                 height: MediaQuery.of(context).size.height,
-                child: ListView.builder(
-                  itemCount: state.length,
+                child: controller.searchResult.isNotEmpty || controller.textController.text.isNotEmpty ? ListView.builder(
+                  itemCount: controller.searchResult.length,
                   itemBuilder: (_, index) {
-                    return ChampionContainer(championData: state[index],focusForDispose:controller.focusNode);
+                    return ChampionContainer(
+                      championData: controller.searchResult[index],
+                    );
                   },
-                ),
+                ):ListView.builder(
+                  itemCount: state.length,
+                  
+                  itemBuilder: (_, index) {
+                    return ChampionContainer(
+                      championData: state[index],
+                    );
+                  },
+                ) ,
               );
             },
             onError: (error) {

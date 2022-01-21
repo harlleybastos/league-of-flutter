@@ -22,7 +22,6 @@ class _ChampionDetailsState extends State<ChampionDetails> {
   List<dynamic> championSkinsList = [];
   List<dynamic> championSpeels = [];
   String championPassiveName = '';
-  late FocusNode focusForDispose;
 
   @override
   void initState() {
@@ -32,7 +31,6 @@ class _ChampionDetailsState extends State<ChampionDetails> {
     championSkins = Get.arguments['championSkinsLength'];
     championSkinsList = Get.arguments['championListSkins'];
     championSpeels = Get.arguments['championSpells'];
-    focusForDispose = Get.arguments['focusForDispose'];
   }
 
   @override
