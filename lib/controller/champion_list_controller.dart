@@ -28,10 +28,6 @@ class ChampionListController extends GetxController with StateMixin {
     try {
       final resp = await _httpRepository.listAllChampions();
       championsList.addAll(resp);
-
-      championsList.forEach((champion) {
-        print(champion['name']);
-      });
       // If the data is correct populate the controller and show the success
       change(championsList, status: RxStatus.success());
     } catch (e) {
@@ -42,14 +38,23 @@ class ChampionListController extends GetxController with StateMixin {
 
   void filterListOfChampionsByName(String name) async {
     searchResult.clear();
-    if(name.isEmpty){
+    change([], status: RxStatus.loading());
+    if (name.isEmpty && textController.value.text.isEmpty) {
+      change(championsList, status: RxStatus.success());
       return;
     }
-    championsList.forEach((champion) {
-      if(champion['name'].contains(name)){
+    for (var champion in championsList) {
+      if (champion['name']
+          .toString()
+          .toLowerCase()
+          .contains(name.toLowerCase())) {
         searchResult.add(champion);
       }
-    });
-
+    }
+    if (searchResult.isNotEmpty) {
+      change(searchResult, status: RxStatus.success());
+    } else {
+      change([], status: RxStatus.error('No champions found'));
+    }
   }
 }

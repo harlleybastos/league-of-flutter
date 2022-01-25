@@ -37,6 +37,8 @@ dependencies:
   get: ^4.6.1
   cached_network_image: ^3.2.0
   flutter_svg: ^1.0.0
+  keyboard_service: ^2.0.1
+
   
 
 

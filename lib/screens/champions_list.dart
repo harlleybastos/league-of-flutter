@@ -2,9 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:initial_app/controller/champion_list_controller.dart';
 import 'package:initial_app/widgets/champion_container.dart';
+import 'package:keyboard_service/keyboard_service.dart';
 
 class ChampionsList extends GetView<ChampionListController> {
   const ChampionsList({Key? key}) : super(key: key);
+
+  Widget conditionalReturn(ChampionListController customController) {
+    return customController.searchResult.isNotEmpty
+        ? ListView.builder(
+            itemCount: controller.searchResult.length,
+            itemBuilder: (_, index) {
+              return ChampionContainer(
+                championData: controller.searchResult[index],
+              );
+            },
+          )
+        : Center(
+            child: Image.asset(
+              'assets/league-of-flutter-loading-alistar.gif',
+              width: 200,
+              height: 200,
+            ),
+          );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,22 +79,16 @@ class ChampionsList extends GetView<ChampionListController> {
               return Container(
                 margin: const EdgeInsets.only(top: 70),
                 height: MediaQuery.of(context).size.height,
-                child: controller.searchResult.isNotEmpty || controller.textController.text.isNotEmpty ? ListView.builder(
-                  itemCount: controller.searchResult.length,
-                  itemBuilder: (_, index) {
-                    return ChampionContainer(
-                      championData: controller.searchResult[index],
-                    );
-                  },
-                ):ListView.builder(
-                  itemCount: state.length,
-                  
-                  itemBuilder: (_, index) {
-                    return ChampionContainer(
-                      championData: state[index],
-                    );
-                  },
-                ) ,
+                child: KeyboardService.isVisible(context)
+                    ? conditionalReturn(controller)
+                    : ListView.builder(
+                        itemCount: state.length,
+                        itemBuilder: (_, index) {
+                          return ChampionContainer(
+                            championData: state[index],
+                          );
+                        },
+                      ),
               );
             },
             onError: (error) {
