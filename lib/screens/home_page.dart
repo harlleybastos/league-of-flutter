@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:initial_app/controller/home_page_controller.dart';
+import 'package:initial_app/widgets/HomeSection/appbar.dart';
 import 'package:initial_app/widgets/champion_gradient_background.dart';
 import 'package:initial_app/widgets/champion_image_background.dart';
 
@@ -11,11 +12,7 @@ class HomeSection extends GetView<HomePageController> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'League of Flutter',
-        ),
-      ),
+      appBar: customAppBar(context, 'Harlley'),
       body: Column(
         children: [
           Container(
@@ -23,10 +20,9 @@ class HomeSection extends GetView<HomePageController> {
             child: const Text(
               'Champion of the Day',
               style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.w500
-              ),
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500),
             ),
           ),
           GestureDetector(
@@ -40,7 +36,7 @@ class HomeSection extends GetView<HomePageController> {
                   ChampionImageBackground(
                     championName: 'Aatrox',
                   ),
-                 ChampionGradientBackground(),
+                  ChampionGradientBackground(),
                 ],
               ),
             ),
