@@ -11,10 +11,10 @@ PreferredSizeWidget customAppBar(BuildContext context, String title) {
           child: Container(
             height: 45,
             width: 45,
-            margin: const EdgeInsets.only(top: 10),
+            margin: EdgeInsets.only(top: 10, bottom: 10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
-              color: Colors.white,
+              color: Color(0xFF2263b3),
             ),
           ),
         ),
@@ -26,10 +26,17 @@ PreferredSizeWidget customAppBar(BuildContext context, String title) {
           child: Container(
             height: 45,
             width: 45,
-            margin: const EdgeInsets.only(top: 10),
+            padding: const EdgeInsets.only(left: 10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
-              color: Colors.white,
+              color: const Color.fromRGBO(0, 1, 22, .9),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.white.withOpacity(0.2),
+                  blurRadius: 5,
+                  offset: const Offset(-2, -1),
+                ),
+              ],
             ),
           ),
         ),
