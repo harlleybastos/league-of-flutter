@@ -1,15 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/state_manager.dart';
+import 'package:initial_app/models/champion.dart';
 import 'package:initial_app/repository/i_champions_repository.dart';
 
-class ChampionListController extends GetxController with StateMixin {
+class ChampionListController extends GetxController with StateMixin<List<Champion>> {
   final IChampionsRepository _httpRepository;
   List<dynamic> championName = [].obs;
   List<dynamic> skins = [].obs;
   final FocusNode focusNode = FocusNode();
   TextEditingController textController = TextEditingController();
-  List<dynamic> searchResult = [];
-  List<dynamic> championsList = [];
+  List<Champion> searchResult = [];
+  List<Champion> championsList = [];
 
   ChampionListController(
     this._httpRepository,
@@ -28,9 +29,10 @@ class ChampionListController extends GetxController with StateMixin {
     try {
       final resp = await _httpRepository.listAllChampions();
       championsList.addAll(resp);
-      // If the data is correct populate the controller and show the success
+      // the data is correct populate the controller and show the success
       change(championsList, status: RxStatus.success());
     } catch (e) {
+      print(e);
       // If the data is incorrect show the error
       change([], status: RxStatus.error('Error'));
     }
@@ -44,10 +46,7 @@ class ChampionListController extends GetxController with StateMixin {
       return;
     }
     for (var champion in championsList) {
-      if (champion['name']
-          .toString()
-          .toLowerCase()
-          .contains(name.toLowerCase())) {
+      if (champion.name.toString().toLowerCase().contains(name.toLowerCase())) {
         searchResult.add(champion);
       }
     }

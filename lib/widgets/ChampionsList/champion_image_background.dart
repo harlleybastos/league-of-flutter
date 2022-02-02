@@ -2,9 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class ChampionImageBackground extends StatelessWidget {
-  final String championName;
+  final String championImageUrl;
 
-  const ChampionImageBackground({Key? key, required this.championName})
+  const ChampionImageBackground({Key? key, required this.championImageUrl})
       : super(key: key);
 
   @override
@@ -15,7 +15,7 @@ class ChampionImageBackground extends StatelessWidget {
           Radius.circular(20),
         ),
         child: CachedNetworkImage(
-          imageUrl: 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${championName}_0.jpg',
+          imageUrl: championImageUrl,
           fit: BoxFit.cover,
         ),
       ),

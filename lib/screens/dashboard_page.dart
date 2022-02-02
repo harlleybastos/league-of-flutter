@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:initial_app/controller/dashboard_page_controller.dart';
+import 'package:initial_app/home.dart';
 import 'package:initial_app/screens/home_page.dart';
 import 'package:initial_app/screens/search_page.dart';
 
@@ -14,7 +15,7 @@ class DashboardPage extends GetView<DashboardPageController> {
           child: IndexedStack(
             index: controller.tabIndex,
             children: const [
-              HomeSection(),
+              Home(),
               SearchPage(),
             ],
           ),

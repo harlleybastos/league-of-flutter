@@ -1,10 +1,11 @@
 import 'package:get/get.dart';
+import 'package:initial_app/bindings/champion_details_bindings.dart';
 import 'package:initial_app/bindings/champion_list_bindings.dart';
 import 'package:initial_app/bindings/dashboard_bindings.dart';
 import 'package:initial_app/screens/champions_list.dart';
 import 'package:initial_app/routes/app_routes.dart';
 import 'package:initial_app/screens/dashboard_page.dart';
-import 'package:initial_app/widgets/champions_details.dart';
+import 'package:initial_app/widgets/ChampionDetails/champions_details.dart';
 
 class AppPages {
   static var list = [
@@ -20,7 +21,8 @@ class AppPages {
           ),
           GetPage(
             name: AppRoutes.ChampionDetails,
-            page: () => ChampionDetails(),
+            page: () => const ChampionDetails(),
+            binding: ChampionDetailsBindings(),
           ),
         ]),
   ];

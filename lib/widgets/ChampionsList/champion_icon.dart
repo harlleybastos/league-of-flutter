@@ -1,8 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:initial_app/models/champion.dart';
 
 class ChampionIcon extends StatelessWidget {
-  Map<String, dynamic> championData = {};
+  final Champion championData;
 
   ChampionIcon(this.championData);
   
@@ -19,7 +20,7 @@ class ChampionIcon extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             child: ClipOval(
               child: CachedNetworkImage(
-                imageUrl: 'https://ddragon.leagueoflegends.com/cdn/11.24.1/img/champion/${championData['id']}.png',
+                imageUrl: 'https://ddragon.leagueoflegends.com/cdn/11.24.1/img/champion/${championData.id}.png',
                 height: 50,
                 fit: BoxFit.contain,
               ),
@@ -32,7 +33,7 @@ class ChampionIcon extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                championData['name'],
+                championData.name,
                 style: const TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
@@ -40,7 +41,7 @@ class ChampionIcon extends StatelessWidget {
                 ),
               ),
               Text(
-                '${championData['title']}',
+                championData.title,
                 style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w400,

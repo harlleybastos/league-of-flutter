@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:initial_app/controller/champion_list_controller.dart';
-import 'package:initial_app/widgets/champion_container.dart';
 import 'package:keyboard_service/keyboard_service.dart';
+
+import '../controller/champion_list_controller.dart';
+import '../widgets/ChampionsList/champion_container.dart';
 
 class ChampionsList extends GetView<ChampionListController> {
   const ChampionsList({Key? key}) : super(key: key);
@@ -82,7 +83,7 @@ class ChampionsList extends GetView<ChampionListController> {
                 child: KeyboardService.isVisible(context)
                     ? conditionalReturn(controller)
                     : ListView.builder(
-                        itemCount: state.length,
+                        itemCount: state!.length,
                         itemBuilder: (_, index) {
                           return ChampionContainer(
                             championData: state[index],
