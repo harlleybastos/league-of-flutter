@@ -83,6 +83,7 @@ class ChampionsList extends GetView<ChampionListController> {
                 child: KeyboardService.isVisible(context)
                     ? conditionalReturn(controller)
                     : ListView.builder(
+                        scrollDirection: Axis.horizontal,
                         itemCount: state!.length,
                         itemBuilder: (_, index) {
                           return ChampionContainer(

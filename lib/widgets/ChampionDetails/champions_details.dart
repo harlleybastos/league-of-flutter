@@ -143,17 +143,24 @@ class ChampionDetails extends GetView<ChampionDetailsController> {
                         child: Container(
                           width: double.maxFinite,
                           height: 360,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: CachedNetworkImageProvider(
+                          child: CachedNetworkImage(
+                            imageUrl:
                                 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${state['id']}_${state['skins'][controller.selectedIndex]['num']}.jpg',
-                                headers: {
-                                  HttpHeaders.authorizationHeader:
-                                      AppCredentials.ApiKey,
-                                },
-                              ),
-                              fit: BoxFit.cover,
-                            ),
+                            httpHeaders: const {
+                              HttpHeaders.authorizationHeader:
+                                  AppCredentials.ApiKey,
+                            },
+                            progressIndicatorBuilder:
+                                (context, url, downloadProgress) => Center(
+                                  child: Image.asset(
+                                    'assets/league-of-flutter-loading-image.gif',
+                                    fit: BoxFit.cover,
+                                    filterQuality: FilterQuality.high,
+                                    width: double.maxFinite,
+                                    height: double.maxFinite,
+                                  ),
+                                ),
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ),
