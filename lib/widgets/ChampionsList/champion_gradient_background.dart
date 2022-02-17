@@ -7,8 +7,8 @@ class ChampionGradientBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
       bottom: 0,
-      left: 0,
-      right: 0,
+      left: 25,
+      right: 25,
       child: Container(
         height: 150,
         decoration: BoxDecoration(
@@ -20,7 +20,7 @@ class ChampionGradientBackground extends StatelessWidget {
               begin: Alignment.bottomCenter,
               end: Alignment.topCenter,
               colors: [
-                Colors.black.withOpacity(0.7),
+                Colors.black.withOpacity(0.9),
                 Colors.transparent,
               ],
             )),

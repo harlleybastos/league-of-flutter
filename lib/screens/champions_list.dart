@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:keyboard_service/keyboard_service.dart';
@@ -79,7 +80,7 @@ class ChampionsList extends GetView<ChampionListController> {
             (state) {
               return Container(
                 margin: const EdgeInsets.only(top: 70),
-                height: MediaQuery.of(context).size.height,
+                height: MediaQuery.of(context).size.height * 0.7,
                 child: KeyboardService.isVisible(context)
                     ? conditionalReturn(controller)
                     : ListView.builder(

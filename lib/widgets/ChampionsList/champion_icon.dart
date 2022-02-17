@@ -11,7 +11,7 @@ class ChampionIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
       bottom: 0,
-      left: 0,
+      left: 10,
       right: 0,
       child: Padding(
         padding: const EdgeInsets.all(10.0),
