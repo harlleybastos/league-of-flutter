@@ -21,8 +21,6 @@ class _ChampionContainerState extends State<ChampionContainer> {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-
     return SingleChildScrollView(
       child: GestureDetector(
         onTap: () async {

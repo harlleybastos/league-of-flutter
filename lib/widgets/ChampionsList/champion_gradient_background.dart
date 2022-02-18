@@ -7,23 +7,31 @@ class ChampionGradientBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
       bottom: 0,
-      left: 25,
-      right: 25,
+      left: 30,
+      right: 30,
       child: Container(
-        height: 150,
+        height: 180,
         decoration: BoxDecoration(
-            borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(20),
-              bottomRight: Radius.circular(20),
-            ),
-            gradient: LinearGradient(
-              begin: Alignment.bottomCenter,
-              end: Alignment.topCenter,
-              colors: [
-                Colors.black.withOpacity(0.9),
-                Colors.transparent,
-              ],
-            )),
+          borderRadius: const BorderRadius.only(
+            bottomLeft: Radius.circular(20),
+            bottomRight: Radius.circular(20),
+          ),
+          gradient: LinearGradient(
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter,
+            colors: [
+              Colors.black.withOpacity(0.9),
+              Colors.transparent,
+            ],
+          ),
+          // boxShadow: [
+          //   BoxShadow(
+          //     color: Colors.black.withOpacity(0.7),
+          //     blurRadius: 20,
+          //     offset: Offset(0, 10),
+          //   ),
+          // ],
+        ),
       ),
     );
   }

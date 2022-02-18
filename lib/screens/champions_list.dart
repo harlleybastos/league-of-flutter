@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:keyboard_service/keyboard_service.dart';
 
@@ -41,6 +42,7 @@ class ChampionsList extends GetView<ChampionListController> {
           ),
           onPressed: () => Get.back(),
         ),
+        backgroundColor: Colors.transparent,
       ),
       // With that we can controlle all the structures of the StateMixin with the responses of loading, success or error;
       body: Stack(
@@ -55,7 +57,7 @@ class ChampionsList extends GetView<ChampionListController> {
               color: const Color(0xFF2d2c2c),
             ),
             child: Padding(
-              padding: const EdgeInsets.only(top: 2.0, bottom: 2.0, right: 9.0),
+              padding: const EdgeInsets.only(top: 2.0),
               child: TextField(
                 focusNode: controller.focusNode,
                 controller: controller.textController,
@@ -79,16 +81,44 @@ class ChampionsList extends GetView<ChampionListController> {
           controller.obx(
             (state) {
               return Container(
-                margin: const EdgeInsets.only(top: 70),
-                height: MediaQuery.of(context).size.height * 0.7,
+                margin: const EdgeInsets.only(top: 80),
+                height: MediaQuery.of(context).size.height,
                 child: KeyboardService.isVisible(context)
                     ? conditionalReturn(controller)
                     : ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: state!.length,
                         itemBuilder: (_, index) {
-                          return ChampionContainer(
-                            championData: state[index],
+                          return Stack(
+                            children: [
+                              Positioned(
+                                bottom: 65,
+                                left: 150,
+                                right: 150,
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      state[index].tags[0],
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    SizedBox(
+                                      width: 50,
+                                      height: 50,
+                                      child: SvgPicture.asset(
+                                        'assets/${state[index].tags[0].toLowerCase()}.svg',
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              ChampionContainer(
+                                championData: state[index],
+                              ),
+                            ],
                           );
                         },
                       ),
