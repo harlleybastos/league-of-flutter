@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 PreferredSizeWidget customAppBar(BuildContext context, String title) {
@@ -6,15 +7,19 @@ PreferredSizeWidget customAppBar(BuildContext context, String title) {
     title: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Padding(
-          padding: const EdgeInsets.all(10),
-          child: Container(
-            height: 45,
-            width: 45,
-            margin: EdgeInsets.only(top: 10, bottom: 10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
-              color: Color(0xFF2263b3),
+        Container(
+          width: 55,
+          height: 50,
+          padding: EdgeInsets.all(5),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(color: Color(0xFF17407d), width: 2),
+          ),
+          child: ClipOval(
+            child: CachedNetworkImage(
+              imageUrl:
+                  "https://ddragon.leagueoflegends.com/cdn/12.4.1/img/champion/Aatrox.png",
+              fit: BoxFit.fitWidth,
             ),
           ),
         ),

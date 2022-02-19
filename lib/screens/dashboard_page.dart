@@ -15,7 +15,7 @@ class DashboardPage extends GetView<DashboardPageController> {
           child: IndexedStack(
             index: controller.tabIndex,
             children: const [
-              Home(),
+              HomeSection(),
               SearchPage(),
             ],
           ),
