@@ -435,7 +435,7 @@ class ChampionDetails extends GetView<ChampionDetailsController> {
           onLoading: Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
-            color: Color(0xFF111E2B),
+            color: const Color(0xFF010116),
             child: Center(
               child: Image.asset(
                 'assets/league-of-flutter-loading-alistar.gif',

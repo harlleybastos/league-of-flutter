@@ -30,7 +30,9 @@ class ChampionListController extends GetxController with StateMixin<List<Champio
       final resp = await _httpRepository.listAllChampions();
       championsList.addAll(resp);
       // the data is correct populate the controller and show the success
-      change(championsList, status: RxStatus.success());
+      Future.delayed(const Duration(seconds: 10), () {
+        change(championsList, status: RxStatus.success());
+      });
     } catch (e) {
       print(e);
       // If the data is incorrect show the error

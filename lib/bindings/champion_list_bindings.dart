@@ -3,7 +3,7 @@ import '../controller/champion_list_controller.dart';
 import '../repository/i_champions_repository.dart';
 import '../service/champions_repository.dart';
 
-class ChampionsListBindings implements Bindings{
+class ChampionsListBindings implements Bindings {
   @override
   void dependencies() {
     // Runs before the app starts for populating the dependencies
@@ -11,5 +11,4 @@ class ChampionsListBindings implements Bindings{
     // Add the controller for execute the access for repository
     Get.put(ChampionListController(Get.find()));
   }
-
 }

@@ -12,34 +12,10 @@ class HomeSection extends GetView<HomePageController> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: customAppBar(context, 'Harlley'),
-      body: Column(
-        children: [
-          Container(
-            margin: const EdgeInsets.all(20),
-            child: const Text(
-              'Champion of the Day',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {},
-            child: Container(
-              width: size.width,
-              height: 200,
-              margin: const EdgeInsets.all(20),
-              child: Stack(
-                children: const [
-                  ChampionImageBackground(
-                    championImageUrl: 'Aatrox',
-                  ),
-                  ChampionGradientBackground(),
-                ],
-              ),
-            ),
+      body: Stack(
+        children: const [
+          ChampionImageBackground(
+            championImageUrl: 'Aatrox',
           ),
         ],
       ),

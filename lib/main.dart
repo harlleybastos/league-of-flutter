@@ -40,9 +40,9 @@ class _MyAppState extends State<MyApp> {
       initialRoute: AppRoutes.Dashboard,
       getPages: AppPages.list,
       theme: ThemeData(
-        scaffoldBackgroundColor: Color(0xFF111E2B),
+        scaffoldBackgroundColor: Color(0xFF010116),
         appBarTheme: const AppBarTheme(
-          backgroundColor: Color(0xFF111E2B),
+          backgroundColor:  Color(0xFF010116),
           elevation: 0,
           centerTitle: true,
           textTheme: TextTheme(

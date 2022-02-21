@@ -8,6 +8,7 @@ import '../ChampionsList/champion_image_background.dart';
 
 class ChampionContainer extends StatefulWidget {
   final Champion championData;
+  
 
   const ChampionContainer({Key? key, required this.championData})
       : super(key: key);
@@ -29,14 +30,17 @@ class _ChampionContainerState extends State<ChampionContainer> {
             'championName': championName,
           });
         },
-        child: Stack(
-          children: [
-            ChampionImageBackground(
-              championImageUrl: widget.championData.image,
-            ),
-            const ChampionGradientBackground(),
-            ChampionIcon(widget.championData),
-          ],
+        child: Container(
+          margin: EdgeInsets.symmetric(vertical: 175),
+          child: Stack(
+            children: [
+              ChampionImageBackground(
+                championImageUrl: widget.championData.image,
+              ),
+              const ChampionGradientBackground(),
+              ChampionIcon(widget.championData),
+            ],
+          ),
         ),
       ),
     );
