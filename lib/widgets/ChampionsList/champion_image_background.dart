@@ -12,7 +12,7 @@ class ChampionImageBackground extends StatelessWidget {
 
     return Container(
       width: MediaQuery.of(context).size.width * 0.6,
-      height: MediaQuery.of(context).size.height * 0.5,
+      height: MediaQuery.of(context).size.height,
       margin: const EdgeInsets.only(left: 40, right: 40),
       decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(

@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:initial_app/models/champion.dart';
@@ -22,25 +21,23 @@ class _ChampionContainerState extends State<ChampionContainer> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: GestureDetector(
-        onTap: () async {
-          String championName = widget.championData.id;
-          Get.toNamed('/champion-details', arguments: {
-            'championName': championName,
-          });
-        },
-        child: Container(
-          margin: EdgeInsets.symmetric(vertical: 175),
-          child: Stack(
-            children: [
-              ChampionImageBackground(
-                championImageUrl: widget.championData.image,
-              ),
-              const ChampionGradientBackground(),
-              ChampionIcon(widget.championData),
-            ],
-          ),
+    return GestureDetector(
+      onTap: () async {
+        String championName = widget.championData.id;
+        Get.toNamed('/champion-details', arguments: {
+          'championName': championName,
+        });
+      },
+      child: Container(
+        margin: const EdgeInsets.only(top: 165,bottom: 110),
+        child: Stack(
+          children: [
+            ChampionImageBackground(
+              championImageUrl: widget.championData.image,
+            ),
+            const ChampionGradientBackground(),
+            ChampionIcon(widget.championData),
+          ],
         ),
       ),
     );

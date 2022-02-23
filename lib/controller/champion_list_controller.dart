@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/state_manager.dart';
 import 'package:initial_app/models/champion.dart';
 import 'package:initial_app/repository/i_champions_repository.dart';
+import 'package:keyboard_service/keyboard_service.dart';
 
-class ChampionListController extends GetxController with StateMixin<List<Champion>> {
+class ChampionListController extends GetxController
+    with StateMixin<List<Champion>> {
   final IChampionsRepository _httpRepository;
   List<dynamic> championName = [].obs;
   List<dynamic> skins = [].obs;
@@ -11,6 +13,7 @@ class ChampionListController extends GetxController with StateMixin<List<Champio
   TextEditingController textController = TextEditingController();
   List<Champion> searchResult = [];
   List<Champion> championsList = [];
+  bool userIsTipyng = false;
 
   ChampionListController(
     this._httpRepository,
@@ -19,7 +22,16 @@ class ChampionListController extends GetxController with StateMixin<List<Champio
   void onInit() {
     // Wen the controller started
     super.onInit();
+    focusNode.addListener(() {
+      userIsTipyng = focusNode.hasFocus;
+        print(focusNode.hasFocus);
+        print("Print");
+    });
     findChampions();
+  }
+
+  void updateFocus() {
+    focusNode.requestFocus();
   }
 
   void findChampions() async {
@@ -30,11 +42,8 @@ class ChampionListController extends GetxController with StateMixin<List<Champio
       final resp = await _httpRepository.listAllChampions();
       championsList.addAll(resp);
       // the data is correct populate the controller and show the success
-      Future.delayed(const Duration(seconds: 10), () {
-        change(championsList, status: RxStatus.success());
-      });
+      change(championsList, status: RxStatus.success());
     } catch (e) {
-      print(e);
       // If the data is incorrect show the error
       change([], status: RxStatus.error('Error'));
     }
@@ -52,10 +61,10 @@ class ChampionListController extends GetxController with StateMixin<List<Champio
         searchResult.add(champion);
       }
     }
-    if (searchResult.isNotEmpty) {
-      change(searchResult, status: RxStatus.success());
+    if (searchResult.isEmpty) {
+      change([], status: RxStatus.error('No champions found !'));
     } else {
-      change([], status: RxStatus.error('No champions found'));
+      change(searchResult, status: RxStatus.success());
     }
   }
 }

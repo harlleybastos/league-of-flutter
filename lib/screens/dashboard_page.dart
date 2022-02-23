@@ -14,7 +14,7 @@ class DashboardPage extends StatelessWidget {
               body: SafeArea(
                 child: IndexedStack(
                   index: controller.tabIndex,
-                  children: const [
+                  children: [
                     ChampionsList(),
                     SearchPage(),
                   ],

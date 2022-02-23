@@ -12,6 +12,8 @@ class DashboardBinding implements Bindings {
     Get.lazyPut<SearchSectionController>(() => SearchSectionController());
     Get.lazyPut<IChampionsRepository>(() => ChampionsHttpRepository());
     Get.lazyPut<DashboardPageController>(() => DashboardPageController());
+    Get.put<IChampionsRepository>(ChampionsHttpRepository());
+    // Add the controller for execute the access for repository
     Get.put(ChampionListController(Get.find()));
   }
 }
