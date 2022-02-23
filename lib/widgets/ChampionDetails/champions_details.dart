@@ -126,11 +126,15 @@ class ChampionDetails extends GetView<ChampionDetailsController> {
                               const SizedBox(
                                 height: 10,
                               ),
-                              Text(
-                                state['blurb'],
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.white.withOpacity(0.5),
+                              SingleChildScrollView(
+                                scrollDirection: Axis.vertical,
+                                child: Text(
+                                  state['blurb'],
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.white.withOpacity(0.5),
+
+                                  ),
                                 ),
                               )
                             ],
@@ -152,14 +156,14 @@ class ChampionDetails extends GetView<ChampionDetailsController> {
                             },
                             progressIndicatorBuilder:
                                 (context, url, downloadProgress) => Center(
-                                  child: Image.asset(
-                                    'assets/league-of-flutter-loading-image.gif',
-                                    fit: BoxFit.cover,
-                                    filterQuality: FilterQuality.high,
-                                    width: double.maxFinite,
-                                    height: double.maxFinite,
-                                  ),
-                                ),
+                              child: Image.asset(
+                                'assets/league-of-flutter-loading-image.gif',
+                                fit: BoxFit.cover,
+                                filterQuality: FilterQuality.high,
+                                width: double.maxFinite,
+                                height: double.maxFinite,
+                              ),
+                            ),
                             fit: BoxFit.cover,
                           ),
                         ),
