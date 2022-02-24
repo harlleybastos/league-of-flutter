@@ -1,8 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/state_manager.dart';
 import 'package:initial_app/models/champion.dart';
 import 'package:initial_app/repository/i_champions_repository.dart';
-import 'package:keyboard_service/keyboard_service.dart';
 
 class ChampionListController extends GetxController
     with StateMixin<List<Champion>> {
@@ -14,6 +16,8 @@ class ChampionListController extends GetxController
   List<Champion> searchResult = [];
   List<Champion> championsList = [];
   bool userIsTipyng = false;
+  final KeyboardVisibilityController keyboardController =
+      KeyboardVisibilityController();
 
   ChampionListController(
     this._httpRepository,
@@ -22,11 +26,6 @@ class ChampionListController extends GetxController
   void onInit() {
     // Wen the controller started
     super.onInit();
-    focusNode.addListener(() {
-      userIsTipyng = focusNode.hasFocus;
-        print(focusNode.hasFocus);
-        print("Print");
-    });
     findChampions();
   }
 
@@ -42,7 +41,10 @@ class ChampionListController extends GetxController
       final resp = await _httpRepository.listAllChampions();
       championsList.addAll(resp);
       // the data is correct populate the controller and show the success
-      change(championsList, status: RxStatus.success());
+      Future.delayed(Duration(seconds: 50), () {
+        change(championsList, status: RxStatus.success());
+      });
+      // change(championsList, status: RxStatus.success());
     } catch (e) {
       // If the data is incorrect show the error
       change([], status: RxStatus.error('Error'));

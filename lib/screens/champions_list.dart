@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 
-import 'package:keyboard_service/keyboard_service.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../controller/champion_list_controller.dart';
@@ -34,7 +34,7 @@ class ChampionsList extends StatelessWidget {
           ),
           Positioned(
             left: 20,
-            top: 45,
+            top: 40,
             right: 120,
             child: Shimmer.fromColors(
               baseColor: Colors.grey[300]!,
@@ -47,9 +47,9 @@ class ChampionsList extends StatelessWidget {
             ),
           ),
           Positioned(
-            left: 20,
-            top: 92,
-            right: 30,
+            left: 40,
+            top: 88,
+            right: 40,
             child: Shimmer.fromColors(
               baseColor: Colors.grey[300]!,
               highlightColor: Colors.grey[100]!,
@@ -63,11 +63,11 @@ class ChampionsList extends StatelessWidget {
               ),
             ),
           ),
-          Positioned.fill(
-            left: 20,
+          Positioned(
+            left: 10,
             top: 160,
             right: 30,
-            bottom: MediaQuery.of(context).size.width * 0.5,
+            bottom: MediaQuery.of(context).size.width * 0.3,
             child: Shimmer.fromColors(
               baseColor: Colors.grey[300]!,
               highlightColor: Colors.grey[100]!,
@@ -88,9 +88,9 @@ class ChampionsList extends StatelessWidget {
             ),
           ),
           Positioned(
-            bottom: 25,
-            left: 100,
-            right: 100,
+            bottom: 5,
+            left: 125,
+            right: 175,
             child: Shimmer.fromColors(
               baseColor: Colors.grey[300]!,
               highlightColor: Colors.grey[100]!,
@@ -104,9 +104,9 @@ class ChampionsList extends StatelessWidget {
             ),
           ),
           Positioned(
-            bottom: 110,
-            left: 150,
-            right: 150,
+            bottom: 85,
+            left: 125,
+            right: 175,
             child: Shimmer.fromColors(
               baseColor: Colors.grey[300]!,
               highlightColor: Colors.grey[100]!,
@@ -122,78 +122,78 @@ class ChampionsList extends StatelessWidget {
         ],
       ),
     );
-
-    //  return Container(
-    //           width: MediaQuery.of(context).size.width,
-    //           height: MediaQuery.of(context).size.height,
-    //           color: const Color(0xFF010116),
-    //           child: Center(
-    //             child: Image.asset(
-    //               'assets/league-of-flutter-loading-alistar.gif',
-    //               height: 200,
-    //               width: 200,
-    //             ),
-    //           ),
-    //         );
   }
 
   Widget conditionalReturn(
       ChampionListController customController, BuildContext context) {
-    return GetBuilder<ChampionListController>(
-        builder: (controller) => ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: controller.searchResult.length,
-              itemBuilder: (_, index) {
-                return Stack(
-                  children: [
-                    Positioned(
-                        left: 20,
-                        right: 20,
-                        bottom: 150,
-                        top: 160,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color(0xFFb463a4).withOpacity(0.2),
-                                blurRadius: 20,
-                                spreadRadius: 2,
+    return customController.textController.text.isNotEmpty
+        ? GetBuilder<ChampionListController>(
+            builder: (controller) => ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: controller.searchResult.length,
+                  itemBuilder: (_, index) {
+                    return Stack(
+                      children: [
+                        Positioned(
+                            left: 20,
+                            right: 20,
+                            bottom: 150,
+                            top: 160,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Color(0xFFb463a4).withOpacity(0.2),
+                                    blurRadius: 20,
+                                    spreadRadius: 2,
+                                  ),
+                                ],
                               ),
-                            ],
+                            )),
+                        Positioned(
+                          bottom: 65,
+                          left: 0,
+                          right: 0,
+                          child: Text(
+                            controller.searchResult[index].tags[0],
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
+                            textAlign: TextAlign.center,
                           ),
-                        )),
-                    Positioned(
-                      bottom: 65,
-                      left: 0,
-                      right: 0,
-                      child: Text(
-                        controller.searchResult[index].tags[0],
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 15,
-                      left: 0,
-                      right: 0,
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        height: 50,
-                        child: SvgPicture.asset(
-                          'assets/${controller.searchResult[index].tags[0].toLowerCase()}.svg',
+                        Positioned(
+                          bottom: 15,
+                          left: 0,
+                          right: 0,
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width,
+                            height: 50,
+                            child: SvgPicture.asset(
+                              'assets/${controller.searchResult[index].tags[0].toLowerCase()}.svg',
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    ChampionContainer(
-                      championData: controller.searchResult[index],
-                    ),
-                  ],
-                );
-              },
-            ));
+                        ChampionContainer(
+                          championData: controller.searchResult[index],
+                        ),
+                      ],
+                    );
+                  },
+                ))
+        : Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            color: const Color(0xFF010116),
+            child: Center(
+              child: Image.asset(
+                'assets/league-of-flutter-loading-alistar.gif',
+                height: 200,
+                width: 200,
+              ),
+            ),
+          );
   }
 
   @override
@@ -221,69 +221,72 @@ class ChampionsList extends StatelessWidget {
                       ),
                     ),
                   ),
-
+                  // conditionalReturn(controller, context)
                   controller.obx(
                     (state) {
-                      return KeyboardService.isVisible(context) &&
-                              controller.textController.text.length > 1
-                          ? conditionalReturn(controller, context)
-                          : ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              physics: const AlwaysScrollableScrollPhysics(),
-                              itemCount: state!.length,
-                              itemBuilder: (_, index) {
-                                return Stack(
-                                  children: [
-                                    Positioned(
-                                        left: 20,
-                                        right: 20,
-                                        bottom: 100,
-                                        top: 160,
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: Color(0xFFb463a4)
-                                                    .withOpacity(0.2),
-                                                blurRadius: 20,
-                                                spreadRadius: 2,
-                                              ),
-                                            ],
-                                          ),
-                                        )),
-                                    Positioned(
-                                      bottom: 65,
-                                      left: 0,
-                                      right: 0,
-                                      child: Text(
-                                        state[index].tags[0],
-                                        style: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 20,
+                      return KeyboardVisibilityBuilder(
+                          builder: (builder, visible) {
+                        if (!visible) {
+                          return ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            physics: const AlwaysScrollableScrollPhysics(),
+                            itemCount: state!.length,
+                            itemBuilder: (_, index) {
+                              return Stack(
+                                children: [
+                                  Positioned(
+                                      left: 20,
+                                      right: 20,
+                                      bottom: 100,
+                                      top: 160,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Color(0xFFb463a4)
+                                                  .withOpacity(0.2),
+                                              blurRadius: 20,
+                                              spreadRadius: 2,
+                                            ),
+                                          ],
                                         ),
-                                        textAlign: TextAlign.center,
+                                      )),
+                                  Positioned(
+                                    bottom: 65,
+                                    left: 0,
+                                    right: 0,
+                                    child: Text(
+                                      state[index].tags[0],
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                  Positioned(
+                                    bottom: 15,
+                                    left: 0,
+                                    right: 0,
+                                    child: SizedBox(
+                                      width: MediaQuery.of(context).size.width,
+                                      height: 50,
+                                      child: SvgPicture.asset(
+                                        'assets/${state[index].tags[0].toLowerCase()}.svg',
                                       ),
                                     ),
-                                    Positioned(
-                                      bottom: 15,
-                                      left: 0,
-                                      right: 0,
-                                      child: SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        height: 50,
-                                        child: SvgPicture.asset(
-                                          'assets/${state[index].tags[0].toLowerCase()}.svg',
-                                        ),
-                                      ),
-                                    ),
-                                    ChampionContainer(
-                                      championData: state[index],
-                                    ),
-                                  ],
-                                );
-                              },
-                            );
+                                  ),
+                                  ChampionContainer(
+                                    championData: state[index],
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        } else {
+                          return conditionalReturn(controller, context);
+                        }
+                      });
                     },
                     onError: (error) {
                       return Container(
@@ -315,39 +318,45 @@ class ChampionsList extends StatelessWidget {
                     },
                     onLoading: loadingShimmer(context),
                   ),
-                  Container(
-                    height: 45,
-                    width: MediaQuery.of(context).size.width,
-                    margin: const EdgeInsets.only(left: 40, right: 40, top: 90),
-                    padding: const EdgeInsets.only(
-                      left: 20,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20.0),
-                      color: const Color(0xFF2d2c2c),
-                    ),
-                    child: TextField(
-                      focusNode: controller.focusNode,
-                      controller: controller.textController,
-                      onChanged: controller.filterListOfChampionsByName,
-                      textAlign: TextAlign.start,
-                      style: const TextStyle(color: Colors.white, fontSize: 18,),
-                      decoration: const InputDecoration(
-                        hintText: 'Search a champion',
-                        border: InputBorder.none,
-                        hintStyle: TextStyle(
-                          color: Color(0xFF474646),
-                          fontFamily: 'Montserrat',
-                        ),
-                        suffixStyle: TextStyle(),
-                        suffixIcon: Icon(
-                          Icons.search,
-                          color: Color(0xFF939392),
-                          size: 30,
-                        ),
-                      ),
-                    ),
-                  ),
+                  controller.championsList.isNotEmpty
+                      ? Container(
+                          height: 45,
+                          width: MediaQuery.of(context).size.width,
+                          margin: const EdgeInsets.only(
+                              left: 40, right: 40, top: 90),
+                          padding: const EdgeInsets.only(
+                            left: 20,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20.0),
+                            color: const Color(0xFF2d2c2c),
+                          ),
+                          child: TextField(
+                            focusNode: controller.focusNode,
+                            controller: controller.textController,
+                            onChanged: controller.filterListOfChampionsByName,
+                            textAlign: TextAlign.start,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                            ),
+                            decoration: const InputDecoration(
+                              hintText: 'Search a champion',
+                              border: InputBorder.none,
+                              hintStyle: TextStyle(
+                                color: Color(0xFF474646),
+                                fontFamily: 'Montserrat',
+                              ),
+                              suffixStyle: TextStyle(),
+                              suffixIcon: Icon(
+                                Icons.search,
+                                color: Color(0xFF939392),
+                                size: 30,
+                              ),
+                            ),
+                          ),
+                        )
+                      : Container(),
                 ],
               ),
             ));
