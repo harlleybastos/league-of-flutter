@@ -43,7 +43,7 @@ class ChampionDetails extends GetView<ChampionDetailsController> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              const Text(
                                 'Skins',
                                 style: TextStyle(
                                   fontSize: 20,
@@ -54,7 +54,7 @@ class ChampionDetails extends GetView<ChampionDetailsController> {
                               Container(
                                 height: 3,
                                 width: 60,
-                                decoration: BoxDecoration(
+                                decoration:const  BoxDecoration(
                                   color: Colors.white,
                                   gradient: LinearGradient(
                                       begin: Alignment.centerLeft,
@@ -68,7 +68,7 @@ class ChampionDetails extends GetView<ChampionDetailsController> {
                               const SizedBox(
                                 height: 5,
                               ),
-                              Text(
+                              const Text(
                                 'Number of Skins of this champion',
                                 style: TextStyle(
                                   fontSize: 15,
@@ -80,7 +80,7 @@ class ChampionDetails extends GetView<ChampionDetailsController> {
                               ),
                               SingleChildScrollView(
                                 scrollDirection: Axis.horizontal,
-                                physics: BouncingScrollPhysics(),
+                                physics: const BouncingScrollPhysics(),
                                 child: Wrap(
                                   children: List.generate(state['skins'].length,
                                       (index) {
@@ -217,18 +217,18 @@ class ChampionDetails extends GetView<ChampionDetailsController> {
                                 'assets/${state['tags'][0].toLowerCase()}.svg',
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                             Text(
                               '${state['tags'][0]}',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                           ],
@@ -259,7 +259,7 @@ class ChampionDetails extends GetView<ChampionDetailsController> {
                               children: [
                                 Container(
                                   margin: const EdgeInsets.only(right: 5),
-                                  child: Text(
+                                  child: const Text(
                                     "Difficulty",
                                     style: TextStyle(
                                       fontSize: 15,
@@ -277,12 +277,12 @@ class ChampionDetails extends GetView<ChampionDetailsController> {
                                       itemBuilder: (_, index) {
                                         return index >
                                                 state['info']['difficulty']
-                                            ? Icon(
+                                            ? const Icon(
                                                 Icons.star_border,
                                                 color: Colors.white,
                                                 size: 15,
                                               )
-                                            : Icon(
+                                            : const Icon(
                                                 Icons.star,
                                                 color: Colors.white,
                                                 size: 15,
@@ -296,7 +296,7 @@ class ChampionDetails extends GetView<ChampionDetailsController> {
                               children: [
                                 Container(
                                   margin: const EdgeInsets.only(right: 22),
-                                  child: Text(
+                                  child: const Text(
                                     "Attack",
                                     style: TextStyle(
                                       fontSize: 15,
@@ -313,12 +313,12 @@ class ChampionDetails extends GetView<ChampionDetailsController> {
                                       scrollDirection: Axis.horizontal,
                                       itemBuilder: (_, index) {
                                         return index > state['info']['attack']
-                                            ? Icon(
+                                            ? const Icon(
                                                 Icons.star_border,
                                                 color: Colors.white,
                                                 size: 15,
                                               )
-                                            : Icon(
+                                            : const Icon(
                                                 Icons.star,
                                                 color: Colors.white,
                                                 size: 15,

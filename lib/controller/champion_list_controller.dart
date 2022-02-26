@@ -41,9 +41,7 @@ class ChampionListController extends GetxController
       final resp = await _httpRepository.listAllChampions();
       championsList.addAll(resp);
       // the data is correct populate the controller and show the success
-      Future.delayed(Duration(seconds: 50), () {
-        change(championsList, status: RxStatus.success());
-      });
+      change(championsList, status: RxStatus.success());
       // change(championsList, status: RxStatus.success());
     } catch (e) {
       // If the data is incorrect show the error

@@ -76,7 +76,7 @@ class ChampionsList extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) => Container(
                   width: MediaQuery.of(context).size.width * 0.6,
-                  margin: const EdgeInsets.only(left: 40, right: 40),
+                  margin: const EdgeInsets.only(left: 40, right: 20),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20.0),
                     color: Colors.grey[300],
@@ -200,11 +200,10 @@ class ChampionsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<ChampionListController>(
         builder: (controller) => Scaffold(
-              appBar: customAppBar(context, 'Harlley'),
+              appBar: controller.championsList.isNotEmpty ? customAppBar(context, 'Harlley') : shimmerCustomAppBar(context,''),
               body: Stack(
                 children: [
                   // const HomeSection(),
-
                   Container(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
