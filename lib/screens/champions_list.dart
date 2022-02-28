@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:shimmer/shimmer.dart';
 import 'package:get/get.dart';
 
-import 'package:shimmer/shimmer.dart';
+import '../widgets/ChampionsList/champion_container_gradient.dart';
+import '../widgets/ChampionsList/champion_container_role.dart';
+import '../widgets/ChampionsList/champion_container_role_name.dart';
+import '../widgets/ChampionsList/champion_not_found.dart';
+import '../widgets/global/ApppName.dart';
+import '../widgets/ChampionsList/champion_container.dart';
+import '../widgets/HomeSection/appbar.dart';
 
 import '../controller/champion_list_controller.dart';
 
-import '../widgets/ChampionsList/champion_container.dart';
-import '../widgets/HomeSection/appbar.dart';
 
 class ChampionsList extends StatelessWidget {
   const ChampionsList({Key? key}) : super(key: key);
@@ -200,27 +205,13 @@ class ChampionsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<ChampionListController>(
         builder: (controller) => Scaffold(
-              appBar: controller.championsList.isNotEmpty ? customAppBar(context, 'Harlley') : shimmerCustomAppBar(context,''),
+              appBar: controller.championsList.isNotEmpty
+                  ? customAppBar(context, 'Harlley')
+                  : shimmerCustomAppBar(context, ''),
               body: Stack(
                 children: [
                   // const HomeSection(),
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                    child: Container(
-                      width: 250,
-                      child: const Text(
-                        'Welcome to League Of Flutter',
-                        style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.w600,
-                          color: Color(0xFFc4f1fc),
-                          fontFamily: 'AvantGarde',
-                        ),
-                      ),
-                    ),
-                  ),
-                  // conditionalReturn(controller, context)
+                  const AppName(),
                   controller.obx(
                     (state) {
                       return KeyboardVisibilityBuilder(
@@ -233,47 +224,12 @@ class ChampionsList extends StatelessWidget {
                             itemBuilder: (_, index) {
                               return Stack(
                                 children: [
-                                  Positioned(
-                                      left: 20,
-                                      right: 20,
-                                      bottom: 100,
-                                      top: 160,
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: Color(0xFFb463a4)
-                                                  .withOpacity(0.2),
-                                              blurRadius: 20,
-                                              spreadRadius: 2,
-                                            ),
-                                          ],
-                                        ),
-                                      )),
-                                  Positioned(
-                                    bottom: 65,
-                                    left: 0,
-                                    right: 0,
-                                    child: Text(
-                                      state[index].tags[0],
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
+                                  const ChampionContainerGradient(),
+                                  ChampionContainerRole(
+                                    championData: state[index],
                                   ),
-                                  Positioned(
-                                    bottom: 15,
-                                    left: 0,
-                                    right: 0,
-                                    child: SizedBox(
-                                      width: MediaQuery.of(context).size.width,
-                                      height: 50,
-                                      child: SvgPicture.asset(
-                                        'assets/${state[index].tags[0].toLowerCase()}.svg',
-                                      ),
-                                    ),
+                                  ChampionContainerRoleName(
+                                    championData: state[index],
                                   ),
                                   ChampionContainer(
                                     championData: state[index],
@@ -288,31 +244,8 @@ class ChampionsList extends StatelessWidget {
                       });
                     },
                     onError: (error) {
-                      return Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            SvgPicture.asset(
-                              'assets/blitz.svg',
-                            ),
-                            Container(
-                              margin: const EdgeInsets.only(top: 10),
-                              child: Text(
-                                error.toString(),
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w600,
-                                  color: Color(0xFFc4f1fc),
-                                  fontFamily: 'AvantGarde',
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                      return ChampionNotFound(
+                        error: error,
                       );
                     },
                     onLoading: loadingShimmer(context),
