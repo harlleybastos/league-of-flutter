@@ -54,7 +54,7 @@ class ChampionDetails extends GetView<ChampionDetailsController> {
                               Container(
                                 height: 3,
                                 width: 60,
-                                decoration:const  BoxDecoration(
+                                decoration: const BoxDecoration(
                                   color: Colors.white,
                                   gradient: LinearGradient(
                                       begin: Alignment.centerLeft,
@@ -133,7 +133,6 @@ class ChampionDetails extends GetView<ChampionDetailsController> {
                                   style: TextStyle(
                                     fontSize: 15,
                                     color: Colors.white.withOpacity(0.5),
-
                                   ),
                                 ),
                               )
@@ -152,7 +151,7 @@ class ChampionDetails extends GetView<ChampionDetailsController> {
                                 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${state['id']}_${state['skins'][controller.selectedIndex]['num']}.jpg',
                             httpHeaders: const {
                               HttpHeaders.authorizationHeader:
-                                  AppCredentials.ApiKey,
+                                  AppCredentials.apiKey,
                             },
                             progressIndicatorBuilder:
                                 (context, url, downloadProgress) => Center(

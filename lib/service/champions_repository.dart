@@ -12,7 +12,7 @@ class ChampionsHttpRepository implements IChampionsRepository {
         Uri.parse(
             'http://ddragon.leagueoflegends.com/cdn/12.3.1/data/en_US/champion.json'),
         headers: {
-          HttpHeaders.authorizationHeader: AppCredentials.ApiKey,
+          HttpHeaders.authorizationHeader: AppCredentials.apiKey,
         });
     Map<String, dynamic> responseList = jsonDecode(response.body)['data'];
     List<Champion> item = [];

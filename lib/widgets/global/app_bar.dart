@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shimmer/shimmer.dart';
 
 PreferredSizeWidget customAppBar(BuildContext context, String title) {
@@ -32,7 +33,7 @@ PreferredSizeWidget customAppBar(BuildContext context, String title) {
           child: Container(
             height: 45,
             width: 45,
-            padding: const EdgeInsets.only(left: 10),
+            padding: const EdgeInsets.only(left: 10, right: 10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
               color: const Color.fromRGBO(0, 1, 22, .9),
@@ -44,6 +45,7 @@ PreferredSizeWidget customAppBar(BuildContext context, String title) {
                 ),
               ],
             ),
+            child: SvgPicture.asset('assets/gear.svg'),
           ),
         ),
       ],

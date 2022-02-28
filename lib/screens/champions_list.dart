@@ -9,12 +9,11 @@ import '../widgets/ChampionsList/champion_container_gradient.dart';
 import '../widgets/ChampionsList/champion_container_role.dart';
 import '../widgets/ChampionsList/champion_container_role_name.dart';
 import '../widgets/ChampionsList/champion_not_found.dart';
-import '../widgets/global/ApppName.dart';
+import '../widgets/global/app_name.dart';
 import '../widgets/ChampionsList/champion_container.dart';
-import '../widgets/HomeSection/appbar.dart';
+import '../widgets/global/app_bar.dart';
 
 import '../controller/champion_list_controller.dart';
-
 
 class ChampionsList extends StatelessWidget {
   const ChampionsList({Key? key}) : super(key: key);
