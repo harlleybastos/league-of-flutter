@@ -175,7 +175,7 @@ class ChampionsList extends StatelessWidget {
                             width: MediaQuery.of(context).size.width,
                             height: 50,
                             child: SvgPicture.asset(
-                              'assets/${controller.searchResult[index].tags[0].toLowerCase()}.svg',
+                              'assets/roles/${controller.searchResult[index].tags[0].toLowerCase()}.svg',
                             ),
                           ),
                         ),
@@ -192,7 +192,7 @@ class ChampionsList extends StatelessWidget {
             color: const Color(0xFF010116),
             child: Center(
               child: Image.asset(
-                'assets/league-of-flutter-loading-alistar.gif',
+                'assets/gif/league-of-flutter-loading-alistar.gif',
                 height: 200,
                 width: 200,
               ),

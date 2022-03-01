@@ -5,7 +5,8 @@ import 'package:initial_app/models/champion.dart';
 class ChampionContainerRoleName extends StatelessWidget {
   final Champion championData;
 
-  const ChampionContainerRoleName({Key? key, required this.championData}) : super(key: key);
+  const ChampionContainerRoleName({Key? key, required this.championData})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class ChampionContainerRoleName extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         height: 50,
         child: SvgPicture.asset(
-          'assets/${championData.tags[0].toLowerCase()}.svg',
+          'assets/roles/${championData.tags[0].toLowerCase()}.svg',
         ),
       ),
     );

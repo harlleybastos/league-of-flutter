@@ -156,7 +156,7 @@ class ChampionDetails extends GetView<ChampionDetailsController> {
                             progressIndicatorBuilder:
                                 (context, url, downloadProgress) => Center(
                               child: Image.asset(
-                                'assets/league-of-flutter-loading-image.gif',
+                                'assets/gif/league-of-flutter-loading-image.gif',
                                 fit: BoxFit.cover,
                                 filterQuality: FilterQuality.high,
                                 width: double.maxFinite,
@@ -213,7 +213,7 @@ class ChampionDetails extends GetView<ChampionDetailsController> {
                               width: 50,
                               height: 50,
                               child: SvgPicture.asset(
-                                'assets/${state['tags'][0].toLowerCase()}.svg',
+                                'assets/roles/${state['tags'][0].toLowerCase()}.svg',
                               ),
                             ),
                             const SizedBox(
@@ -441,7 +441,7 @@ class ChampionDetails extends GetView<ChampionDetailsController> {
             color: const Color(0xFF010116),
             child: Center(
               child: Image.asset(
-                'assets/league-of-flutter-loading-alistar.gif',
+                'assets/gif/league-of-flutter-loading-alistar.gif',
                 height: 200,
                 width: 200,
               ),

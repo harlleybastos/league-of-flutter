@@ -45,7 +45,7 @@ PreferredSizeWidget customAppBar(BuildContext context, String title) {
                 ),
               ],
             ),
-            child: SvgPicture.asset('assets/gear.svg'),
+            child: SvgPicture.asset('assets/img/gear.svg'),
           ),
         ),
       ],

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:initial_app/credentials/app_credentials.dart';
 import 'package:initial_app/models/summoner.dart';
@@ -20,10 +19,9 @@ class SearchSummonerRepository implements ISearchSummonerRepository {
           "Origin": "https://developer.riotgames.com",
         });
     Map<String, dynamic> responseList = jsonDecode(response.body);
+
     List<Summoner> summonerList = [];
-    if (responseList.isNotEmpty) {
-      summonerList.add(Summoner.fromJson(responseList));
-    }
+    summonerList.add(Summoner.fromJson(responseList));
 
     return summonerList;
   }
