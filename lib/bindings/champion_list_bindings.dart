@@ -7,8 +7,9 @@ class ChampionsListBindings implements Bindings {
   @override
   void dependencies() {
     // Runs before the app starts for populating the dependencies
-    Get.put<IChampionsRepository>(ChampionsHttpRepository());
+    Get.put<IChampionsRepository>(ChampionsHttpRepository(),
+        tag: 'champion_list', permanent: true);
     // Add the controller for execute the access for repository
-    Get.put(ChampionListController(Get.find()));
+    Get.put(ChampionListController(Get.find(tag: 'champion_list')));
   }
 }

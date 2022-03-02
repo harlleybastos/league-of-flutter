@@ -25,6 +25,9 @@ class ChampionListController extends GetxController
     // Wen the controller started
     super.onInit();
     findChampions();
+    if (focusNode.hasFocus) {
+      focusNode.dispose();
+    }
   }
 
   void updateFocus() {

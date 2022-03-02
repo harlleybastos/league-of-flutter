@@ -1,4 +1,3 @@
-
 class Champion {
   final String id;
   final String name;
@@ -7,17 +6,18 @@ class Champion {
   final String image;
   final ChampionStats stats;
   final List<String> tags;
+  final String key;
   List<ChampionSkin>? skins;
 
-  Champion({
-    required this.id,
-    required this.name,
-    required this.title,
-    required this.blurb,
-    required this.image,
-    required this.stats,
-    required this.tags
-  });
+  Champion(
+      {required this.id,
+      required this.name,
+      required this.title,
+      required this.blurb,
+      required this.image,
+      required this.stats,
+      required this.tags,
+      required this.key});
 
   factory Champion.fromJson(Map<String, dynamic> json) {
     return Champion(
@@ -28,7 +28,8 @@ class Champion {
       image:
           '${'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/'}${json['id'] ?? ''}_0.jpg',
       stats: ChampionStats.formJson(json['stats']),
-      tags:json['tags']?.cast<String>()
+      tags: json['tags']?.cast<String>(),
+      key: json['key'],
     );
   }
 }

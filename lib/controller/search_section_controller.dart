@@ -1,7 +1,11 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
+import 'package:initial_app/controller/champion_list_controller.dart';
+import 'package:initial_app/models/champion.dart';
 import 'package:initial_app/models/summoner.dart';
 import 'package:initial_app/models/summoner_details.dart';
+import 'package:initial_app/repository/i_champions_repository.dart';
 import 'package:initial_app/repository/i_search_summoner_repository.dart';
 import 'package:initial_app/repository/i_search_summoner_with_details.dart';
 
@@ -10,22 +14,21 @@ class SearchSectionController extends GetxController
   final FocusNode focusNode = FocusNode();
   final ISearchSummonerRepository finalSummonerRepository;
   final ISearchSummonerWithDetailsRepository finalSummonerWithDetailsRepository;
+  final ChampionListController championListRepository;
+
+  final KeyboardVisibilityController keyboardController =
+      KeyboardVisibilityController();
+
+  bool isKeyboardVisible = false;
 
   final TextEditingController textController = TextEditingController();
 
-  SearchSectionController(
-      this.finalSummonerRepository, this.finalSummonerWithDetailsRepository);
+  SearchSectionController(this.finalSummonerRepository,
+      this.finalSummonerWithDetailsRepository, this.championListRepository);
   @override
   void onInit() {
-    // TODO: implement onInit
+    // TODO: implemnt onInit
     super.onInit();
-  }
-
-  @override
-  void onClose() {
-    // TODO: implement onClose
-    textController.clear();
-    super.onClose();
   }
 
   void findSummoner() async {
@@ -33,11 +36,40 @@ class SearchSectionController extends GetxController
     try {
       final summonerInformations =
           await finalSummonerRepository.getSummonerByName(textController.text);
-      final summonerDetails = await finalSummonerWithDetailsRepository
-          .getSummonerDetailsByName(summonerInformations[0].id);
-      change(summonerDetails, status: RxStatus.success());
+      List<SummonerDetails> summonerDetails = [];
+      final String mainChampion;
+      if (summonerInformations[0].id.isNotEmpty) {
+        summonerDetails = await finalSummonerWithDetailsRepository
+            .getSummonerDetailsByName(summonerInformations[0].id);
+        mainChampion = await findMainChampion(
+            summonerDetails, summonerDetails[0].championId.toString());
+        print(mainChampion);
+        change(summonerDetails, status: RxStatus.success());
+      }
+      change([], status: RxStatus.empty());
     } catch (error) {
       change([], status: RxStatus.error(error.toString()));
+    }
+  }
+
+  Future<String> findMainChampion(
+      List<SummonerDetails> summonerDetails, String championId) async {
+    try {
+      final List<Champion> listOfAllChampions =
+          championListRepository.championsList;
+      String championName = '';
+
+      if (listOfAllChampions.isNotEmpty && championId.isNotEmpty) {
+        listOfAllChampions.forEach((element) {
+          if (element.key == championId) {
+            championName = element.name;
+            print(championName);
+          }
+        });
+      }
+      return championName;
+    } catch (error) {
+      return error.toString();
     }
   }
 }

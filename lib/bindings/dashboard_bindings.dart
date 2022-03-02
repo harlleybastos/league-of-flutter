@@ -17,12 +17,21 @@ class DashboardBinding implements Bindings {
   void dependencies() {
     Get.put<ISearchSummonerRepository>(SearchSummonerRepository(),
         tag: 'search_summoner_repository');
+
     Get.put<ISearchSummonerWithDetailsRepository>(
         SearchSummonerWithDetailsRepository(),
         tag: 'search_summoner_with_details_repository');
 
-    Get.put(SearchSectionController(Get.find(tag: 'search_summoner_repository'),
-        Get.find(tag: 'search_summoner_with_details_repository')));
+    Get.put<IChampionsRepository>(ChampionsHttpRepository(),
+        tag: 'champion_list');
+
+    Get.put(ChampionListController(Get.find(tag: 'champion_list')),
+        tag: 'champion_list_controller');
+
+    Get.put(SearchSectionController(
+        Get.find(tag: 'search_summoner_repository'),
+        Get.find(tag: 'search_summoner_with_details_repository'),
+        Get.find(tag: 'champion_list_controller')));
 
     Get.put<DashboardPageController>(DashboardPageController());
     Get.put<IChampionsRepository>(ChampionsHttpRepository());

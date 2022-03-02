@@ -32,7 +32,7 @@ class SummonerDetails {
       required this.freshBlood,
       required this.hotStreak});
 
-  factory SummonerDetails.fromJson(Map<String, dynamic> json) {
+  factory SummonerDetails.fromJson(Map<String, dynamic> json, int? championId) {
     return SummonerDetails(
       leagueId: json['leagueId'] ?? '',
       id: json["id"] ?? '',
@@ -48,7 +48,7 @@ class SummonerDetails {
       inactive: json["inactive"] ?? false,
       freshBlood: json["freshBlood"] ?? false,
       hotStreak: json["hotStreak"] ?? false,
-      championId: json["championId"] ?? 0,
+      championId: json["championId"] ?? championId,
     );
   }
 }
