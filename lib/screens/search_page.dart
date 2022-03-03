@@ -22,20 +22,12 @@ class SearchPage extends StatelessWidget {
           child: Stack(
             children: [
               const AppName(),
-              Positioned(
-                left: 0,
-                right: 0,
-                child: AppInput(
-                  focusNode: controller.focusNode,
-                  textEditingController: controller.textController,
-                  hintText: 'Search a summoner',
-                  onChanged: (e) {
-                    if (e.isNotEmpty && e.length > 6) {
-                      controller.findSummoner();
-                    }
-                  },
-                  onSubmitted: (e) => controller.findSummoner,
-                ),
+              AppInput(
+                focusNode: controller.focusNode,
+                textEditingController: controller.textController,
+                hintText: 'Search a summoner',
+                onPressed: controller.findSummoner,
+                userIsTipyng: controller.userIsTipyng,
               ),
               Positioned(
                 top: 210,
@@ -45,7 +37,8 @@ class SearchPage extends StatelessWidget {
                   (state) {
                     return (KeyboardVisibilityBuilder(
                       builder: (builder, visible) {
-                        if (!visible) {
+                        if (!visible &&
+                            controller.summonerMainChampionSkin != '') {
                           return ListView.builder(
                             scrollDirection: Axis.vertical,
                             physics: const AlwaysScrollableScrollPhysics(),
@@ -90,7 +83,6 @@ class SearchPage extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-
                                     Container(
                                       width: double.infinity,
                                       height:
@@ -134,15 +126,19 @@ class SearchPage extends StatelessWidget {
                                                         .size
                                                         .height *
                                                     0.1 +
-                                                15,
-                                            left: 150,
+                                                20,
+                                            left: 120,
                                             right: 0,
                                             child: Text(
-                                              state![0].summonerName.toString(),
+                                              state![index]
+                                                  .summonerName
+                                                  .toString(),
+                                              textAlign: TextAlign.center,
                                               style: const TextStyle(
-                                                fontSize: 30,
+                                                fontSize: 20,
                                                 color: Colors.white,
                                                 fontFamily: 'Montserrat',
+                                                fontWeight: FontWeight.bold,
                                               ),
                                             ),
                                           ),
@@ -152,17 +148,17 @@ class SearchPage extends StatelessWidget {
                                     Positioned.fill(
                                       top: 10,
                                       bottom: 10,
-                                      right: 160,
+                                      right: 180,
                                       child: Container(
                                         width:
                                             MediaQuery.of(context).size.width,
                                         child: SvgPicture.asset(
-                                          'assets/ranked-emblems/${state[0].tier.toLowerCase()}.svg',
+                                          'assets/ranked-emblems/${state[index].tier.toLowerCase()}.svg',
                                         ),
                                       ),
                                     ),
                                     Positioned(
-                                      left: 175,
+                                      left: 185,
                                       top: MediaQuery.of(context).size.height *
                                               0.1 +
                                           50,
@@ -177,125 +173,33 @@ class SearchPage extends StatelessWidget {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              state[0].tier.toString(),
+                                              state[index].tier.toString(),
+                                              textAlign: TextAlign.center,
                                               style: const TextStyle(
                                                 fontSize: 15,
                                                 color: Colors.white,
-                                                fontFamily: 'BeaufortForLOL',
+                                                fontFamily:
+                                                    'ITC_Avant_Garde_Gothic',
+                                                fontWeight: FontWeight.bold,
                                               ),
                                             ),
                                             const SizedBox(
                                               width: 5,
                                             ),
                                             Text(
-                                              state[0].rank.toString(),
+                                              state[index].rank.toString(),
                                               style: const TextStyle(
                                                 fontSize: 15,
                                                 color: Colors.white,
-                                                fontFamily: 'AvantGarde',
+                                                fontFamily:
+                                                    'ITC_Avant_Garde_Gothic',
+                                                fontWeight: FontWeight.bold,
                                               ),
                                             ),
                                           ],
                                         ),
                                       ),
                                     ),
-                                    // Positioned(
-                                    //   left: MediaQuery.of(context).size.width *
-                                    //           0.4 +
-                                    //       10,
-                                    //   top: MediaQuery.of(context).size.height *
-                                    //           0.2 -
-                                    //       25,
-                                    //   right: 0,
-                                    //   child: Container(
-                                    //     width:
-                                    //         MediaQuery.of(context).size.width,
-                                    //     height:
-                                    //         MediaQuery.of(context).size.height,
-                                    //     child: Row(
-                                    //       crossAxisAlignment:
-                                    //           CrossAxisAlignment.start,
-                                    //       children: [
-                                    //         Text(
-                                    //           state[0]
-                                    //               .queueType
-                                    //               .replaceAll('_', ' '),
-                                    //           style: const TextStyle(
-                                    //             fontSize: 15,
-                                    //             color: Colors.white,
-                                    //             fontFamily: 'AvantGarde',
-                                    //           ),
-                                    //         ),
-                                    //         const SizedBox(
-                                    //           width: 5,
-                                    //         ),
-                                    //         Text(
-                                    //           state[0].rank.toString(),
-                                    //           style: const TextStyle(
-                                    //             fontSize: 15,
-                                    //             color: Colors.white,
-                                    //             fontFamily: 'AvantGarde',
-                                    //           ),
-                                    //         ),
-                                    //       ],
-                                    //     ),
-                                    //   ),
-                                    // ),
-                                    // Positioned(
-                                    //   left: MediaQuery.of(context).size.width *
-                                    //           0.4 +
-                                    //       15,
-                                    //   top: MediaQuery.of(context).size.height *
-                                    //           0.1 +
-                                    //       25,
-                                    //   child: Container(
-                                    //     width:
-                                    //         MediaQuery.of(context).size.width,
-                                    //     height:
-                                    //         MediaQuery.of(context).size.height,
-                                    //     child: Row(
-                                    //       crossAxisAlignment:
-                                    //           CrossAxisAlignment.start,
-                                    //       children: [
-                                    //         const Text(
-                                    //           'Wins: ',
-                                    //           style: TextStyle(
-                                    //             fontSize: 15,
-                                    //             color: Colors.white,
-                                    //             fontFamily: 'BeaufortForLOL',
-                                    //           ),
-                                    //         ),
-                                    //         Text(
-                                    //           state[0].wins.toString(),
-                                    //           style: const TextStyle(
-                                    //             fontSize: 15,
-                                    //             color: Colors.white,
-                                    //             fontFamily: 'AvantGarde',
-                                    //           ),
-                                    //         ),
-                                    //         const SizedBox(
-                                    //           width: 5,
-                                    //         ),
-                                    //         const Text(
-                                    //           'Losses: ',
-                                    //           style: TextStyle(
-                                    //             fontSize: 15,
-                                    //             color: Colors.white,
-                                    //             fontFamily: 'BeaufortForLOL',
-                                    //           ),
-                                    //         ),
-                                    //         Text(
-                                    //           state[0].losses.toString(),
-                                    //           style: const TextStyle(
-                                    //             fontSize: 15,
-                                    //             color: Colors.white,
-                                    //             fontFamily: 'AvantGarde',
-                                    //           ),
-                                    //         ),
-                                    //       ],
-                                    //     ),
-                                    //   ),
-                                    // ),
                                   ],
                                 ),
                               );
@@ -308,6 +212,27 @@ class SearchPage extends StatelessWidget {
                       },
                     ));
                   },
+                  onLoading: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                    color: const Color(0xFF010116),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          child: Center(
+                            child: Image.asset(
+                              'assets/gif/league-of-flutter-loading-image.gif',
+                              height: 200,
+                              width: 200,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ],
