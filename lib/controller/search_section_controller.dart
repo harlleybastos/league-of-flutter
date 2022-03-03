@@ -15,6 +15,7 @@ class SearchSectionController extends GetxController
   final ISearchSummonerRepository finalSummonerRepository;
   final ISearchSummonerWithDetailsRepository finalSummonerWithDetailsRepository;
   final ChampionListController championListRepository;
+  String summonerMainChampionSkin = '';
 
   final KeyboardVisibilityController keyboardController =
       KeyboardVisibilityController();
@@ -43,10 +44,9 @@ class SearchSectionController extends GetxController
             .getSummonerDetailsByName(summonerInformations[0].id);
         mainChampion = await findMainChampion(
             summonerDetails, summonerDetails[0].championId.toString());
-        print(mainChampion);
+        summonerMainChampionSkin = mainChampion;
         change(summonerDetails, status: RxStatus.success());
       }
-      change([], status: RxStatus.empty());
     } catch (error) {
       change([], status: RxStatus.error(error.toString()));
     }
@@ -60,14 +60,13 @@ class SearchSectionController extends GetxController
       String championName = '';
 
       if (listOfAllChampions.isNotEmpty && championId.isNotEmpty) {
-        listOfAllChampions.forEach((element) {
-          if (element.key == championId) {
-            championName = element.name;
-            print(championName);
+        for (var champion in listOfAllChampions) {
+          if (champion.key == championId) {
+            championName = champion.name;
           }
-        });
+        }
       }
-      return championName;
+      return "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${championName}_0.jpg";
     } catch (error) {
       return error.toString();
     }

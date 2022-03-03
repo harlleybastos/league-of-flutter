@@ -48,7 +48,7 @@ class SummonerDetails {
       inactive: json["inactive"] ?? false,
       freshBlood: json["freshBlood"] ?? false,
       hotStreak: json["hotStreak"] ?? false,
-      championId: json["championId"] ?? championId,
+      championId: championId ?? 0,
     );
   }
 }
