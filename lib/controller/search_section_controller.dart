@@ -17,6 +17,8 @@ class SearchSectionController extends GetxController
   final ChampionListController championListRepository;
   String summonerMainChampionSkin = '';
   Rx<bool> userIsTipyng = false.obs;
+  List<SummonerDetails> summonerDetails = [];
+  List<Summoner> summonerInformations = [];
 
   final KeyboardVisibilityController keyboardController =
       KeyboardVisibilityController();
@@ -30,31 +32,21 @@ class SearchSectionController extends GetxController
   @override
   void onInit() {
     // TODO: implemnt onInit
-
     super.onInit();
   }
 
-  @override
-  void onReady() {
-    // TODO: implement onReady
-
-    FocusManager.instance.addListener(() {
-      if (FocusManager.instance.primaryFocus == null) {
-        print("Ta fechado corno");
-      }
-      if (FocusManager.instance.primaryFocus != null) {
-        print("Ta aberto corno");
-      }
-    });
-    super.onReady();
+  void clearSearched() {
+    summonerDetails = [];
+    summonerInformations = [];
+    textController.clear();
+    change([], status: RxStatus.empty());
   }
 
   void findSummoner() async {
     change([], status: RxStatus.loading());
     try {
-      final summonerInformations =
+      summonerInformations =
           await finalSummonerRepository.getSummonerByName(textController.text);
-      List<SummonerDetails> summonerDetails = [];
       final String mainChampion;
       if (summonerInformations[0].id.isNotEmpty) {
         summonerDetails = await finalSummonerWithDetailsRepository

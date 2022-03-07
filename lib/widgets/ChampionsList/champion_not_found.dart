@@ -14,7 +14,7 @@ class ChampionNotFound extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          SvgPicture.asset(
+         Image.asset(
             'assets/img/league-of-flutter-not-found-blitzcrank.png',
           ),
           Container(

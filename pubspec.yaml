@@ -93,7 +93,7 @@ flutter:
         - asset: assets/fonts/Montserrat-Light.ttf
     - family: ITC_Avant_Garde_Gothic
       fonts:
-        - asset: ITC_Avant_Garde_Gothic_Medium.otf
+        - asset: assets/fonts/ITC_Avant_Garde_Gothic_Medium.otf
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
