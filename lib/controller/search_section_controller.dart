@@ -1,13 +1,17 @@
 import 'package:flutter/cupertino.dart';
+
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+
 import 'package:get/get.dart';
-import 'package:initial_app/controller/champion_list_controller.dart';
-import 'package:initial_app/models/champion.dart';
-import 'package:initial_app/models/summoner.dart';
-import 'package:initial_app/models/summoner_details.dart';
-import 'package:initial_app/repository/i_champions_repository.dart';
-import 'package:initial_app/repository/i_search_summoner_repository.dart';
-import 'package:initial_app/repository/i_search_summoner_with_details.dart';
+
+import '../controller/champion_list_controller.dart';
+
+import '../models/champion.dart';
+import '../models/summoner.dart';
+import '../models/summoner_details.dart';
+
+import '../repository/i_search_summoner_repository.dart';
+import '../repository/i_search_summoner_with_details.dart';
 
 class SearchSectionController extends GetxController
     with StateMixin<List<SummonerDetails>> {

@@ -22,17 +22,20 @@ class AppPages {
         binding: DashboardBinding(),
         children: [
           GetPage(
-              name: AppRoutes.championList,
-              page: () => const ChampionsList(),
-              binding: ChampionsListBindings()),
+            name: AppRoutes.championList,
+            page: () => const ChampionsList(),
+            binding: ChampionsListBindings(),
+          ),
           GetPage(
-              name: AppRoutes.searchSummoner,
-              page: () => const SearchPage(),
-              binding: SearchPageBindings()),
+            name: AppRoutes.searchSummoner,
+            page: () => const SearchPage(),
+            binding: SearchPageBindings(),
+          ),
           GetPage(
-              name: AppRoutes.summonerDetails,
-              page: () => const SummonerDetailsScreen(),
-              binding: SummonerDetailsBindings()),
+            name: AppRoutes.summonerDetails,
+            page: () => const SummonerDetailsScreen(),
+            binding: SummonerDetailsBindings(),
+          ),
           GetPage(
             name: AppRoutes.championDetails,
             page: () => const ChampionDetails(),
