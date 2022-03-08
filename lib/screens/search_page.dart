@@ -34,208 +34,225 @@ class SearchPage extends StatelessWidget {
                 top: 210,
                 left: MediaQuery.of(context).size.width * 0.05,
                 right: MediaQuery.of(context).size.width * 0.05,
-                child: controller.obx((state) {
-                  return (KeyboardVisibilityBuilder(
-                    builder: (builder, visible) {
-                      if (!visible &&
-                          controller.summonerMainChampionSkin != '') {
-                        return ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          physics: const AlwaysScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemBuilder: (_, index) {
-                            return Container(
-                              height: MediaQuery.of(context).size.height * 0.2,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: const Color(0xFFb463a4)
-                                        .withOpacity(0.2),
-                                    blurRadius: 20,
-                                    spreadRadius: 2,
-                                  ),
-                                ],
-                              ),
-                              child: Stack(
-                                children: [
-                                  Positioned.fill(
-                                    left: MediaQuery.of(context).size.width *
-                                        0.05,
-                                    right: MediaQuery.of(context).size.width *
-                                        0.05,
-                                    child: Container(
-                                      width: MediaQuery.of(context).size.width,
+                child: controller.obx(
+                  (state) {
+                    return (KeyboardVisibilityBuilder(
+                      builder: (builder, visible) {
+                        if (!visible &&
+                            controller.summonerMainChampionSkin != '') {
+                          return ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            physics: const AlwaysScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemBuilder: (_, index) {
+                              return Container(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.2,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: const Color(0xFFb463a4)
+                                          .withOpacity(0.2),
+                                      blurRadius: 20,
+                                      spreadRadius: 2,
+                                    ),
+                                  ],
+                                ),
+                                child: Stack(
+                                  children: [
+                                    Positioned.fill(
+                                      left: MediaQuery.of(context).size.width *
+                                          0.05,
+                                      right: MediaQuery.of(context).size.width *
+                                          0.05,
+                                      child: Container(
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        height:
+                                            MediaQuery.of(context).size.height,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                            20,
+                                          ),
+                                          image: DecorationImage(
+                                              image: CachedNetworkImageProvider(
+                                                  controller
+                                                      .summonerMainChampionSkin),
+                                              fit: BoxFit.cover,
+                                              alignment: Alignment(-1, -1)),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      width: double.infinity,
                                       height:
                                           MediaQuery.of(context).size.height,
                                       decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(
-                                          20,
-                                        ),
-                                        image: DecorationImage(
-                                            image: CachedNetworkImageProvider(
-                                                controller
-                                                    .summonerMainChampionSkin),
-                                            fit: BoxFit.cover,
-                                            alignment: Alignment(-1, -1)),
+                                        borderRadius: BorderRadius.circular(20),
                                       ),
-                                    ),
-                                  ),
-                                  Container(
-                                    width: double.infinity,
-                                    height: MediaQuery.of(context).size.height,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                    margin: const EdgeInsets.only(
-                                      right: 19,
-                                      left: 19,
-                                    ),
-                                    child: Stack(
-                                      children: [
-                                        Positioned(
-                                          top: MediaQuery.of(context)
-                                                      .size
-                                                      .height *
-                                                  0.1 +
-                                              20,
-                                          left: -10,
-                                          child: Container(
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            height: MediaQuery.of(context)
-                                                .size
-                                                .height,
-                                            decoration:
-                                                BoxDecoration(boxShadow: [
-                                              BoxShadow(
-                                                color: Colors.black
-                                                    .withOpacity(0.9),
-                                                blurRadius: 15,
-                                                spreadRadius: 2,
-                                              ),
-                                            ]),
-                                          ),
-                                        ),
-                                        Positioned(
-                                          top: MediaQuery.of(context)
-                                                      .size
-                                                      .height *
-                                                  0.1 +
-                                              20,
-                                          left: 120,
-                                          right: 0,
-                                          child: Text(
-                                            state![index]
-                                                .summonerName
-                                                .toString(),
-                                            textAlign: TextAlign.center,
-                                            style: const TextStyle(
-                                              fontSize: 20,
-                                              color: Colors.white,
-                                              fontFamily: 'Montserrat',
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Positioned.fill(
-                                    top: 10,
-                                    bottom: 10,
-                                    right: 180,
-                                    child: Container(
-                                      width: MediaQuery.of(context).size.width,
-                                      child: SvgPicture.asset(
-                                        'assets/ranked-emblems/${state[index].tier.toLowerCase()}.svg',
+                                      margin: const EdgeInsets.only(
+                                        right: 19,
+                                        left: 19,
                                       ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    left: 185,
-                                    top: MediaQuery.of(context).size.height *
-                                            0.1 +
-                                        50,
-                                    right: 0,
-                                    child: Container(
-                                      width: MediaQuery.of(context).size.width,
-                                      height:
-                                          MediaQuery.of(context).size.height,
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                      child: Stack(
                                         children: [
-                                          Text(
-                                            state[index].tier.toString(),
-                                            textAlign: TextAlign.center,
-                                            style: const TextStyle(
-                                              fontSize: 15,
-                                              color: Colors.white,
-                                              fontFamily:
-                                                  'ITC_Avant_Garde_Gothic',
-                                              fontWeight: FontWeight.bold,
+                                          Positioned(
+                                            top: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.1 +
+                                                20,
+                                            left: -10,
+                                            child: Container(
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              height: MediaQuery.of(context)
+                                                  .size
+                                                  .height,
+                                              decoration:
+                                                  BoxDecoration(boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.black
+                                                      .withOpacity(0.9),
+                                                  blurRadius: 15,
+                                                  spreadRadius: 2,
+                                                ),
+                                              ]),
                                             ),
                                           ),
-                                          const SizedBox(
-                                            width: 5,
-                                          ),
-                                          Text(
-                                            state[index].rank.toString(),
-                                            style: const TextStyle(
-                                              fontSize: 15,
-                                              color: Colors.white,
-                                              fontFamily:
-                                                  'ITC_Avant_Garde_Gothic',
-                                              fontWeight: FontWeight.bold,
+                                          Positioned(
+                                            top: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.1 +
+                                                20,
+                                            left: 120,
+                                            right: 0,
+                                            child: Text(
+                                              state![index]
+                                                  .summonerName
+                                                  .toString(),
+                                              textAlign: TextAlign.center,
+                                              style: const TextStyle(
+                                                fontSize: 20,
+                                                color: Colors.white,
+                                                fontFamily: 'Montserrat',
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                             ),
                                           ),
                                         ],
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                          itemCount: state!.length,
-                        );
-                      }
+                                    Positioned.fill(
+                                      top: 10,
+                                      bottom: 10,
+                                      right: 180,
+                                      child: Container(
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        child: SvgPicture.asset(
+                                          'assets/ranked-emblems/${state[index].tier.toLowerCase()}.svg',
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      left: 185,
+                                      top: MediaQuery.of(context).size.height *
+                                              0.1 +
+                                          50,
+                                      right: 0,
+                                      child: Container(
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        height:
+                                            MediaQuery.of(context).size.height,
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              state[index].tier.toString(),
+                                              textAlign: TextAlign.center,
+                                              style: const TextStyle(
+                                                fontSize: 15,
+                                                color: Colors.white,
+                                                fontFamily:
+                                                    'ITC_Avant_Garde_Gothic',
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text(
+                                              state[index].rank.toString(),
+                                              style: const TextStyle(
+                                                fontSize: 15,
+                                                color: Colors.white,
+                                                fontFamily:
+                                                    'ITC_Avant_Garde_Gothic',
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                            itemCount: state!.length,
+                          );
+                        }
 
-                      return Container();
-                    },
-                  ));
-                },
-                    onLoading: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            'assets/gif/league-of-legends-no-type.gif',
-                          ),
-                          Container(
-                            margin: const EdgeInsets.only(top: 10),
-                            child: Text(
-                              'Digite o nome de um invocador',
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                fontSize: 25,
-                                fontWeight: FontWeight.w600,
-                                color: Color(0xFFc4f1fc),
-                                fontFamily: 'AvantGarde',
-                              ),
+                        return Container();
+                      },
+                    ));
+                  },
+                  onLoading: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/gif/league-of-flutter-loading-image.gif',
+                        ),
+                      ],
+                    ),
+                  ),
+                  onEmpty: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/gif/league-of-legends-no-type.gif',
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(top: 10),
+                          child: const Text(
+                            'Type a Summoner name',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 25,
+                              fontWeight: FontWeight.w600,
+                              color: Color(0xFFc4f1fc),
+                              fontFamily: 'AvantGarde',
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    onEmpty: const ChampionNotFound(
-                      error: "Invocador não encontrado !",
-                    )),
+                  ),
+                ),
               ),
             ],
           ),

@@ -5,9 +5,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../controller/champion_details_controller.dart';
-import '../../credentials/app_credentials.dart';
-import '../ChampionsList/skins_buttons.dart';
+import '../controller/champion_details_controller.dart';
+import '../credentials/app_credentials.dart';
+import '../widgets/ChampionsList/skins_buttons.dart';
 
 class ChampionDetails extends GetView<ChampionDetailsController> {
   const ChampionDetails({Key? key}) : super(key: key);

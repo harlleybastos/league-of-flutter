@@ -1,6 +1,7 @@
 class AppRoutes {
-  static const String Dashboard = "/";
-  static const String ChampionList = "/champions-list";
-  static const String ChampionDetails = "/champion-details";
-  static const String SearchSummoner = "/search-summoner";
+  static const String dashboard = "/";
+  static const String championList = "/champions-list";
+  static const String championDetails = "/champion-details";
+  static const String searchSummoner = "/search-summoner";
+  static const String summonerDetails = "/summoner-details";
 }

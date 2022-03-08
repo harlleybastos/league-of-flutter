@@ -31,7 +31,7 @@ class SearchSectionController extends GetxController
       this.finalSummonerWithDetailsRepository, this.championListRepository);
   @override
   void onInit() {
-    // TODO: implemnt onInit
+    change([], status: RxStatus.empty());
     super.onInit();
   }
 
@@ -77,6 +77,10 @@ class SearchSectionController extends GetxController
             championName = champion.name;
           }
         }
+      }
+
+      if (championName.contains(' ')) {
+        championName = championName.replaceAll(' ', '');
       }
       return "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${championName}_0.jpg";
     } catch (error) {

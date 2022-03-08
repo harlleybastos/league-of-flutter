@@ -30,19 +30,19 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    SystemChrome.setEnabledSystemUIOverlays([]);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
   }
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.Dashboard,
+      initialRoute: AppRoutes.dashboard,
       getPages: AppPages.list,
       theme: ThemeData(
-        scaffoldBackgroundColor: Color(0xFF010116),
+        scaffoldBackgroundColor: const Color(0xFF010116),
         appBarTheme: const AppBarTheme(
-          backgroundColor:  Color(0xFF010116),
+          backgroundColor: Color(0xFF010116),
           elevation: 0,
           centerTitle: true,
           textTheme: TextTheme(
