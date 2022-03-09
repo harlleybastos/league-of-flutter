@@ -7,16 +7,20 @@ class SummonerDetails {
   String summonerId;
   String summonerName;
   int leaguePoints;
-  int wins;
-  int losses;
   bool veteran;
   bool inactive;
   bool freshBlood;
   bool hotStreak;
+  int profileIconNumber;
+  int wins;
+  int losses;
   int championId;
+  int level;
 
   SummonerDetails(
-      {required this.championId,
+      {required this.level,
+      required this.profileIconNumber,
+      required this.championId,
       required this.leagueId,
       required this.id,
       required this.queueType,
@@ -32,7 +36,11 @@ class SummonerDetails {
       required this.freshBlood,
       required this.hotStreak});
 
-  factory SummonerDetails.fromJson(Map<String, dynamic> json, int? championId) {
+  factory SummonerDetails.fromJson(
+      Map<String, dynamic> json,
+      Map<String, dynamic> summonerDetailsResponse,
+      int profileIconNumber,
+      int level) {
     return SummonerDetails(
       leagueId: json['leagueId'] ?? '',
       id: json["id"] ?? '',
@@ -48,7 +56,9 @@ class SummonerDetails {
       inactive: json["inactive"] ?? false,
       freshBlood: json["freshBlood"] ?? false,
       hotStreak: json["hotStreak"] ?? false,
-      championId: championId ?? 0,
+      championId: summonerDetailsResponse['championId'] ?? 0,
+      profileIconNumber: profileIconNumber,
+      level: level,
     );
   }
 }

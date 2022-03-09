@@ -12,10 +12,11 @@ class SearchSummonerWithDetailsRepository
     implements ISearchSummonerWithDetailsRepository {
   @override
   Future<List<SummonerDetails>> getSummonerDetailsByName(
-      String summonerId) async {
+      String summonerId, String accountId) async {
     final urlList = [
       'https://br1.api.riotgames.com/lol/league/v4/entries/by-summoner/$summonerId',
-      'https://br1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/$summonerId'
+      'https://br1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/$summonerId',
+      'https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-account/$accountId'
     ];
 
     final responses = await Future.wait(
@@ -32,9 +33,14 @@ class SearchSummonerWithDetailsRepository
     // Get the basic info about the summoner
     Map<String, dynamic> responseList = jsonDecode(responses[0].body)[0];
     // Get the details about the summoner
-    int championId = jsonDecode(responses[1].body)[0]['championId'];
+    Map<String, dynamic> championMaestryResponse =
+        jsonDecode(responses[1].body)[0];
+    int profileIconNumber = jsonDecode(responses[2].body)['profileIconId'];
+    int summonerLevel = jsonDecode(responses[2].body)['summonerLevel'];
+
     List<SummonerDetails> summonerDetails = [];
-    summonerDetails.add(SummonerDetails.fromJson(responseList, championId));
+    summonerDetails.add(SummonerDetails.fromJson(responseList,
+        championMaestryResponse, profileIconNumber, summonerLevel));
 
     return summonerDetails;
   }

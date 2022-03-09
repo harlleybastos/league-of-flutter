@@ -53,8 +53,9 @@ class SearchSectionController extends GetxController
           await finalSummonerRepository.getSummonerByName(textController.text);
       final String mainChampion;
       if (summonerInformations[0].id.isNotEmpty) {
-        summonerDetails = await finalSummonerWithDetailsRepository
-            .getSummonerDetailsByName(summonerInformations[0].id);
+        summonerDetails =
+            await finalSummonerWithDetailsRepository.getSummonerDetailsByName(
+                summonerInformations[0].id, summonerInformations[0].accountId);
         mainChampion = await findMainChampion(
             summonerDetails, summonerDetails[0].championId.toString());
         summonerMainChampionSkin = mainChampion;
