@@ -23,6 +23,7 @@ class SearchSectionController extends GetxController
   Rx<bool> userIsTipyng = false.obs;
   List<SummonerDetails> summonerDetails = [];
   List<Summoner> summonerInformations = [];
+  bool errorInSearch = false;
 
   final KeyboardVisibilityController keyboardController =
       KeyboardVisibilityController();
@@ -40,6 +41,7 @@ class SearchSectionController extends GetxController
   }
 
   void clearSearched() {
+    errorInSearch = false;
     summonerDetails = [];
     summonerInformations = [];
     textController.clear();
@@ -52,20 +54,19 @@ class SearchSectionController extends GetxController
       summonerInformations =
           await finalSummonerRepository.getSummonerByName(textController.text);
       final String mainChampion;
-      if (summonerInformations[0].id.isNotEmpty) {
-        summonerDetails =
-            await finalSummonerWithDetailsRepository.getSummonerDetailsByName(
-                summonerInformations[0].id, summonerInformations[0].accountId);
-        mainChampion = await findMainChampion(
-            summonerDetails, summonerDetails[0].championId.toString());
-        summonerMainChampionSkin = mainChampion;
-        change(summonerDetails, status: RxStatus.success());
-      }
-      if (summonerDetails.isEmpty) {
-        change(summonerDetails, status: RxStatus.error());
-      }
+
+      summonerDetails =
+          await finalSummonerWithDetailsRepository.getSummonerDetailsByName(
+              summonerInformations[0].id, summonerInformations[0].accountId);
+
+      mainChampion = await findMainChampion(
+          summonerDetails, summonerDetails[0].championId.toString());
+
+      summonerMainChampionSkin = mainChampion;
+      change(summonerDetails, status: RxStatus.success());
     } catch (error) {
-      change([], status: RxStatus.error(error.toString()));
+      change([], status: RxStatus.error());
+      errorInSearch = true;
     }
   }
 

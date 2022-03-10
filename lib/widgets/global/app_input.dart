@@ -11,7 +11,7 @@ class AppInput extends StatelessWidget {
   final String? hintText;
   final Rx<bool> userIsTipyng;
   final List<SummonerDetails> summonerDetails;
-
+  final bool errorInSearch;
   final String inputText = '';
   const AppInput(
       {Key? key,
@@ -20,7 +20,8 @@ class AppInput extends StatelessWidget {
       required this.textEditingController,
       required this.hintText,
       required this.onPressed,
-      required this.userIsTipyng})
+      required this.userIsTipyng,
+      required this.errorInSearch})
       : super(key: key);
 
   @override
@@ -63,13 +64,15 @@ class AppInput extends StatelessWidget {
                   }
                   return IconButton(
                     icon: !isKeyboardVisible &&
-                            controller.summonerDetails.isNotEmpty
+                                controller.summonerDetails.isNotEmpty ||
+                            !isKeyboardVisible && controller.errorInSearch
                         ? const Icon(Icons.delete)
                         : const Icon(Icons.search),
                     color: const Color(0xFF939392),
                     iconSize: 30,
-                    onPressed: !isKeyboardVisible && controller.summonerInformations
-                            .isNotEmpty
+                    onPressed: !isKeyboardVisible &&
+                                controller.summonerInformations.isNotEmpty ||
+                            !isKeyboardVisible && controller.errorInSearch
                         ? controller.clearSearched
                         : onPressed,
                   );
