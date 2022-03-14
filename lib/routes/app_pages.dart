@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:initial_app/bindings/home_section_bindings.dart';
 import 'package:initial_app/screens/home_page.dart';
+import 'package:initial_app/screens/initial_screen.dart';
 
 import '../bindings/champion_details_bindings.dart';
 import '../bindings/champion_list_bindings.dart';
@@ -49,5 +50,9 @@ class AppPages {
             binding: ChampionDetailsBindings(),
           ),
         ]),
+    GetPage(
+      name: AppRoutes.initialScreen,
+      page: () => const InitialScreen(),
+    )
   ];
 }

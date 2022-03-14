@@ -1,5 +1,6 @@
 class AppRoutes {
   static const String dashboard = "/";
+  static const String initialScreen = "/initial-screen";
   static const String homeSection = "/home-section";
   static const String championList = "/champions-list";
   static const String championDetails = "/champion-details";

@@ -68,6 +68,7 @@ flutter:
     - assets/gif/
     - assets/img/
     - assets/ranked-emblems/
+    - assets/constants/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

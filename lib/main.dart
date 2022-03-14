@@ -37,7 +37,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.dashboard,
+      initialRoute: AppRoutes.initialScreen,
       getPages: AppPages.list,
       theme: ThemeData(
         scaffoldBackgroundColor: const Color(0xFF010116),
