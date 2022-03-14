@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:initial_app/controller/home_page_controller.dart';
 
 import '../controller/champion_list_controller.dart';
 import '../controller/dashboard_page_controller.dart';
@@ -34,8 +35,11 @@ class DashboardBinding implements Bindings {
         Get.find(tag: 'champion_list_controller')));
 
     Get.put<DashboardPageController>(DashboardPageController());
+
     Get.put<IChampionsRepository>(ChampionsHttpRepository());
-    // Add the controller for execute the access for repository
+
     Get.put(ChampionListController(Get.find()));
+
+    Get.put(HomePageController());
   }
 }

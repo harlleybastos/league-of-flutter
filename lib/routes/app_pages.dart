@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:initial_app/bindings/home_section_bindings.dart';
+import 'package:initial_app/screens/home_page.dart';
 
 import '../bindings/champion_details_bindings.dart';
 import '../bindings/champion_list_bindings.dart';
@@ -21,6 +23,11 @@ class AppPages {
         page: () => const DashboardPage(),
         binding: DashboardBinding(),
         children: [
+          GetPage(
+            name: AppRoutes.homeSection,
+            page: () => const HomeSection(),
+            binding: HomeSectionBindings(),
+          ),
           GetPage(
             name: AppRoutes.championList,
             page: () => const ChampionsList(),

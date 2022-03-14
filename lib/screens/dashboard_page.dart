@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:initial_app/controller/dashboard_page_controller.dart';
 import 'package:initial_app/screens/champions_list.dart';
+import 'package:initial_app/screens/home_page.dart';
 import 'package:initial_app/screens/search_page.dart';
 
 class DashboardPage extends StatelessWidget {
@@ -14,7 +15,8 @@ class DashboardPage extends StatelessWidget {
               body: SafeArea(
                 child: IndexedStack(
                   index: controller.tabIndex,
-                  children: const [
+                  children:  [
+                    HomeSection(),
                     ChampionsList(),
                     SearchPage(),
                   ],
@@ -27,6 +29,7 @@ class DashboardPage extends StatelessWidget {
                   showUnselectedLabels: false,
                   items: [
                     _bottomNavigationBarItem(Icons.home_outlined, "Home"),
+                    _bottomNavigationBarItem(Icons.home_outlined, "Champions"),
                     _bottomNavigationBarItem(Icons.search_outlined, "Search"),
                   ]),
             ));
