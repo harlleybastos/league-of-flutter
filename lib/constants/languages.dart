@@ -27,12 +27,12 @@ const List<Map<String, String>> languages = [
   {
     "name": "English (United Kingdom)",
     "value": "en_GB",
-    "url": "assets/constants/flags/English (United Kingdom)"
+    "url": "assets/constants/flags/English (United Kingdom).svg"
   },
   {
     "name": "English (Republic of the Philippines)",
     "value": "en_PH",
-    "url": "assets/constants/flags/English (Republic of the Philippines)"
+    "url": "assets/constants/flags/English (Republic of the Philippines).svg"
   },
   {
     "name": "English (Singapore)",
