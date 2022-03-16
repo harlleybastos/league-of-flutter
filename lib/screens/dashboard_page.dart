@@ -1,21 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:initial_app/controller/dashboard_page_controller.dart';
-import 'package:initial_app/screens/champions_list.dart';
-import 'package:initial_app/screens/home_page.dart';
-import 'package:initial_app/screens/search_page.dart';
+
+import '../controller/dashboard_page_controller.dart';
+
+import '../screens/champions_list.dart';
+import '../screens/home_page.dart';
+import '../screens/search_page.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final PageController customController = PageController(
+      initialPage: 0,
+    );
+
     return GetBuilder<DashboardPageController>(
         builder: (controller) => Scaffold(
               body: SafeArea(
-                child: IndexedStack(
-                  index: controller.tabIndex,
-                  children:  [
+                child: PageView(
+                  controller: customController,
+                  children: const [
                     HomeSection(),
                     ChampionsList(),
                     SearchPage(),
@@ -23,12 +29,18 @@ class DashboardPage extends StatelessWidget {
                 ),
               ),
               bottomNavigationBar: BottomNavigationBar(
-                  onTap: (index) => controller.changeTabIndex(index),
+                  onTap: (currentIndex) {
+                    customController.animateToPage(currentIndex,
+                        duration: const Duration(milliseconds: 1000),
+                        curve: Curves.easeInOutCubicEmphasized);
+                    controller.changeTabIndex(currentIndex);
+                  },
                   currentIndex: controller.tabIndex,
                   showSelectedLabels: false,
                   showUnselectedLabels: false,
                   items: [
-                    _bottomNavigationBarItem(Icons.home_outlined, "Home"),
+                    _bottomNavigationBarItem(
+                        Icons.account_circle_outlined, "Home"),
                     _bottomNavigationBarItem(Icons.home_outlined, "Champions"),
                     _bottomNavigationBarItem(Icons.search_outlined, "Search"),
                   ]),

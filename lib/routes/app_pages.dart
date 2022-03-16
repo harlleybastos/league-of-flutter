@@ -1,14 +1,15 @@
 import 'package:get/get.dart';
-import 'package:initial_app/bindings/home_section_bindings.dart';
-import 'package:initial_app/screens/home_page.dart';
-import 'package:initial_app/screens/initial_screen.dart';
 
+import '../bindings/home_section_bindings.dart';
+import '../bindings/initial_screen_bindings.dart';
 import '../bindings/champion_details_bindings.dart';
 import '../bindings/champion_list_bindings.dart';
 import '../bindings/dashboard_bindings.dart';
 import '../bindings/search_page_bindings.dart';
 import '../bindings/summoner_details_bindings.dart';
 
+import '../screens/home_page.dart';
+import '../screens/initial_screen.dart';
 import '../screens/champions_list.dart';
 import '../screens/dashboard_page.dart';
 import '../screens/search_page.dart';
@@ -53,6 +54,7 @@ class AppPages {
     GetPage(
       name: AppRoutes.initialScreen,
       page: () => const InitialScreen(),
+      binding: InitialScreenBindings(),
     )
   ];
 }

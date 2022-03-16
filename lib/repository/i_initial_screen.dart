@@ -1,3 +1,3 @@
-abstract class IInitialScreen {
-  Future<List<String>> getVersionsList();
+abstract class IInitialScreenRepository {
+  Future<String> getLatestVersionOfApi();
 }
