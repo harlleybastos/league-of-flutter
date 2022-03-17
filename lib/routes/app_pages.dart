@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:initial_app/bindings/splash_screen_bindings.dart';
+import 'package:initial_app/widgets/splash_screen.dart';
 
 import '../bindings/home_section_bindings.dart';
 import '../bindings/initial_screen_bindings.dart';
@@ -55,6 +57,10 @@ class AppPages {
       name: AppRoutes.initialScreen,
       page: () => const InitialScreen(),
       binding: InitialScreenBindings(),
-    )
+    ),
+    GetPage(
+        name: AppRoutes.splashScreen,
+        page: () => const SplashScreen(),
+        binding: SplashScreenBindings())
   ];
 }

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:initial_app/routes/app_pages.dart';
 import 'package:initial_app/routes/app_routes.dart';
 import 'package:flutter/services.dart';
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -37,7 +38,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.initialScreen,
+      initialRoute: AppRoutes.splashScreen,
       getPages: AppPages.list,
       theme: ThemeData(
         scaffoldBackgroundColor: const Color(0xFF010116),
