@@ -19,7 +19,6 @@ class InitialScreenController extends GetxController with StateMixin<String> {
       final response = await _initialScreenRepository.getLatestVersionOfApi();
       change(response, status: RxStatus.success());
     } catch (e) {
-      print(e);
       change('', status: RxStatus.error('Error'));
     }
   }

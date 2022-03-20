@@ -7,13 +7,14 @@ import 'package:initial_app/repository/i_champions_repository.dart';
 class ChampionListController extends GetxController
     with StateMixin<List<Champion>> {
   final IChampionsRepository _httpRepository;
-  List<dynamic> championName = [].obs;
-  List<dynamic> skins = [].obs;
-  final FocusNode focusNode = FocusNode();
-  TextEditingController textController = TextEditingController();
+  
   List<Champion> searchResult = [];
   List<Champion> championsList = [];
+  List<dynamic> championName = [].obs;
+  List<dynamic> skins = [].obs;
+  TextEditingController textController = TextEditingController();
   bool userIsTipyng = false;
+  final FocusNode focusNode = FocusNode();
   final KeyboardVisibilityController keyboardController =
       KeyboardVisibilityController();
 

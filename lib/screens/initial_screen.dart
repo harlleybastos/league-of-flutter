@@ -17,6 +17,7 @@ class InitialScreen extends StatelessWidget {
             height: MediaQuery.of(context).size.height,
             child: Stack(
               children: [
+                
                 Positioned(
                   bottom: MediaQuery.of(context).size.height * 0.09,
                   child: RotatedBox(
@@ -38,6 +39,20 @@ class InitialScreen extends StatelessWidget {
                             Color(0xFF9b455f),
                           ],
                         ),
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: MediaQuery.of(context).size.height * 0.72 ,
+                  bottom: 0,
+                  right: 0,
+                  left: 0,
+                  child: Center(
+                    child: Container(
+                      width: 100,
+                      child: SvgPicture.asset(
+                        'assets/constants/logos/logo-single.svg',
                       ),
                     ),
                   ),

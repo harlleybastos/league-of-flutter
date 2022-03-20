@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
 
 class DashboardPageController extends GetxController {
-  var tabIndex = 0;
+  int tabIndex = 0;
+  String language = '';
+  String apiVersion = '';
 
   void changeTabIndex(int index) {
     tabIndex = index;
@@ -10,7 +12,8 @@ class DashboardPageController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
+    language = Get.arguments['language'];
+    apiVersion = Get.arguments['latestVersionOfApi'];
     super.onInit();
   }
 }

@@ -19,13 +19,16 @@ class DashboardPage extends StatelessWidget {
     return GetBuilder<DashboardPageController>(
         builder: (controller) => Scaffold(
               body: SafeArea(
-                child: PageView(
+                child: PageView.builder(
                   controller: customController,
-                  children: const [
-                    HomeSection(),
-                    ChampionsList(),
-                    SearchPage(),
-                  ],
+                  itemBuilder: (context, index) {
+                    return index == 0
+                        ? HomeSection()
+                        : index ==  1
+                            ? ChampionsList()
+                            : SearchPage();
+                  },
+
                 ),
               ),
               bottomNavigationBar: BottomNavigationBar(
