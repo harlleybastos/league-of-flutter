@@ -1,22 +1,32 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:initial_app/controller/dashboard_page_controller.dart';
+import 'package:initial_app/controller/home_page_controller.dart';
 import 'package:initial_app/models/champion.dart';
 import 'package:initial_app/repository/i_champions_repository.dart';
 
 class ChampionListController extends GetxController
     with StateMixin<List<Champion>> {
   final IChampionsRepository _httpRepository;
-  
+
   List<Champion> searchResult = [];
   List<Champion> championsList = [];
   List<dynamic> championName = [].obs;
   List<dynamic> skins = [].obs;
+
   TextEditingController textController = TextEditingController();
+
   bool userIsTipyng = false;
+
   final FocusNode focusNode = FocusNode();
   final KeyboardVisibilityController keyboardController =
       KeyboardVisibilityController();
+  final GetStorage _getStorage = GetStorage();
+
+  String language = '';
+  String apiVersion = '';
 
   ChampionListController(
     this._httpRepository,
@@ -24,8 +34,15 @@ class ChampionListController extends GetxController
   @override
   void onInit() {
     // Wen the controller started
+    language = _getStorage.read('data')['language'];
+    apiVersion = _getStorage.read('data')['version'];
     super.onInit();
-    findChampions();
+    // findChampions();
+
+    if (language.isNotEmpty && apiVersion.isNotEmpty) {
+      findChampions(apiVersion, language);
+    }
+
     if (focusNode.hasFocus) {
       focusNode.dispose();
     }
@@ -35,12 +52,12 @@ class ChampionListController extends GetxController
     focusNode.requestFocus();
   }
 
-  void findChampions() async {
+  void findChampions(String version, String language) async {
     // Show the loading indicator
     change([], status: RxStatus.loading());
     // Try to get the data when the app start
     try {
-      final resp = await _httpRepository.listAllChampions();
+      final resp = await _httpRepository.listAllChampions(version, language);
       championsList.addAll(resp);
       // the data is correct populate the controller and show the success
       change(championsList, status: RxStatus.success());

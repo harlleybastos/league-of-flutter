@@ -4,13 +4,14 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:initial_app/controller/search_section_controller.dart';
-import 'package:initial_app/widgets/ChampionsList/champion_not_found.dart';
 import 'package:initial_app/widgets/global/app_name.dart';
 import 'package:initial_app/widgets/global/app_bar.dart';
 import 'package:initial_app/widgets/global/app_input.dart';
 
 class SearchPage extends StatelessWidget {
-  const SearchPage({Key? key}) : super(key: key);
+  final String? language;
+  final String? version;
+  const SearchPage({Key? key, this.language, this.version}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -15,7 +15,7 @@ import '../service/search_summoner_repository.dart';
 class SearchPageBindings implements Bindings {
   @override
   void dependencies() {
-    Get.put(DashboardPageController());
+    Get.put(DashboardPageController(), tag: 'dashboard_page_controller');
 
     Get.put<ISearchSummonerRepository>(SearchSummonerRepository(),
         tag: 'search_summoner_repository');
@@ -27,7 +27,8 @@ class SearchPageBindings implements Bindings {
     Get.put<IChampionsRepository>(ChampionsHttpRepository(),
         tag: 'champion_list');
 
-    Get.put(ChampionListController(Get.find(tag: 'champion_list')),
+    Get.put(
+        ChampionListController(Get.find(tag: 'champion_list')),
         tag: 'champion_list_controller');
 
     Get.put(SearchSectionController(

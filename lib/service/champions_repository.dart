@@ -7,10 +7,10 @@ import 'package:http/http.dart' as http;
 
 class ChampionsHttpRepository implements IChampionsRepository {
   @override
-  Future<List<Champion>> listAllChampions() async {
+  Future<List<Champion>> listAllChampions(String version, String language) async {
     final response = await http.get(
         Uri.parse(
-            'http://ddragon.leagueoflegends.com/cdn/12.3.1/data/en_US/champion.json'),
+            'http://ddragon.leagueoflegends.com/cdn/$version/data/$language/champion.json'),
         headers: {
           HttpHeaders.authorizationHeader: AppCredentials.apiKey,
         });

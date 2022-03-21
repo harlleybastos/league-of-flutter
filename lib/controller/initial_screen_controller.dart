@@ -3,6 +3,8 @@ import 'package:initial_app/repository/i_initial_screen.dart';
 
 class InitialScreenController extends GetxController with StateMixin<String> {
   final IInitialScreenRepository _initialScreenRepository;
+  String version = '';
+  String language = '';
 
   InitialScreenController(this._initialScreenRepository);
 
@@ -21,5 +23,11 @@ class InitialScreenController extends GetxController with StateMixin<String> {
     } catch (e) {
       change('', status: RxStatus.error('Error'));
     }
+  }
+
+  void updateValues (String? version, String language) {
+    this.version = version!;
+    this.language = language;
+    update();
   }
 }

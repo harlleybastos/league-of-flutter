@@ -1,12 +1,19 @@
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:initial_app/repository/i_champion_details_repository.dart';
 
-class ChampionDetailsController extends GetxController with StateMixin<Map<String,dynamic>> {
+class ChampionDetailsController extends GetxController
+    with StateMixin<Map<String, dynamic>> {
   String championName = '';
   int selectedIndex = 0;
   int championSkins = 0;
   final IChampionDetailsRepository _championDetailsRepository;
   ChampionDetailsController(this._championDetailsRepository);
+
+  final GetStorage _getStorage = GetStorage();
+
+  String language = '';
+  String apiVersion = '';
 
   @override
   void onInit() {
@@ -16,6 +23,8 @@ class ChampionDetailsController extends GetxController with StateMixin<Map<Strin
   @override
   void onReady() {
     super.onReady();
+    language = _getStorage.read('data')['language'];
+    apiVersion = _getStorage.read('data')['version'];
     championName = Get.arguments['championName'];
     getChampionDetails();
     update();
@@ -24,8 +33,8 @@ class ChampionDetailsController extends GetxController with StateMixin<Map<Strin
   void getChampionDetails() async {
     change({}, status: RxStatus.loading());
     try {
-      final Map<String,dynamic> response =
-          await _championDetailsRepository.getChampionDetails(championName);
+      final Map<String, dynamic> response =
+          await _championDetailsRepository.getChampionDetails(championName, language, apiVersion);
       change(response, status: RxStatus.success());
     } catch (e) {
       change({}, status: RxStatus.error('Ocorreu um erro !'));

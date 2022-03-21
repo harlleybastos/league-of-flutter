@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:initial_app/controller/initial_screen_controller.dart';
 import '../constants/languages.dart';
 
@@ -9,6 +10,11 @@ class InitialScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final GetStorage _getStorage = GetStorage();
+    Map<String, String> data = {
+      'version': '',
+      'language': '',
+    };
     return GetBuilder<InitialScreenController>(builder: (controller) {
       return controller.obx((latestVersionOfApi) {
         return Scaffold(
@@ -17,7 +23,6 @@ class InitialScreen extends StatelessWidget {
             height: MediaQuery.of(context).size.height,
             child: Stack(
               children: [
-                
                 Positioned(
                   bottom: MediaQuery.of(context).size.height * 0.09,
                   child: RotatedBox(
@@ -44,7 +49,7 @@ class InitialScreen extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  top: MediaQuery.of(context).size.height * 0.72 ,
+                  top: MediaQuery.of(context).size.height * 0.72,
                   bottom: 0,
                   right: 0,
                   left: 0,
@@ -118,13 +123,18 @@ class InitialScreen extends StatelessWidget {
                                   GestureDetector(
                                     onTap: () {
                                       String? selectedLanguage =
-                                          languages[index]['name'];
+                                          languages[index]['value'];
                                       if (selectedLanguage!.isNotEmpty) {
-                                        Get.offAllNamed("/", arguments: {
+                                        controller.updateValues(
+                                            latestVersionOfApi,
+                                            selectedLanguage);
+                                        data = {
+                                          'version': latestVersionOfApi!,
                                           'language': selectedLanguage,
-                                          'latestVersionOfApi':
-                                              latestVersionOfApi,
-                                        });
+                                        };
+
+                                        _getStorage.write('data', data);
+                                        Get.offAllNamed("/");
                                       }
                                     },
                                     child: Center(

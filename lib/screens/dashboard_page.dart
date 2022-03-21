@@ -23,12 +23,20 @@ class DashboardPage extends StatelessWidget {
                   controller: customController,
                   itemBuilder: (context, index) {
                     return index == 0
-                        ? HomeSection()
-                        : index ==  1
-                            ? ChampionsList()
-                            : SearchPage();
+                        ? HomeSection(
+                            language: controller.language,
+                            version: controller.apiVersion,
+                          )
+                        : index == 1
+                            ? ChampionsList(
+                                language: controller.language,
+                                version: controller.apiVersion,
+                              )
+                            : SearchPage(
+                                language: controller.language,
+                                version: controller.apiVersion,
+                              );
                   },
-
                 ),
               ),
               bottomNavigationBar: BottomNavigationBar(

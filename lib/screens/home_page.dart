@@ -5,7 +5,9 @@ import '../controller/home_page_controller.dart';
 import '../widgets/ChampionsList/champion_image_background.dart';
 
 class HomeSection extends StatelessWidget {
-  const HomeSection({Key? key}) : super(key: key);
+  final String? language;
+  final String? version;
+  const HomeSection({Key? key, this.language, this.version}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

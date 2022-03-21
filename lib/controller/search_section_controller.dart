@@ -19,6 +19,7 @@ class SearchSectionController extends GetxController
   final ISearchSummonerRepository finalSummonerRepository;
   final ISearchSummonerWithDetailsRepository finalSummonerWithDetailsRepository;
   final ChampionListController championListRepository;
+  
   String summonerMainChampionSkin = '';
   Rx<bool> userIsTipyng = false.obs;
   List<SummonerDetails> summonerDetails = [];

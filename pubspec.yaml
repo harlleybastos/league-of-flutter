@@ -40,6 +40,7 @@ dependencies:
   shimmer: ^2.0.0
   flutter_keyboard_visibility: ^5.2.0
   animated_splash_screen: ^1.2.0
+  get_storage: ^2.0.3
 
 dev_dependencies:
   flutter_test:

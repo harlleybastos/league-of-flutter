@@ -16,7 +16,10 @@ import '../widgets/global/app_bar.dart';
 import '../controller/champion_list_controller.dart';
 
 class ChampionsList extends StatelessWidget {
-  const ChampionsList({Key? key}) : super(key: key);
+  final String? language;
+  final String? version;
+  const ChampionsList({Key? key, this.language, this.version}) : super(key: key);
+
 
   Widget loadingShimmer(BuildContext context) {
     return SizedBox(

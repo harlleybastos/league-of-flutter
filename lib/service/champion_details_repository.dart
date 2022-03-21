@@ -7,10 +7,10 @@ import 'package:http/http.dart' as http;
 
 class ChampionDetailsRepository implements IChampionDetailsRepository {
   @override
-  Future<Map<String, dynamic>> getChampionDetails(String championName) async {
+  Future<Map<String, dynamic>> getChampionDetails(String championName, String language, String version) async {
     final response = await http.get(
         Uri.parse(
-            'https://ddragon.leagueoflegends.com/cdn/12.1.1/data/en_US/champion/$championName.json'),
+            'https://ddragon.leagueoflegends.com/cdn/$version/data/$language/champion/$championName.json'),
         headers: {
           HttpHeaders.authorizationHeader: AppCredentials.apiKey,
         });

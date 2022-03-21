@@ -1,9 +1,11 @@
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class DashboardPageController extends GetxController {
   int tabIndex = 0;
   String language = '';
   String apiVersion = '';
+  final GetStorage _getStorage = GetStorage();
 
   void changeTabIndex(int index) {
     tabIndex = index;
@@ -12,8 +14,8 @@ class DashboardPageController extends GetxController {
 
   @override
   void onInit() {
-    language = Get.arguments['language'];
-    apiVersion = Get.arguments['latestVersionOfApi'];
+    language = _getStorage.read('data')['language'];
+    apiVersion = _getStorage.read('data')['version'];
     super.onInit();
   }
 }
