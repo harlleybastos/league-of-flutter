@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:initial_app/bindings/splash_screen_bindings.dart';
+import 'package:initial_app/screens/conditional_login.dart';
 import 'package:initial_app/widgets/splash_screen.dart';
 
 import '../bindings/home_section_bindings.dart';
@@ -61,6 +62,10 @@ class AppPages {
     GetPage(
         name: AppRoutes.splashScreen,
         page: () => const SplashScreen(),
-        binding: SplashScreenBindings())
+        binding: SplashScreenBindings()),
+    GetPage(
+      name: AppRoutes.conditionalLogin,
+      page: () => const ConditionalLogin(),
+    ),
   ];
 }
