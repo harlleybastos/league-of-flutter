@@ -42,9 +42,6 @@ class AppInput extends StatelessWidget {
           child: TextField(
             focusNode: focusNode,
             controller: textEditingController,
-            onChanged: (value) {
-              print(textEditingController.text);
-            },
             textAlign: TextAlign.start,
             style: const TextStyle(
               color: Colors.white,

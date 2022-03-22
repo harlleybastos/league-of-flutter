@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:initial_app/bindings/conditional_login_bindings.dart';
 import 'package:initial_app/bindings/splash_screen_bindings.dart';
 import 'package:initial_app/screens/conditional_login.dart';
 import 'package:initial_app/widgets/splash_screen.dart';
@@ -66,6 +67,7 @@ class AppPages {
     GetPage(
       name: AppRoutes.conditionalLogin,
       page: () => const ConditionalLogin(),
+      binding: ConditionalLoginBinding(),
     ),
   ];
 }
