@@ -11,7 +11,7 @@ class InitialScreenBindings implements Bindings {
   void dependencies() {
     Get.put<IInitialScreenRepository>(InitialScreenRepository(),
         tag: 'initial_screen_repository');
-    Get.put(InitialScreenController(Get.find(tag: 'initial_screen_repository')),
-        permanent: true);
+    Get.put(
+        InitialScreenController(Get.find(tag: 'initial_screen_repository')));
   }
 }

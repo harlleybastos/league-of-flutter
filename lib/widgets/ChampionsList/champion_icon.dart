@@ -6,7 +6,7 @@ class ChampionIcon extends StatelessWidget {
   final Champion championData;
 
   ChampionIcon(this.championData);
-  
+
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -20,7 +20,8 @@ class ChampionIcon extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             child: ClipOval(
               child: CachedNetworkImage(
-                imageUrl: 'https://ddragon.leagueoflegends.com/cdn/11.24.1/img/champion/${championData.id}.png',
+                imageUrl:
+                    'https://ddragon.leagueoflegends.com/cdn/11.24.1/img/champion/${championData.id}.png',
                 height: 50,
                 fit: BoxFit.contain,
               ),
@@ -35,18 +36,18 @@ class ChampionIcon extends StatelessWidget {
               Text(
                 championData.name,
                 style: const TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontFamily: 'BeaufortForLOL'),
               ),
               Text(
                 championData.title,
                 style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.white,
-                ),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.white,
+                    fontFamily: 'ITC_Avant_Garde_Gothic'),
               ),
             ],
           ),

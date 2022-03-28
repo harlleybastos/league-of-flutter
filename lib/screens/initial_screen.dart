@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:initial_app/controller/initial_screen_controller.dart';
+
+import '../controller/initial_screen_controller.dart';
+
 import '../constants/languages.dart';
 
 class InitialScreen extends StatelessWidget {

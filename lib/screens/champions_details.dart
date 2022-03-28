@@ -11,6 +11,7 @@ import '../widgets/ChampionsList/skins_buttons.dart';
 
 class ChampionDetails extends GetView<ChampionDetailsController> {
   const ChampionDetails({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -146,6 +147,7 @@ class ChampionDetails extends GetView<ChampionDetailsController> {
                         child: Container(
                           width: double.maxFinite,
                           height: 360,
+                          color: Colors.transparent,
                           child: CachedNetworkImage(
                             imageUrl:
                                 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${state['id']}_${state['skins'][controller.selectedIndex]['num']}.jpg',
@@ -212,6 +214,7 @@ class ChampionDetails extends GetView<ChampionDetailsController> {
                             Container(
                               width: 50,
                               height: 50,
+                              color: Colors.transparent,
                               child: SvgPicture.asset(
                                 'assets/roles/${state['tags'][0].toLowerCase()}.svg',
                               ),
@@ -270,6 +273,7 @@ class ChampionDetails extends GetView<ChampionDetailsController> {
                                 Container(
                                   width: double.maxFinite,
                                   height: 30,
+                                  color: Colors.transparent,
                                   child: ListView.builder(
                                       itemCount: 5,
                                       scrollDirection: Axis.horizontal,
@@ -306,6 +310,7 @@ class ChampionDetails extends GetView<ChampionDetailsController> {
                                 ),
                                 Container(
                                   width: double.maxFinite,
+                                  color: Colors.transparent,
                                   height: 20,
                                   child: ListView.builder(
                                       itemCount: 5,
@@ -334,6 +339,7 @@ class ChampionDetails extends GetView<ChampionDetailsController> {
                         left: 10,
                         child: Container(
                           width: MediaQuery.of(context).size.width,
+                          color: Colors.transparent,
                           child: Column(
                             children: [
                               Text(
@@ -368,7 +374,7 @@ class ChampionDetails extends GetView<ChampionDetailsController> {
                               child: ClipOval(
                                 child: CachedNetworkImage(
                                   imageUrl:
-                                      "https://ddragon.leagueoflegends.com/cdn/12.1.1/img/passive/${state['passive']['image']['full']}",
+                                      "https://ddragon.leagueoflegends.com/cdn/${controller.version}/img/passive/${state['passive']['image']['full']}",
                                 ),
                               ),
                             ),
@@ -380,11 +386,11 @@ class ChampionDetails extends GetView<ChampionDetailsController> {
                                   scrollDirection: Axis.horizontal,
                                   itemBuilder: (_, index) {
                                     return Container(
-                                      padding: EdgeInsets.only(left: 10),
+                                      padding: const EdgeInsets.only(left: 10),
                                       child: ClipOval(
                                         child: CachedNetworkImage(
                                           imageUrl:
-                                              "https://ddragon.leagueoflegends.com/cdn/12.1.1/img/spell/${state['spells'][index]['image']['full']}",
+                                              "https://ddragon.leagueoflegends.com/cdn/${controller.version}/img/spell/${state['spells'][index]['image']['full']}",
                                         ),
                                       ),
                                     );

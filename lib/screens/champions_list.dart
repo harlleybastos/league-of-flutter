@@ -18,8 +18,8 @@ import '../controller/champion_list_controller.dart';
 class ChampionsList extends StatelessWidget {
   final String? language;
   final String? version;
-  const ChampionsList({Key? key, this.language, this.version}) : super(key: key);
-
+  const ChampionsList({Key? key, this.language, this.version})
+      : super(key: key);
 
   Widget loadingShimmer(BuildContext context) {
     return SizedBox(
@@ -131,78 +131,6 @@ class ChampionsList extends StatelessWidget {
     );
   }
 
-  Widget conditionalReturn(
-      ChampionListController customController, BuildContext context) {
-    return customController.textController.text.isNotEmpty
-        ? GetBuilder<ChampionListController>(
-            builder: (controller) => ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: controller.searchResult.length,
-                  itemBuilder: (_, index) {
-                    return Stack(
-                      children: [
-                        Positioned(
-                            left: 20,
-                            right: 20,
-                            bottom: 150,
-                            top: 160,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Color(0xFFb463a4).withOpacity(0.2),
-                                    blurRadius: 20,
-                                    spreadRadius: 2,
-                                  ),
-                                ],
-                              ),
-                            )),
-                        Positioned(
-                          bottom: 65,
-                          left: 0,
-                          right: 0,
-                          child: Text(
-                            controller.searchResult[index].tags[0],
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 15,
-                          left: 0,
-                          right: 0,
-                          child: SizedBox(
-                            width: MediaQuery.of(context).size.width,
-                            height: 50,
-                            child: SvgPicture.asset(
-                              'assets/roles/${controller.searchResult[index].tags[0].toLowerCase()}.svg',
-                            ),
-                          ),
-                        ),
-                        ChampionContainer(
-                          championData: controller.searchResult[index],
-                        ),
-                      ],
-                    );
-                  },
-                ))
-        : Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            color: const Color(0xFF010116),
-            child: Center(
-              child: Image.asset(
-                'assets/gif/league-of-flutter-loading-alistar.gif',
-                height: 200,
-                width: 200,
-              ),
-            ),
-          );
-  }
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ChampionListController>(
@@ -212,7 +140,6 @@ class ChampionsList extends StatelessWidget {
                   : shimmerCustomAppBar(context, ''),
               body: Stack(
                 children: [
-                  // const HomeSection(),
                   const AppName(),
                   controller.obx(
                     (state) {
@@ -235,62 +162,143 @@ class ChampionsList extends StatelessWidget {
                                   ),
                                   ChampionContainer(
                                     championData: state[index],
+                                    version: version!,
                                   ),
                                 ],
                               );
                             },
                           );
-                        } else {
-                          return conditionalReturn(controller, context);
                         }
+                        return GetBuilder<ChampionListController>(
+                            builder: (controller) => ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: controller.searchResult.length,
+                                  itemBuilder: (_, index) {
+                                    return Stack(
+                                      children: [
+                                        Positioned(
+                                            left: 20,
+                                            right: 20,
+                                            bottom: 150,
+                                            top: 160,
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Color(0xFFb463a4)
+                                                        .withOpacity(0.2),
+                                                    blurRadius: 20,
+                                                    spreadRadius: 2,
+                                                  ),
+                                                ],
+                                              ),
+                                            )),
+                                        Positioned(
+                                          bottom: 65,
+                                          left: 0,
+                                          right: 0,
+                                          child: Text(
+                                            controller
+                                                .searchResult[index].tags[0],
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                        Positioned(
+                                          bottom: 15,
+                                          left: 0,
+                                          right: 0,
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: 50,
+                                            child: SvgPicture.asset(
+                                              'assets/roles/${controller.searchResult[index].tags[0].toLowerCase()}.svg',
+                                            ),
+                                          ),
+                                        ),
+                                        ChampionContainer(
+                                          championData:
+                                              controller.searchResult[index],
+                                          version: version!,
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                ));
                       });
                     },
                     onError: (error) {
-                      return ChampionNotFound(
-                        error: error,
+                      return KeyboardVisibilityBuilder(
+                        builder: (keyboardBuilder, isKeyboardVisible) {
+                          return !isKeyboardVisible
+                              ? ChampionNotFound(
+                                  error: error,
+                                )
+                              : Container();
+                        },
                       );
                     },
                     onLoading: loadingShimmer(context),
                   ),
-                  controller.championsList.isNotEmpty
-                      ? Container(
-                          height: 45,
-                          width: MediaQuery.of(context).size.width,
-                          margin: const EdgeInsets.only(
-                              left: 40, right: 40, top: 90),
-                          padding: const EdgeInsets.only(
-                            left: 20,
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20.0),
-                            color: const Color(0xFF2d2c2c),
-                          ),
-                          child: TextField(
-                            focusNode: controller.focusNode,
-                            controller: controller.textController,
-                            onChanged: controller.filterListOfChampionsByName,
-                            textAlign: TextAlign.start,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                            ),
-                            decoration: const InputDecoration(
-                              hintText: 'Search a champion',
-                              border: InputBorder.none,
-                              hintStyle: TextStyle(
-                                color: Color(0xFF474646),
-                                fontFamily: 'Montserrat',
-                              ),
-                              suffixStyle: TextStyle(),
-                              suffixIcon: Icon(
-                                Icons.search,
-                                color: Color(0xFF939392),
-                                size: 30,
-                              ),
-                            ),
-                          ),
-                        )
-                      : Container(),
+                  Container(
+                    height: 45,
+                    width: MediaQuery.of(context).size.width,
+                    margin: const EdgeInsets.only(left: 40, right: 40, top: 90),
+                    padding: const EdgeInsets.only(
+                      left: 20,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      color: const Color(0xFF2d2c2c),
+                    ),
+                    child: TextField(
+                      focusNode: controller.focusNode,
+                      controller: controller.textController,
+                      textAlign: TextAlign.start,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                      ),
+                      decoration: InputDecoration(
+                        hintText: 'Search a Champion',
+                        border: InputBorder.none,
+                        hintStyle: const TextStyle(
+                          color: Color(0xFF474646),
+                          fontFamily: 'Montserrat',
+                        ),
+                        suffixIcon: KeyboardVisibilityBuilder(
+                          builder: (contextKeyboard, isKeyboardVisible) {
+                            return IconButton(
+                              icon: controller.textController.text.isNotEmpty
+                                  ? const Icon(Icons.delete)
+                                  : const Icon(Icons.search),
+                              color: const Color(0xFF939392),
+                              iconSize: 30,
+                              onPressed: controller
+                                      .textController.text.isNotEmpty
+                                  ? () {
+                                      FocusScope.of(context).unfocus();
+                                      controller.searchResult = [];
+                                      controller.textController.clear();
+                                      controller.filterListOfChampionsByName(
+                                          controller.textController.text);
+                                    }
+                                  : () {
+                                      FocusScope.of(context).unfocus();
+                                      controller.filterListOfChampionsByName(
+                                          controller.textController.text);
+                                    },
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ));

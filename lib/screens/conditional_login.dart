@@ -124,7 +124,7 @@ class ConditionalLogin extends StatelessWidget {
                         ),
                         child: const TextField(
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Color.fromARGB(255, 12, 2, 2),
                             fontSize: 20,
                             fontFamily: 'ITC_Avant_Garde_Gothic',
                           ),

@@ -7,9 +7,10 @@ import '../ChampionsList/champion_image_background.dart';
 
 class ChampionContainer extends StatefulWidget {
   final Champion championData;
-  
+  final String version;
 
-  const ChampionContainer({Key? key, required this.championData})
+  const ChampionContainer(
+      {Key? key, required this.championData, required this.version})
       : super(key: key);
 
   @override
@@ -26,10 +27,11 @@ class _ChampionContainerState extends State<ChampionContainer> {
         String championName = widget.championData.id;
         Get.toNamed('/champion-details', arguments: {
           'championName': championName,
+          'version': widget.version,
         });
       },
       child: Container(
-        margin: const EdgeInsets.only(top: 165,bottom: 110),
+        margin: const EdgeInsets.only(top: 165, bottom: 110),
         child: Stack(
           children: [
             ChampionImageBackground(

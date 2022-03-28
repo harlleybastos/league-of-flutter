@@ -38,12 +38,12 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.conditionalLogin,
+      initialRoute: AppRoutes.initialScreen,
       getPages: AppPages.list,
       theme: ThemeData(
         scaffoldBackgroundColor: const Color(0xFF010116),
         appBarTheme: const AppBarTheme(
-          backgroundColor: Color(0xFF010116),
+          backgroundColor: Color.fromARGB(255, 6, 6, 22),
           elevation: 0,
           centerTitle: true,
           textTheme: TextTheme(

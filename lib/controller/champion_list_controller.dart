@@ -16,11 +16,12 @@ class ChampionListController extends GetxController
   List<dynamic> championName = [].obs;
   List<dynamic> skins = [].obs;
 
-  TextEditingController textController = TextEditingController();
+  final TextEditingController textController = TextEditingController();
 
   bool userIsTipyng = false;
 
   final FocusNode focusNode = FocusNode();
+
   final KeyboardVisibilityController keyboardController =
       KeyboardVisibilityController();
   final GetStorage _getStorage = GetStorage();
