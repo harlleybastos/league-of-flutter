@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:initial_app/routes/app_routes.dart';
 
 import '../controller/initial_screen_controller.dart';
 
@@ -12,11 +12,6 @@ class InitialScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final GetStorage _getStorage = GetStorage();
-    Map<String, String> data = {
-      'version': '',
-      'language': '',
-    };
     return GetBuilder<InitialScreenController>(builder: (controller) {
       return controller.obx((latestVersionOfApi) {
         return Scaffold(
@@ -124,19 +119,14 @@ class InitialScreen extends StatelessWidget {
                                 children: [
                                   GestureDetector(
                                     onTap: () {
-                                      String? selectedLanguage =
-                                          languages[index]['value'];
-                                      if (selectedLanguage!.isNotEmpty) {
-                                        controller.updateValues(
-                                            latestVersionOfApi,
+                                      String selectedLanguage =
+                                          languages[index]['value']!;
+                                      if (selectedLanguage.isNotEmpty) {
+                                        controller.saveValues(
+                                            latestVersionOfApi!,
                                             selectedLanguage);
-                                        data = {
-                                          'version': latestVersionOfApi!,
-                                          'language': selectedLanguage,
-                                        };
-
-                                        _getStorage.write('data', data);
-                                        Get.offAllNamed("/");
+                                        Get.offAllNamed(
+                                            AppRoutes.conditionalLogin);
                                       }
                                     },
                                     child: Center(

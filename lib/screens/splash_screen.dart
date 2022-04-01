@@ -10,6 +10,7 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
       splash: Container(
+        color: Colors.transparent,
         child: SvgPicture.asset(
           'assets/constants/logos/logo-splash-screen.svg',
         ),

@@ -1,10 +1,14 @@
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:initial_app/repository/i_initial_screen.dart';
 
 class InitialScreenController extends GetxController with StateMixin<String> {
   final IInitialScreenRepository _initialScreenRepository;
-  String version = '';
-  String language = '';
+  final GetStorage _getStorage = GetStorage();
+  Map<String, String> data = {
+    'version': '',
+    'language': '',
+  };
 
   InitialScreenController(this._initialScreenRepository);
 
@@ -25,9 +29,8 @@ class InitialScreenController extends GetxController with StateMixin<String> {
     }
   }
 
-  void updateValues (String? version, String language) {
-    this.version = version!;
-    this.language = language;
-    update();
+  void saveValues(String version, String language) {
+    _getStorage.write('version', version);
+    _getStorage.write('language', language);
   }
 }
