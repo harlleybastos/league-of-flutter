@@ -259,6 +259,11 @@ class ChampionsList extends StatelessWidget {
                     child: TextField(
                       focusNode: controller.focusNode,
                       controller: controller.textController,
+                      onSubmitted: (value) {
+                        FocusScope.of(context).unfocus();
+                        controller.filterListOfChampionsByName(
+                            controller.textController.text);
+                      },
                       textAlign: TextAlign.start,
                       style: const TextStyle(
                         color: Colors.white,
@@ -274,13 +279,15 @@ class ChampionsList extends StatelessWidget {
                         suffixIcon: KeyboardVisibilityBuilder(
                           builder: (contextKeyboard, isKeyboardVisible) {
                             return IconButton(
-                              icon: controller.textController.text.isNotEmpty
+                              icon: controller.textController.text.isNotEmpty &&
+                                      controller.searchResult.isNotEmpty
                                   ? const Icon(Icons.delete)
                                   : const Icon(Icons.search),
                               color: const Color(0xFF939392),
                               iconSize: 30,
                               onPressed: controller
-                                      .textController.text.isNotEmpty
+                                          .textController.text.isNotEmpty &&
+                                      controller.searchResult.isNotEmpty
                                   ? () {
                                       FocusScope.of(context).unfocus();
                                       controller.searchResult = [];

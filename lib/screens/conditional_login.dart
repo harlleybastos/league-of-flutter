@@ -39,25 +39,23 @@ class ConditionalLogin extends StatelessWidget {
                         setIsAnimatedEnded: controller.setIsAnimatedEnded,
                         setResponse: controller.setResponse),
                     !isKeyboardVisible ? const PositionedGnar() : Container(),
-                    AnimatedPositioned(
-                      duration: const Duration(milliseconds: 1500),
-                      curve: Curves.easeInOut,
-                      bottom: 0,
-                      left: controller.isSummonerNameEmpty
-                          ? MediaQuery.of(context).size.width * 0.2
-                          : -150,
-                      right: controller.isSummonerNameEmpty
-                          ? MediaQuery.of(context).size.width * 0.02
-                          : -150,
-                      child: controller.isSummonerNameEmpty
-                          ? Container(
-                              color: Colors.transparent,
-                              child: Image.asset(
-                                'assets/gif/baloon.gif',
-                              ),
-                            )
-                          : Container(),
-                    ),
+                    !isKeyboardVisible
+                        ? AnimatedPositioned(
+                            duration: const Duration(milliseconds: 1500),
+                            curve: Curves.easeInOut,
+                            bottom: 0,
+                            left: MediaQuery.of(context).size.width * 0.2,
+                            right: MediaQuery.of(context).size.width * 0.02,
+                            child: controller.isSummonerNameEmpty
+                                ? Container(
+                                    color: Colors.transparent,
+                                    child: Image.asset(
+                                      'assets/gif/baloon.gif',
+                                    ),
+                                  )
+                                : Container(),
+                          )
+                        : Container(),
                   ],
                 );
               },
