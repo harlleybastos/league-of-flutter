@@ -21,21 +21,34 @@ class DashboardPage extends StatelessWidget {
               body: SafeArea(
                 child: PageView.builder(
                   controller: customController,
+                  onPageChanged: (int index) =>
+                      controller.changeTabIndex(index),
                   itemBuilder: (context, index) {
+                    if (controller.answer == "true") {
+                      return index == 0
+                          ? HomeSection(
+                              language: controller.language,
+                              version: controller.apiVersion,
+                            )
+                          : index == 1
+                              ? ChampionsList(
+                                  language: controller.language,
+                                  version: controller.apiVersion,
+                                )
+                              : SearchPage(
+                                  language: controller.language,
+                                  version: controller.apiVersion,
+                                );
+                    }
                     return index == 0
-                        ? HomeSection(
+                        ? ChampionsList(
                             language: controller.language,
                             version: controller.apiVersion,
                           )
-                        : index == 1
-                            ? ChampionsList(
-                                language: controller.language,
-                                version: controller.apiVersion,
-                              )
-                            : SearchPage(
-                                language: controller.language,
-                                version: controller.apiVersion,
-                              );
+                        : SearchPage(
+                            language: controller.language,
+                            version: controller.apiVersion,
+                          );
                   },
                 ),
               ),
@@ -49,12 +62,17 @@ class DashboardPage extends StatelessWidget {
                   currentIndex: controller.tabIndex,
                   showSelectedLabels: false,
                   showUnselectedLabels: false,
-                  items: [
-                    _bottomNavigationBarItem(
-                        Icons.account_circle_outlined, "Home"),
-                    _bottomNavigationBarItem(Icons.home_outlined, "Champions"),
-                    _bottomNavigationBarItem(Icons.search_outlined, "Search"),
-                  ]),
+                  items: controller.answer == 'true'
+                      ? [
+                          _bottomNavigationBarItem(
+                              Icons.account_circle_outlined, "Home"),
+                        ]
+                      : [
+                          _bottomNavigationBarItem(
+                              Icons.home_outlined, "Champions"),
+                          _bottomNavigationBarItem(
+                              Icons.search_outlined, "Search"),
+                        ]),
             ));
   }
 

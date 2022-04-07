@@ -4,11 +4,13 @@ class AnimatedPositionedInput extends StatelessWidget {
   final bool isAnimatedEnded;
   final TextEditingController textEditingController;
   final Function submitFuncion;
+  final String response;
   const AnimatedPositionedInput(
       {Key? key,
       required this.isAnimatedEnded,
       required this.textEditingController,
-      required this.submitFuncion})
+      required this.submitFuncion,
+      required this.response})
       : super(key: key);
 
   @override
@@ -17,8 +19,8 @@ class AnimatedPositionedInput extends StatelessWidget {
       duration: const Duration(milliseconds: 1200),
       curve: Curves.easeInOut,
       top: MediaQuery.of(context).size.height * 0.45,
-      left: isAnimatedEnded ? 0 : -500,
-      right: isAnimatedEnded ? 0 : 450,
+      left: isAnimatedEnded && response == 'true' ? 0 : -500,
+      right: isAnimatedEnded && response == 'true' ? 0 : 450,
       child: Column(
         children: [
           Container(

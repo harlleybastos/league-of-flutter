@@ -4,11 +4,13 @@ class AnimatedPositionedAffirmativeAnswer extends StatelessWidget {
   final String response;
   final Function setResponse;
   final Function setIsAnimatedEnded;
+  final Function writeAnswerInMemory;
   const AnimatedPositionedAffirmativeAnswer(
       {Key? key,
       required this.response,
       required this.setResponse,
-      required this.setIsAnimatedEnded})
+      required this.setIsAnimatedEnded,
+      required this.writeAnswerInMemory})
       : super(key: key);
 
   @override
@@ -18,10 +20,13 @@ class AnimatedPositionedAffirmativeAnswer extends StatelessWidget {
       curve: Curves.easeInOut,
       onEnd: () => setIsAnimatedEnded(true),
       top: MediaQuery.of(context).size.height * 0.45,
-      left: response == '' ? 0 : 520,
-      right: response == '' ? 0 : -450,
+      left: response != '' ? 520 : 0,
+      right: response != '' ? -450 : 0,
       child: GestureDetector(
-        onTap: () => setResponse('true'),
+        onTap: () {
+          writeAnswerInMemory('true');
+          setResponse('true');
+        },
         child: Container(
           decoration: BoxDecoration(
             color: Color(0xFF9b455f),

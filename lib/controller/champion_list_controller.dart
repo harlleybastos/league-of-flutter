@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:initial_app/controller/dashboard_page_controller.dart';
-import 'package:initial_app/controller/home_page_controller.dart';
-import 'package:initial_app/models/champion.dart';
-import 'package:initial_app/repository/i_champions_repository.dart';
+
+import '../models/champion.dart';
+
+import '../repository/i_champions_repository.dart';
 
 class ChampionListController extends GetxController
     with StateMixin<List<Champion>> {

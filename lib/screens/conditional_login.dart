@@ -30,14 +30,17 @@ class ConditionalLogin extends StatelessWidget {
                       isAnimatedEnded: controller.isAnimatedEnded,
                       textEditingController: controller.textEditingController,
                       submitFuncion: controller.submitToInitialScreen,
+                      response: controller.response,
                     ),
                     AnimatedPositionedNegativeAnswer(
                         response: controller.response,
-                        setResponse: controller.setResponse),
+                        setResponse: controller.setResponse,
+                        writeAnswerInMemory: controller.writeAnswerInMemory),
                     AnimatedPositionedAffirmativeAnswer(
                         response: controller.response,
                         setIsAnimatedEnded: controller.setIsAnimatedEnded,
-                        setResponse: controller.setResponse),
+                        setResponse: controller.setResponse,
+                        writeAnswerInMemory: controller.writeAnswerInMemory),
                     !isKeyboardVisible ? const PositionedGnar() : Container(),
                     !isKeyboardVisible
                         ? AnimatedPositioned(

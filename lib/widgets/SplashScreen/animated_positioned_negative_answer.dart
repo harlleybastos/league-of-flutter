@@ -1,10 +1,17 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AnimatedPositionedNegativeAnswer extends StatelessWidget {
   final String response;
   final Function setResponse;
+  final Function writeAnswerInMemory;
   const AnimatedPositionedNegativeAnswer(
-      {Key? key, required this.response, required this.setResponse})
+      {Key? key,
+      required this.response,
+      required this.setResponse,
+      required this.writeAnswerInMemory})
       : super(key: key);
 
   @override
@@ -13,10 +20,16 @@ class AnimatedPositionedNegativeAnswer extends StatelessWidget {
       duration: const Duration(milliseconds: 1200),
       curve: Curves.easeInOut,
       top: MediaQuery.of(context).size.height * 0.60,
-      left: response == '' ? 0 : -550,
-      right: response == '' ? 0 : 450,
+      left: response != '' ? -550 : 0,
+      right: response != '' ? 450 : 0,
       child: GestureDetector(
-        onTap: () => setResponse('false'),
+        onTap: () => {
+          setResponse('false'),
+          writeAnswerInMemory('false'),
+          Timer(const Duration(milliseconds: 1300), () {
+            Get.offNamed('/initial_screen');
+          })
+        },
         child: Container(
           decoration: BoxDecoration(
             color: const Color(0xFF010116).withOpacity(.7),
