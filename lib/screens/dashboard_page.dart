@@ -66,6 +66,10 @@ class DashboardPage extends StatelessWidget {
                       ? [
                           _bottomNavigationBarItem(
                               Icons.account_circle_outlined, "Home"),
+                          _bottomNavigationBarItem(
+                              Icons.home_outlined, "Champions"),
+                          _bottomNavigationBarItem(
+                              Icons.search_outlined, "Search"),
                         ]
                       : [
                           _bottomNavigationBarItem(

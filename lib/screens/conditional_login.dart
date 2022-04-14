@@ -17,6 +17,7 @@ class ConditionalLogin extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<ConditionalLoginController>(builder: (controller) {
       return Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
@@ -41,23 +42,23 @@ class ConditionalLogin extends StatelessWidget {
                         setIsAnimatedEnded: controller.setIsAnimatedEnded,
                         setResponse: controller.setResponse,
                         writeAnswerInMemory: controller.writeAnswerInMemory),
+                    // controller.isSearching
+                    //     ? AnimatedPositioned(
+                    //         duration: const Duration(milliseconds: 1500),
+                    //         curve: Curves.easeInOut,
+                    //         bottom: 0,
+                    //         left: MediaQuery.of(context).size.width * 0.2,
+                    //         right: MediaQuery.of(context).size.width * 0.02,
+                    //         child: Container(
+                    //           color: Colors.transparent,
+                    //           child: Image.asset(
+                    //             'assets/gif/loading-gnar-baloon.gif',
+                    //           ),
+                    //         ))
+                    //     : Container(),
                     !isKeyboardVisible ? const PositionedGnar() : Container(),
                     !isKeyboardVisible
-                        ? AnimatedPositioned(
-                            duration: const Duration(milliseconds: 1500),
-                            curve: Curves.easeInOut,
-                            bottom: 0,
-                            left: MediaQuery.of(context).size.width * 0.2,
-                            right: MediaQuery.of(context).size.width * 0.02,
-                            child: controller.isSummonerNameEmpty
-                                ? Container(
-                                    color: Colors.transparent,
-                                    child: Image.asset(
-                                      'assets/gif/baloon.gif',
-                                    ),
-                                  )
-                                : Container(),
-                          )
+                        ? controller.conditionalBaloon(context)
                         : Container(),
                   ],
                 );

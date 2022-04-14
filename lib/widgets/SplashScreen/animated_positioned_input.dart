@@ -35,7 +35,7 @@ class AnimatedPositionedInput extends StatelessWidget {
             child: TextField(
               controller: textEditingController,
               style: const TextStyle(
-                color: Color.fromARGB(255, 12, 2, 2),
+                color: Color.fromARGB(255, 255, 255, 255),
                 fontSize: 20,
                 fontFamily: 'ITC_Avant_Garde_Gothic',
               ),

@@ -20,8 +20,7 @@ class ConditionalLoginRepository implements IConditionalLoginRepository {
           "Origin": "https://developer.riotgames.com",
         });
     Map<String, dynamic> responseList = jsonDecode(response.body);
-
-    if (responseList.isNotEmpty) {
+    if (responseList['id'] != null) {
       return true;
     }
     return false;
