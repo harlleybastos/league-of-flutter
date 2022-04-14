@@ -42,20 +42,6 @@ class ConditionalLogin extends StatelessWidget {
                         setIsAnimatedEnded: controller.setIsAnimatedEnded,
                         setResponse: controller.setResponse,
                         writeAnswerInMemory: controller.writeAnswerInMemory),
-                    // controller.isSearching
-                    //     ? AnimatedPositioned(
-                    //         duration: const Duration(milliseconds: 1500),
-                    //         curve: Curves.easeInOut,
-                    //         bottom: 0,
-                    //         left: MediaQuery.of(context).size.width * 0.2,
-                    //         right: MediaQuery.of(context).size.width * 0.02,
-                    //         child: Container(
-                    //           color: Colors.transparent,
-                    //           child: Image.asset(
-                    //             'assets/gif/loading-gnar-baloon.gif',
-                    //           ),
-                    //         ))
-                    //     : Container(),
                     !isKeyboardVisible ? const PositionedGnar() : Container(),
                     !isKeyboardVisible
                         ? controller.conditionalBaloon(context)
