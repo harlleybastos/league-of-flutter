@@ -24,7 +24,7 @@ class DashboardPage extends StatelessWidget {
                   onPageChanged: (int index) =>
                       controller.changeTabIndex(index),
                   itemBuilder: (context, index) {
-                    if (controller.answer == "true") {
+                    if (controller.answer == 'true') {
                       return index == 0
                           ? HomeSection(
                               language: controller.language,
@@ -72,6 +72,8 @@ class DashboardPage extends StatelessWidget {
                               Icons.search_outlined, "Search"),
                         ]
                       : [
+                          _bottomNavigationBarItem(
+                              Icons.account_circle_outlined, "Home"),
                           _bottomNavigationBarItem(
                               Icons.home_outlined, "Champions"),
                           _bottomNavigationBarItem(

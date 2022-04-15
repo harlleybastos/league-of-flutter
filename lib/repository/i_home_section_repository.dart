@@ -1,4 +1,3 @@
 abstract class IHomeSectionRepository {
-  Future<List<dynamic>> getLeagueOfLegendsStatus();
-  Future<List<int>> getChampionsRotations();
+  Future<Map<String, dynamic>> getDetailsOfSummoner(String summonerPuuid);
 }

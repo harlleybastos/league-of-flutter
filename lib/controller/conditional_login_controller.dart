@@ -10,7 +10,7 @@ class ConditionalLoginController extends GetxController with StateMixin {
   bool isAnimatedEnded = false;
   String summonerName = '';
   String isSearching = '';
-  bool isSummonerNameEmpty = true;
+  bool isSummonerNameEmpty = false;
   bool summonerNotFound = false;
   final IConditionalLoginRepository _conditionalLoginRepository;
   final TextEditingController textEditingController = TextEditingController();
@@ -45,11 +45,12 @@ class ConditionalLoginController extends GetxController with StateMixin {
 
   void submitToInitialScreen() async {
     if (!isSummonerNameEmpty) {
-      bool resp = await checkIfSummonerExisits();
-      if (resp == true) {
-        Get.offNamed('/initial_screen', arguments: summonerName);
+      Map<String, dynamic> summonerData = await checkIfSummonerExisits();
+      if (summonerData.isNotEmpty) {
+        _getStorage.write('summonerData', summonerData);
+        Get.offNamed('/initial_screen');
       }
-      summonerNotFound = !resp;
+      summonerNotFound = true;
       update();
     }
   }
@@ -58,7 +59,7 @@ class ConditionalLoginController extends GetxController with StateMixin {
     _getStorage.write('answer', answer);
   }
 
-  Future<bool> checkIfSummonerExisits() async {
+  Future<Map<String, dynamic>> checkIfSummonerExisits() async {
     try {
       isSearching = "true";
       update();
@@ -66,7 +67,7 @@ class ConditionalLoginController extends GetxController with StateMixin {
           await _conditionalLoginRepository.verifySummonerName(summonerName);
       return response;
     } catch (e) {
-      return false;
+      return {};
     } finally {
       Timer(const Duration(milliseconds: 1000), () {
         isSearching = "false";
@@ -102,7 +103,7 @@ class ConditionalLoginController extends GetxController with StateMixin {
         child: Container(
           color: Colors.transparent,
           child: Image.asset(
-            'assets/gif/searching-summoner.gif.gif',
+            'assets/gif/searching-summoner.gif',
           ),
         ),
       );

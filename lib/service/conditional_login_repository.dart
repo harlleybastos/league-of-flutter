@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 
 class ConditionalLoginRepository implements IConditionalLoginRepository {
   @override
-  Future<bool> verifySummonerName(String summonerName) async {
+  Future<Map<String, dynamic>> verifySummonerName(String summonerName) async {
     if (summonerName.contains(" ")) {
       summonerName = summonerName.replaceAll(" ", "%20");
     }
@@ -21,8 +21,8 @@ class ConditionalLoginRepository implements IConditionalLoginRepository {
         });
     Map<String, dynamic> responseList = jsonDecode(response.body);
     if (responseList['id'] != null) {
-      return true;
+      return responseList;
     }
-    return false;
+    return {};
   }
 }

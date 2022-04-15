@@ -1,3 +1,3 @@
 abstract class IConditionalLoginRepository {
-  Future<bool> verifySummonerName(String summonerName);
+  Future<Map<String, dynamic>> verifySummonerName(String summonerName);
 }

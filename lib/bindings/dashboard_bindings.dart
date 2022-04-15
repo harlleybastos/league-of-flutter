@@ -11,6 +11,7 @@ import '../repository/i_champions_repository.dart';
 import '../repository/i_search_summoner_repository.dart';
 import '../repository/i_search_summoner_with_details.dart';
 
+import '../service/home_section_repository.dart';
 import '../service/initial_screen_repository.dart';
 import '../service/champions_repository.dart';
 import '../service/search_summoner_repository.dart';
@@ -19,6 +20,8 @@ import '../service/search_summoner_with_details_repository.dart';
 class DashboardBinding implements Bindings {
   @override
   void dependencies() {
+    Get.lazyPut(() => HomeSectionRepository(), tag: 'home_section_repository');
+
     Get.put<ISearchSummonerRepository>(SearchSummonerRepository(),
         tag: 'search_summoner_repository');
 
@@ -50,6 +53,6 @@ class DashboardBinding implements Bindings {
 
     Get.put(ChampionListController(Get.find()));
 
-    Get.put(HomePageController());
+    Get.put(HomePageController(Get.find(tag: 'home_section_repository')));
   }
 }

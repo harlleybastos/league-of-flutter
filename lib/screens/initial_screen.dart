@@ -16,6 +16,7 @@ class InitialScreen extends StatelessWidget {
       return controller.obx((latestVersionOfApi) {
         return Scaffold(
           body: Container(
+            color: Colors.transparent,
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             child: Stack(

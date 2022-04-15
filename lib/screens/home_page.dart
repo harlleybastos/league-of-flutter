@@ -12,14 +12,17 @@ class HomeSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<HomePageController>(builder: (controller) {
       return Scaffold(
-        appBar: customAppBar(context, 'Harlley'),
+        appBar: customAppBar(context, controller.summonerData['name']),
         body: Container(
+          color: Colors.transparent,
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           child: Stack(
             children: [
-              Container(
-                color: Colors.transparent,
+              Positioned(
+                top: MediaQuery.of(context).size.height * 0.1,
+                left: MediaQuery.of(context).size.width * 0.1,
+                child: Container(),
               ),
             ],
           ),
