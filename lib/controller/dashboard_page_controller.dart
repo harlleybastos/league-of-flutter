@@ -7,6 +7,7 @@ class DashboardPageController extends GetxController {
   String apiVersion = '';
   String answer = '';
   final GetStorage _getStorage = GetStorage();
+  Map<String, dynamic> summonerData = {};
 
   void changeTabIndex(int index) {
     tabIndex = index;
@@ -15,6 +16,7 @@ class DashboardPageController extends GetxController {
 
   @override
   void onInit() {
+    summonerData = _getStorage.read('summonerData');
     language = _getStorage.read('data')['language'];
     apiVersion = _getStorage.read('data')['version'];
     answer = _getStorage.read('answer');

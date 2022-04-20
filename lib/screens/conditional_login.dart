@@ -29,7 +29,9 @@ class ConditionalLogin extends StatelessWidget {
                     const PostionedLogo(),
                     AnimatedPositionedInput(
                       isAnimatedEnded: controller.isAnimatedEnded,
+                      isSearching: controller.isSearching,
                       textEditingController: controller.textEditingController,
+                      focusNode: controller.focusNode,
                       submitFuncion: controller.submitToInitialScreen,
                       response: controller.response,
                     ),

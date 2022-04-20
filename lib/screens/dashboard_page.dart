@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../widgets/global/app_bar.dart';
+import '../widgets/global/app_name.dart';
+
 import '../controller/dashboard_page_controller.dart';
 
 import '../screens/champions_list.dart';
@@ -18,40 +21,46 @@ class DashboardPage extends StatelessWidget {
 
     return GetBuilder<DashboardPageController>(
         builder: (controller) => Scaffold(
-              body: SafeArea(
-                child: PageView.builder(
-                  controller: customController,
-                  onPageChanged: (int index) =>
-                      controller.changeTabIndex(index),
-                  itemBuilder: (context, index) {
-                    if (controller.answer == 'true') {
+              appBar: customAppBar(context, controller.summonerData['name']),
+              body: Stack(children: [
+                SafeArea(
+                  child: PageView.builder(
+                    controller: customController,
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    scrollDirection: Axis.horizontal,
+                    onPageChanged: (int index) =>
+                        controller.changeTabIndex(index),
+                    itemBuilder: (context, index) {
+                      if (controller.answer == 'true') {
+                        return index == 0
+                            ? HomeSection(
+                                language: controller.language,
+                                version: controller.apiVersion,
+                              )
+                            : index == 1
+                                ? ChampionsList(
+                                    language: controller.language,
+                                    version: controller.apiVersion,
+                                  )
+                                : SearchPage(
+                                    language: controller.language,
+                                    version: controller.apiVersion,
+                                  );
+                      }
                       return index == 0
-                          ? HomeSection(
+                          ? ChampionsList(
                               language: controller.language,
                               version: controller.apiVersion,
                             )
-                          : index == 1
-                              ? ChampionsList(
-                                  language: controller.language,
-                                  version: controller.apiVersion,
-                                )
-                              : SearchPage(
-                                  language: controller.language,
-                                  version: controller.apiVersion,
-                                );
-                    }
-                    return index == 0
-                        ? ChampionsList(
-                            language: controller.language,
-                            version: controller.apiVersion,
-                          )
-                        : SearchPage(
-                            language: controller.language,
-                            version: controller.apiVersion,
-                          );
-                  },
+                          : SearchPage(
+                              language: controller.language,
+                              version: controller.apiVersion,
+                            );
+                    },
+                  ),
                 ),
-              ),
+                const AppName(),
+              ]),
               bottomNavigationBar: BottomNavigationBar(
                   onTap: (currentIndex) {
                     customController.animateToPage(currentIndex,
@@ -72,8 +81,8 @@ class DashboardPage extends StatelessWidget {
                               Icons.search_outlined, "Search"),
                         ]
                       : [
-                          _bottomNavigationBarItem(
-                              Icons.account_circle_outlined, "Home"),
+                          // _bottomNavigationBarItem(
+                          //     Icons.account_circle_outlined, "Home"),
                           _bottomNavigationBarItem(
                               Icons.home_outlined, "Champions"),
                           _bottomNavigationBarItem(

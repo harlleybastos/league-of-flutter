@@ -1,6 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:initial_app/widgets/global/app_bar.dart';
 import '../controller/home_page_controller.dart';
 
 class HomeSection extends StatelessWidget {
@@ -12,7 +12,6 @@ class HomeSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<HomePageController>(builder: (controller) {
       return Scaffold(
-        appBar: customAppBar(context, controller.summonerData['name']),
         body: Container(
           color: Colors.transparent,
           width: MediaQuery.of(context).size.width,
@@ -20,9 +19,42 @@ class HomeSection extends StatelessWidget {
           child: Stack(
             children: [
               Positioned(
-                top: MediaQuery.of(context).size.height * 0.1,
-                left: MediaQuery.of(context).size.width * 0.1,
-                child: Container(),
+                top: MediaQuery.of(context).size.height * 0.12,
+                left: MediaQuery.of(context).size.width * 0.05,
+                right: MediaQuery.of(context).size.width * 0.05,
+                child: Container(
+                  height: 180,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: const Color(0xFFb463a4).withOpacity(0.2),
+                        blurRadius: 20,
+                        spreadRadius: 2,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Positioned(
+                top: MediaQuery.of(context).size.height * 0.12,
+                left: MediaQuery.of(context).size.width * 0.05,
+                right: MediaQuery.of(context).size.width * 0.05,
+                child: Container(
+                  width: double.infinity,
+                  height: 180,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(
+                      20,
+                    ),
+                    image: DecorationImage(
+                        image: CachedNetworkImageProvider(
+                          'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg',
+                        ),
+                        fit: BoxFit.cover,
+                        alignment: Alignment(-1, -1)),
+                  ),
+                ),
               ),
             ],
           ),

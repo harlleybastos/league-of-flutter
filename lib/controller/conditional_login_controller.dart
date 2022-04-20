@@ -14,6 +14,7 @@ class ConditionalLoginController extends GetxController with StateMixin {
   bool summonerNotFound = false;
   final IConditionalLoginRepository _conditionalLoginRepository;
   final TextEditingController textEditingController = TextEditingController();
+  final FocusNode focusNode = FocusNode();
   final GetStorage _getStorage = GetStorage();
 
   ConditionalLoginController(this._conditionalLoginRepository);

@@ -17,13 +17,11 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<SearchSectionController>(
       builder: (controller) => Scaffold(
-        appBar: customAppBar(context, 'Harlley'),
         body: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           child: Stack(
             children: [
-              const AppName(),
               AppInput(
                 focusNode: controller.focusNode,
                 textEditingController: controller.textController,

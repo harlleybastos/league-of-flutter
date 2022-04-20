@@ -19,9 +19,9 @@ class ChampionListController extends GetxController
   final TextEditingController textController = TextEditingController();
 
   bool userIsTipyng = false;
+  bool pageIsLoaded = false;
 
   final FocusNode focusNode = FocusNode();
-
   final KeyboardVisibilityController keyboardController =
       KeyboardVisibilityController();
   final GetStorage _getStorage = GetStorage();
@@ -61,11 +61,14 @@ class ChampionListController extends GetxController
       final resp = await _httpRepository.listAllChampions(version, language);
       championsList.addAll(resp);
       // the data is correct populate the controller and show the success
+
       change(championsList, status: RxStatus.success());
-      // change(championsList, status: RxStatus.success());
     } catch (e) {
       // If the data is incorrect show the error
       change([], status: RxStatus.error('Error'));
+    } finally {
+      pageIsLoaded = true;
+      update();
     }
   }
 
