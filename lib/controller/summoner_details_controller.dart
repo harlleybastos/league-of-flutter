@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:initial_app/models/summoner_details.dart';
+import '../models/summoner_details.dart';
 
 class SummonerDetailsController extends GetxController with StateMixin {
   SummonerDetails? summonerDetails;
@@ -7,7 +7,6 @@ class SummonerDetailsController extends GetxController with StateMixin {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     summonerDetails = Get.arguments['summonerData'];
     summonerMainChampionSkin = Get.arguments['summonerMainChampionSkin'];
     super.onInit();

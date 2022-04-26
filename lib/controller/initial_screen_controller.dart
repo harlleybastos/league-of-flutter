@@ -14,7 +14,6 @@ class InitialScreenController extends GetxController with StateMixin<String> {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     loadVersion();
     super.onInit();
   }

@@ -53,6 +53,7 @@ class DashboardBinding implements Bindings {
 
     Get.put(ChampionListController(Get.find()));
 
-    Get.put(HomePageController(Get.find(tag: 'home_section_repository')));
+    Get.put(HomePageController(Get.find(tag: 'home_section_repository'),
+        Get.find(tag: 'champion_list_controller')));
   }
 }

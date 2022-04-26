@@ -21,7 +21,8 @@ class DashboardPage extends StatelessWidget {
 
     return GetBuilder<DashboardPageController>(
         builder: (controller) => Scaffold(
-              appBar: customAppBar(context, controller.summonerData['name']),
+              appBar: customAppBar(
+                  context, controller.summonerData['name'] ?? 'Summoner'),
               body: Stack(children: [
                 SafeArea(
                   child: PageView.builder(

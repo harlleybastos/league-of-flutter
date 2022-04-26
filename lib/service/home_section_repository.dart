@@ -1,12 +1,14 @@
 import 'dart:convert';
 
 import 'package:initial_app/credentials/app_credentials.dart';
+import 'package:initial_app/models/summoner_match.dart';
+import 'package:initial_app/models/summoner_plain_details.dart';
 import 'package:initial_app/repository/i_home_section_repository.dart';
 import 'package:http/http.dart' as http;
 
 class HomeSectionRepository implements IHomeSectionRepository {
   @override
-  Future<List<String>> getDetailsOfSummoner(
+  Future<List<SummonerPlainDetails>> getDetailsOfSummoner(
       String summonerPuuid, String accountId) async {
     final urlList = [
       'https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/$summonerPuuid/ids?start=0&count=20',
@@ -28,9 +30,8 @@ class HomeSectionRepository implements IHomeSectionRepository {
     var finalRespose = responses[0].body;
 
     List<String> listOfMatches = [];
-    List<Map<String, dynamic>> last20MatchesOfSummonerDetailed = [];
-
-    print(responses[1].body);
+    List<SummonerMatch> last20MatchesOfSummonerDetailed = [];
+    List<SummonerPlainDetails> summonerPlainDetails = [];
 
     if (responses[0].statusCode == 200) {
       listOfMatches = finalRespose.isNotEmpty
@@ -49,10 +50,18 @@ class HomeSectionRepository implements IHomeSectionRepository {
                   })));
 
       last20MatchesOfSummonerDetailed.addAll(responseOfAllLast20Matches
-          .map((element) => jsonDecode(element.body) as Map<String, dynamic>));
-      return listOfMatches;
+          .map((element) => SummonerMatch.fromJson(jsonDecode(element.body))));
+
+      summonerPlainDetails = responses[1].body.isNotEmpty
+          ? (jsonDecode(responses[1].body) as List<dynamic>)
+              .map((e) => SummonerPlainDetails.fromJson(
+                  e, last20MatchesOfSummonerDetailed[0]))
+              .toList()
+          : [];
+
+      return summonerPlainDetails;
     }
 
-    return listOfMatches;
+    return summonerPlainDetails;
   }
 }

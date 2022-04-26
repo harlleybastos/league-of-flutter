@@ -35,13 +35,12 @@ class ChampionListController extends GetxController
   @override
   void onInit() {
     // Wen the controller started
-    language = _getStorage.read('data')['language'];
-    apiVersion = _getStorage.read('data')['version'];
+    language = _getStorage.read('language');
+    apiVersion = _getStorage.read('version');
     super.onInit();
-    // findChampions();
-
     if (language.isNotEmpty && apiVersion.isNotEmpty) {
       findChampions(apiVersion, language);
+      _getStorage.write('champions', championsList);
     }
 
     if (focusNode.hasFocus) {

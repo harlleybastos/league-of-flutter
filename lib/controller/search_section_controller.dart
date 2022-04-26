@@ -19,7 +19,7 @@ class SearchSectionController extends GetxController
   final ISearchSummonerRepository finalSummonerRepository;
   final ISearchSummonerWithDetailsRepository finalSummonerWithDetailsRepository;
   final ChampionListController championListRepository;
-  
+
   String summonerMainChampionSkin = '';
   Rx<bool> userIsTipyng = false.obs;
   List<SummonerDetails> summonerDetails = [];
@@ -60,8 +60,8 @@ class SearchSectionController extends GetxController
           await finalSummonerWithDetailsRepository.getSummonerDetailsByName(
               summonerInformations[0].id, summonerInformations[0].accountId);
 
-      mainChampion = await findMainChampion(
-          summonerDetails, summonerDetails[0].championId.toString());
+      mainChampion =
+          await findMainChampion(summonerDetails[0].championId.toString());
 
       summonerMainChampionSkin = mainChampion;
       change(summonerDetails, status: RxStatus.success());
@@ -71,8 +71,7 @@ class SearchSectionController extends GetxController
     }
   }
 
-  Future<String> findMainChampion(
-      List<SummonerDetails> summonerDetails, String championId) async {
+  Future<String> findMainChampion(String championId) async {
     try {
       final List<Champion> listOfAllChampions =
           championListRepository.championsList;
