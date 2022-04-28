@@ -2,11 +2,12 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:initial_app/controller/champion_list_controller.dart';
 import 'package:initial_app/models/champion.dart';
+import 'package:initial_app/models/summoner_match.dart';
 import 'package:initial_app/service/home_section_repository.dart';
 
 class HomePageController extends GetxController with StateMixin {
   Map<String, dynamic> summonerData = {};
-  List<dynamic> data = [];
+  List<SummonerMatch> data = [];
   final HomeSectionRepository _homeSectionRepository;
   String mainChampion = '';
   final GetStorage _getStorage = GetStorage();
@@ -27,7 +28,12 @@ class HomePageController extends GetxController with StateMixin {
       final response = await _homeSectionRepository.getDetailsOfSummoner(
           summonerData['puuid'], summonerData['id']);
       if (response.isNotEmpty) {
-        data = response;
+        data = response[0].matchHistory;
+        print(response[0]
+            .matchHistory[0]
+            .info!
+            .participants!
+            .map((e) => e.summonerName));
         mainChampion = await findMainChampion(response[0].championId);
         update();
       }

@@ -10,9 +10,11 @@ class SummonerPlainDetails {
   bool? chestGranted;
   int? tokensEarned;
   String? summonerId;
+  List<SummonerMatch> matchHistory;
 
   SummonerPlainDetails(
-      {this.championId,
+      {required this.matchHistory,
+      this.championId,
       this.championLevel,
       this.championPoints,
       this.lastPlayTime,
@@ -22,18 +24,20 @@ class SummonerPlainDetails {
       this.tokensEarned,
       this.summonerId});
 
-  SummonerPlainDetails.fromJson(
-      Map<String, dynamic> json, SummonerMatch matchHistory) {
-    championId = json['championId'];
-    championLevel = json['championLevel'];
-    championPoints = json['championPoints'];
-    lastPlayTime = json['lastPlayTime'];
-    championPointsSinceLastLevel = json['championPointsSinceLastLevel'];
-    championPointsUntilNextLevel = json['championPointsUntilNextLevel'];
-    chestGranted = json['chestGranted'];
-    tokensEarned = json['tokensEarned'];
-    summonerId = json['summonerId'];
-    matchHistory = matchHistory;
+  factory SummonerPlainDetails.fromJson(
+      Map<String, dynamic> json, List<SummonerMatch> matchHistory) {
+    return SummonerPlainDetails(
+      championId: json['championId'],
+      championLevel: json['championLevel'],
+      championPoints: json['championPoints'],
+      lastPlayTime: json['lastPlayTime'],
+      championPointsSinceLastLevel: json['championPointsSinceLastLevel'],
+      championPointsUntilNextLevel: json['championPointsUntilNextLevel'],
+      chestGranted: json['chestGranted'],
+      tokensEarned: json['tokensEarned'],
+      summonerId: json['summonerId'],
+      matchHistory: matchHistory,
+    );
   }
 
   Map<String, dynamic> toJson() {
@@ -47,6 +51,7 @@ class SummonerPlainDetails {
     data['chestGranted'] = chestGranted;
     data['tokensEarned'] = tokensEarned;
     data['summonerId'] = summonerId;
+    data['matchHistory'] = matchHistory;
     return data;
   }
 }

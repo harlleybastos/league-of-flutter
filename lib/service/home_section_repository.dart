@@ -55,7 +55,7 @@ class HomeSectionRepository implements IHomeSectionRepository {
       summonerPlainDetails = responses[1].body.isNotEmpty
           ? (jsonDecode(responses[1].body) as List<dynamic>)
               .map((e) => SummonerPlainDetails.fromJson(
-                  e, last20MatchesOfSummonerDetailed[0]))
+                  e, last20MatchesOfSummonerDetailed))
               .toList()
           : [];
 
