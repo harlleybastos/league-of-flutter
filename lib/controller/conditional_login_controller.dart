@@ -49,6 +49,7 @@ class ConditionalLoginController extends GetxController with StateMixin {
       Map<String, dynamic> summonerData = await checkIfSummonerExisits();
       if (summonerData.isNotEmpty) {
         _getStorage.write('summonerData', summonerData);
+        _getStorage.write('summonerName', summonerName);
         Get.offNamed('/initial_screen');
       }
       summonerNotFound = true;

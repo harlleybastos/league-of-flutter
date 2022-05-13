@@ -16,7 +16,8 @@ class DashboardPageController extends GetxController {
 
   @override
   void onInit() {
-    // summonerData = _getStorage.read('summonerData');
+    summonerData = _getStorage.read('summonerData');
+    print(summonerData);
     language = _getStorage.read('language');
     apiVersion = _getStorage.read('version');
     answer = _getStorage.read('answer');

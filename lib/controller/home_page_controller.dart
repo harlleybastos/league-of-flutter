@@ -18,6 +18,7 @@ class HomePageController extends GetxController with StateMixin {
   @override
   void onInit() {
     summonerData = _getStorage.read('summonerData') ?? {};
+
     checkIfSummonerExisits();
 
     super.onInit();
@@ -29,11 +30,6 @@ class HomePageController extends GetxController with StateMixin {
           summonerData['puuid'], summonerData['id']);
       if (response.isNotEmpty) {
         data = response[0].matchHistory;
-        print(response[0]
-            .matchHistory[0]
-            .info!
-            .participants!
-            .map((e) => e.summonerName));
         mainChampion = await findMainChampion(response[0].championId);
         update();
       }

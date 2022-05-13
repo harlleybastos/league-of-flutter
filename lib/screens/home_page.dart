@@ -23,6 +23,27 @@ class HomeSection extends StatelessWidget {
             children: [
               const BackgroundImageGradient(),
               ConditionalRenderingImage(mainChampion: controller.mainChampion),
+              Positioned.fill(
+                top: MediaQuery.of(context).size.height * 0.40,
+                left: MediaQuery.of(context).size.width * 0.05,
+                right: MediaQuery.of(context).size.width * 0.05,
+                child: ListView.builder(
+                  itemBuilder: (context, index) {
+                    // TODO - Create an filter that get the matches with the same SummonerName of the summoner
+                    print(controller.data[index].info!.participants!
+                        .map((e) => e.summonerName));
+                    return Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 200,
+                      margin: const EdgeInsets.symmetric(
+                        vertical: 10,
+                      ),
+                      color: Colors.red,
+                    );
+                  },
+                  itemCount: controller.data.length,
+                ),
+              )
             ],
           ),
         ),
