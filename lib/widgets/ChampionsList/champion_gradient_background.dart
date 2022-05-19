@@ -24,13 +24,6 @@ class ChampionGradientBackground extends StatelessWidget {
               Colors.transparent,
             ],
           ),
-          // boxShadow: [
-          //   BoxShadow(
-          //     color: Colors.black.withOpacity(0.7),
-          //     blurRadius: 20,
-          //     offset: Offset(0, 10),
-          //   ),
-          // ],
         ),
       ),
     );

@@ -61,4 +61,13 @@ class HomePageController extends GetxController with StateMixin {
       return error.toString();
     }
   }
+
+  Participants filterChampionList(List<Participants>? participants) {
+    for (var participant in participants!) {
+      if (participant.summonerName == summonerData['name']) {
+        return participant;
+      }
+    }
+    return [] as Participants;
+  }
 }
