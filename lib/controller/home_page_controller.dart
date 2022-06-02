@@ -70,4 +70,14 @@ class HomePageController extends GetxController with StateMixin {
     }
     return [] as Participants;
   }
+
+  String changeTypeOfGameMode(String gameMode) {
+    switch (gameMode) {
+      case "CLASSIC":
+        return "Ranked Solo/Duo";
+
+      default:
+        return gameMode;
+    }
+  }
 }

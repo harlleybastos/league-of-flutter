@@ -33,53 +33,38 @@ class HomeSection extends StatelessWidget {
                   itemBuilder: (context, index) {
                     Participants summoner = controller.filterChampionList(
                         controller.data[index].info!.participants!);
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    String gameMode = controller.changeTypeOfGameMode(
+                        controller.data[index].info!.gameMode!);
+                    return Stack(
                       children: [
-                        Container(
-                          color: Colors.transparent,
-                          width: MediaQuery.of(context).size.width,
-                          margin: EdgeInsets.only(
-                            top: MediaQuery.of(context).size.height * 0.15,
-                          ),
-                          child: Align(
-                            alignment: Alignment.bottomLeft,
-                            child: Text(
-                              '${summoner.championName}',
-                              style: const TextStyle(
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  fontFamily: 'BeaufortForLOL'),
+                        Positioned(
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height * 0.3,
+                            margin: const EdgeInsets.only(bottom: 20),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(25.0),
                             ),
-                          ),
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          child: Text(
-                            '${summoner.win}',
-                            style: const TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xFF03c4e5),
-                                fontFamily: 'ITC_Avant_Garde_Gothic'),
-                          ),
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height * 0.30,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            image: DecorationImage(
-                              image: CachedNetworkImageProvider(
-                                'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${summoner.championName}_0.jpg',
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(25.0),
+                              child: CachedNetworkImage(
+                                imageUrl:
+                                    'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${summoner.championName}_0.jpg',
+                                height:
+                                    MediaQuery.of(context).size.height * 0.6,
+                                fit: BoxFit.fill,
+                                alignment: const Alignment(0.4, -1),
                               ),
                             ),
                           ),
-                          margin: const EdgeInsets.symmetric(vertical: 15),
+                        ),
+                        Positioned(
+                          top: MediaQuery.of(context).size.height * 0.1,
+                          bottom: MediaQuery.of(context).size.height * 0.02,
+                          left: 0,
+                          right: 0,
                           child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height,
+                            height: MediaQuery.of(context).size.height * 0.3,
                             decoration: BoxDecoration(
                               borderRadius: const BorderRadius.only(
                                 bottomLeft: Radius.circular(20),
@@ -89,28 +74,97 @@ class HomeSection extends StatelessWidget {
                                 begin: Alignment.bottomCenter,
                                 end: Alignment.topCenter,
                                 colors: [
-                                  Colors.black.withOpacity(0.8),
+                                  summoner.win!
+                                      ? const Color(0xFF059ab0).withOpacity(0.9)
+                                      : const Color(0xFFee1f3f)
+                                          .withOpacity(0.9),
                                   Colors.transparent,
                                 ],
                               ),
                             ),
-                            child: Stack(children: []),
                           ),
                         ),
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          margin: EdgeInsets.only(
-                            left: MediaQuery.of(context).size.width * 0.1,
-                          ),
-                          child: Text(
-                            '${summoner.champLevel}',
-                            style: const TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.white,
-                                fontFamily: 'ITC_Avant_Garde_Gothic'),
+                        Positioned(
+                          left: MediaQuery.of(context).size.width * 0.2,
+                          bottom: MediaQuery.of(context).size.height * 0.1,
+                          child: Container(
+                            color: Colors.transparent,
+                            width: MediaQuery.of(context).size.width,
+                            margin: EdgeInsets.only(
+                              top: MediaQuery.of(context).size.height * 0.15,
+                            ),
+                            child: Align(
+                              alignment: Alignment.bottomLeft,
+                              child: Text(
+                                gameMode,
+                                style: const TextStyle(
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 212, 212, 211),
+                                    fontFamily: 'BeaufortForLOL'),
+                              ),
+                            ),
                           ),
                         ),
+
+                        // Positioned(
+                        //   child: Container(
+                        //     width: MediaQuery.of(context).size.width,
+                        //     height: MediaQuery.of(context).size.height * 0.30,
+                        //     decoration: BoxDecoration(
+                        //       borderRadius: BorderRadius.circular(15),
+                        //       image: DecorationImage(
+                        //         image: CachedNetworkImageProvider(
+                        //           ,
+                        //         ),
+                        //       ),
+                        //     ),
+                        //     margin: const EdgeInsets.symmetric(vertical: 15),
+                        //     child: Container(
+                        //       width: MediaQuery.of(context).size.width,
+                        //       height: MediaQuery.of(context).size.height,
+                        //       decoration: BoxDecoration(
+                        //         gradient: LinearGradient(
+                        //           begin: Alignment.bottomCenter,
+                        //           end: Alignment.topCenter,
+                        //           colors: [
+                        //             Colors.black.withOpacity(0.5),
+                        //             Colors.transparent,
+                        //           ],
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
+
+                        // Positioned(
+                        //   child: Container(
+                        //     width: MediaQuery.of(context).size.width,
+                        //     child: Text(
+                        //       '${summoner.win}',
+                        //       style: const TextStyle(
+                        //           fontSize: 20,
+                        //           fontWeight: FontWeight.w400,
+                        //           color: Color(0xFF03c4e5),
+                        //           fontFamily: 'ITC_Avant_Garde_Gothic'),
+                        //     ),
+                        //   ),
+                        // ),
+
+                        // Container(
+                        //   width: MediaQuery.of(context).size.width,
+                        //   margin: EdgeInsets.only(
+                        //     left: MediaQuery.of(context).size.width * 0.1,
+                        //   ),
+                        //   child: Text(
+                        //     '${summoner.champLevel}',
+                        //     style: const TextStyle(
+                        //         fontSize: 20,
+                        //         fontWeight: FontWeight.w400,
+                        //         color: Colors.white,
+                        //         fontFamily: 'ITC_Avant_Garde_Gothic'),
+                        //   ),
+                        // ),
                       ],
                     );
                   },
