@@ -26,7 +26,7 @@ class HomeSection extends StatelessWidget {
               const BackgroundImageGradient(),
               ConditionalRenderingImage(mainChampion: controller.mainChampion),
               Positioned.fill(
-                top: MediaQuery.of(context).size.height * 0.40,
+                top: MediaQuery.of(context).size.height * 0.50,
                 left: MediaQuery.of(context).size.width * 0.05,
                 right: MediaQuery.of(context).size.width * 0.05,
                 child: ListView.builder(
@@ -35,6 +35,7 @@ class HomeSection extends StatelessWidget {
                         controller.data[index].info!.participants!);
                     String gameMode = controller.changeTypeOfGameMode(
                         controller.data[index].info!.gameMode!);
+
                     return Stack(
                       children: [
                         Positioned(
@@ -58,8 +59,46 @@ class HomeSection extends StatelessWidget {
                             ),
                           ),
                         ),
+
                         Positioned(
-                          top: MediaQuery.of(context).size.height * 0.1,
+                          left: MediaQuery.of(context).size.width * 0.25,
+                          bottom: 0,
+                          top: MediaQuery.of(context).size.height * 0.01,
+                          child: Container(
+                            color: Colors.transparent,
+                            width: MediaQuery.of(context).size.width,
+                            child: Align(
+                              alignment: Alignment.topCenter,
+                              child: Container(
+                                width: 40,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(25.0),
+                                  color: const Color(0xFF00060e),
+                                  border: Border.all(
+                                    color: Color(0xFF7f6e3c),
+                                    width: 1,
+                                  ),
+                                ),
+                                padding: const EdgeInsets.all(10),
+                                child: Center(
+                                  child: Text(
+                                    "${summoner.champLevel}",
+                                    style: const TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromARGB(255, 212, 212, 211),
+                                      fontFamily: 'BeaufortForLOL',
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        Positioned(
+                          top: MediaQuery.of(context).size.height * 0.20,
                           bottom: MediaQuery.of(context).size.height * 0.02,
                           left: 0,
                           right: 0,
@@ -84,6 +123,7 @@ class HomeSection extends StatelessWidget {
                             ),
                           ),
                         ),
+
                         Positioned(
                           left: MediaQuery.of(context).size.width * 0.2,
                           bottom: MediaQuery.of(context).size.height * 0.1,
@@ -100,7 +140,7 @@ class HomeSection extends StatelessWidget {
                                 style: const TextStyle(
                                     fontSize: 25,
                                     fontWeight: FontWeight.bold,
-                                    color: Color.fromARGB(255, 212, 212, 211),
+                                    color: Color.fromARGB(255, 243, 236, 219),
                                     fontFamily: 'BeaufortForLOL'),
                               ),
                             ),
