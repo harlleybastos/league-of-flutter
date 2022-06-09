@@ -7,7 +7,6 @@ import '../repository/i_champion_details_repository.dart';
 class ChampionDetailsController extends GetxController
     with StateMixin<Map<String, dynamic>> {
   String championName = '';
-  String version = '';
   int selectedIndex = 0;
   int championSkins = 0;
   final IChampionDetailsRepository _championDetailsRepository;
@@ -20,13 +19,7 @@ class ChampionDetailsController extends GetxController
 
   @override
   void onInit() {
-    version = Get.arguments['version'];
     super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
     language = _getStorage.read('language');
     apiVersion = _getStorage.read('version');
     championName = Get.arguments['championName'];

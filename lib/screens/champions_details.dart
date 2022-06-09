@@ -374,7 +374,7 @@ class ChampionDetails extends GetView<ChampionDetailsController> {
                               child: ClipOval(
                                 child: CachedNetworkImage(
                                   imageUrl:
-                                      "https://ddragon.leagueoflegends.com/cdn/${controller.version}/img/passive/${state['passive']['image']['full']}",
+                                      "https://ddragon.leagueoflegends.com/cdn/${controller.apiVersion}/img/passive/${state['passive']['image']['full']}",
                                 ),
                               ),
                             ),
@@ -390,7 +390,7 @@ class ChampionDetails extends GetView<ChampionDetailsController> {
                                       child: ClipOval(
                                         child: CachedNetworkImage(
                                           imageUrl:
-                                              "https://ddragon.leagueoflegends.com/cdn/${controller.version}/img/spell/${state['spells'][index]['image']['full']}",
+                                              "https://ddragon.leagueoflegends.com/cdn/${controller.apiVersion}/img/spell/${state['spells'][index]['image']['full']}",
                                         ),
                                       ),
                                     );

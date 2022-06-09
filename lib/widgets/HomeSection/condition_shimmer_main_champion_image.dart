@@ -2,16 +2,17 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-class ConditionalRenderingImage extends StatelessWidget {
+class ConditionalRenderingMainChampionImage extends StatelessWidget {
   final String mainChampion;
-  const ConditionalRenderingImage({Key? key, required this.mainChampion})
+  const ConditionalRenderingMainChampionImage(
+      {Key? key, required this.mainChampion})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return mainChampion == ''
         ? Positioned(
-            top: MediaQuery.of(context).size.height * 0.12,
+            top: MediaQuery.of(context).size.height * 0.20,
             left: MediaQuery.of(context).size.width * 0.05,
             right: MediaQuery.of(context).size.width * 0.05,
             child: Shimmer.fromColors(
@@ -28,7 +29,7 @@ class ConditionalRenderingImage extends StatelessWidget {
             ),
           )
         : Positioned(
-            top: MediaQuery.of(context).size.height * 0.12,
+            top: MediaQuery.of(context).size.height * 0.20,
             left: MediaQuery.of(context).size.width * 0.05,
             right: MediaQuery.of(context).size.width * 0.05,
             child: Container(

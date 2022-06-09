@@ -6,7 +6,7 @@ class BackgroundImageGradient extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: MediaQuery.of(context).size.height * 0.12,
+      top: MediaQuery.of(context).size.height * 0.20,
       left: MediaQuery.of(context).size.width * 0.05,
       right: MediaQuery.of(context).size.width * 0.05,
       child: Container(
