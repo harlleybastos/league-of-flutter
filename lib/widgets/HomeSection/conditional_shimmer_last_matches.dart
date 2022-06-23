@@ -17,7 +17,7 @@ class ConditionalRenderingLastMatches extends StatelessWidget {
   Widget build(BuildContext context) {
     return data.isEmpty
         ? Positioned.fill(
-            top: MediaQuery.of(context).size.height * 0.50,
+            top: MediaQuery.of(context).size.height * 0.55,
             left: MediaQuery.of(context).size.width * 0.05,
             right: MediaQuery.of(context).size.width * 0.05,
             child: ListView.builder(

@@ -10,8 +10,10 @@ class HomeSectionRepository implements IHomeSectionRepository {
   @override
   Future<List<SummonerPlainDetails>> getDetailsOfSummoner(
       String summonerPuuid, String accountId) async {
-    print(accountId);
-    print(summonerPuuid);
+    List<String> listOfMatches = [];
+    List<SummonerMatch> last20MatchesOfSummonerDetailed = [];
+    List<SummonerPlainDetails> summonerPlainDetails = [];
+
     final urlList = [
       'https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/$summonerPuuid/ids?start=0&count=20',
       'https://br1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/$accountId'
@@ -30,11 +32,6 @@ class HomeSectionRepository implements IHomeSectionRepository {
     );
 
     var finalRespose = responses[0].body;
-    print(responses[1].body);
-
-    List<String> listOfMatches = [];
-    List<SummonerMatch> last20MatchesOfSummonerDetailed = [];
-    List<SummonerPlainDetails> summonerPlainDetails = [];
 
     if (responses[0].statusCode == 200) {
       listOfMatches = finalRespose.isNotEmpty

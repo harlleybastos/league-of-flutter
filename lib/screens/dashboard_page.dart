@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../widgets/global/app_bar.dart';
@@ -75,8 +76,12 @@ class DashboardPage extends StatelessWidget {
                       ? [
                           _bottomNavigationBarItem(
                               Icons.account_circle_outlined, "Home"),
-                          _bottomNavigationBarItem(
-                              Icons.home_outlined, "Champions"),
+                          _customBottomNavigationBarItem(
+                              SvgPicture.asset(
+                                'assets/constants/img/champion-icon.svg',
+                                width: 20,
+                              ),
+                              "Champions"),
                           _bottomNavigationBarItem(
                               Icons.search_outlined, "Search"),
                         ]
@@ -94,5 +99,10 @@ class DashboardPage extends StatelessWidget {
   BottomNavigationBarItem _bottomNavigationBarItem(
       IconData icon, String label) {
     return BottomNavigationBarItem(icon: Icon(icon), label: label);
+  }
+
+  BottomNavigationBarItem _customBottomNavigationBarItem(
+      SvgPicture svgPicture, String label) {
+    return BottomNavigationBarItem(icon: svgPicture, label: label);
   }
 }

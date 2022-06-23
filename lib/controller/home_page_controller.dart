@@ -17,22 +17,17 @@ class HomePageController extends GetxController with StateMixin {
 
   @override
   void onInit() {
-    summonerData = _getStorage.read('summonerData') ?? {};
-
-    checkIfSummonerExisits();
-
     super.onInit();
+    summonerData = _getStorage.read('summonerData');
+    checkIfSummonerExisits();
   }
 
   Future<List<dynamic>> checkIfSummonerExisits() async {
     try {
       final response = await _homeSectionRepository.getDetailsOfSummoner(
           summonerData['puuid'], summonerData['id']);
-      if (response.isNotEmpty) {
-        data = response[0].matchHistory;
-        mainChampion = await findMainChampion(response[0].championId);
-        update();
-      }
+      data = response[0].matchHistory;
+      mainChampion = await findMainChampion(response[0].championId);
       return response;
     } catch (e) {
       return [];
