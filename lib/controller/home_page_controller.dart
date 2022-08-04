@@ -5,7 +5,7 @@ import 'package:initial_app/models/champion.dart';
 import 'package:initial_app/models/summoner_match.dart';
 import 'package:initial_app/service/home_section_repository.dart';
 
-class HomePageController extends GetxController with StateMixin {
+class HomePageController extends GetxController with StateMixin<bool> {
   Map<String, dynamic> summonerData = {};
   List<SummonerMatch> data = [];
   final HomeSectionRepository _homeSectionRepository;
@@ -22,15 +22,16 @@ class HomePageController extends GetxController with StateMixin {
     checkIfSummonerExisits();
   }
 
-  Future<List<dynamic>> checkIfSummonerExisits() async {
+  void checkIfSummonerExisits() async {
     try {
+      change(true, status: RxStatus.loading());
       final response = await _homeSectionRepository.getDetailsOfSummoner(
           summonerData['puuid'], summonerData['id']);
       data = response[0].matchHistory;
       mainChampion = await findMainChampion(response[0].championId);
-      return response;
+      change(false, status: RxStatus.success());
     } catch (e) {
-      return [];
+      change(false, status: RxStatus.error(e.toString()));
     }
   }
 
@@ -43,14 +44,11 @@ class HomePageController extends GetxController with StateMixin {
       if (listOfAllChampions.isNotEmpty && championId != null) {
         for (var champion in listOfAllChampions) {
           if (int.parse(champion.key) == championId) {
-            championName = champion.name;
+            championName = champion.name.trim();
           }
         }
       }
 
-      if (championName.contains(' ')) {
-        championName = championName.replaceAll(' ', '');
-      }
       return "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${championName}_0.jpg";
     } catch (error) {
       return error.toString();

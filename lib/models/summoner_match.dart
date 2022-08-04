@@ -11,7 +11,7 @@ class SummonerMatch {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (metadata != null) {
       data['metadata'] = metadata!.toJson();
     }
@@ -36,7 +36,7 @@ class Metadata {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['dataVersion'] = dataVersion;
     data['matchId'] = matchId;
     data['participants'] = participants;
@@ -92,7 +92,7 @@ class Info {
     if (json['participants'] != null) {
       participants = <Participants>[];
       json['participants'].forEach((v) {
-        participants!.add(new Participants.fromJson(v));
+        participants!.add(Participants.fromJson(v));
       });
     }
     platformId = json['platformId'];
@@ -100,14 +100,14 @@ class Info {
     if (json['teams'] != null) {
       teams = <Teams>[];
       json['teams'].forEach((v) {
-        teams!.add(new Teams.fromJson(v));
+        teams!.add(Teams.fromJson(v));
       });
     }
     tournamentCode = json['tournamentCode'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['gameCreation'] = gameCreation;
     data['gameDuration'] = gameDuration;
     data['gameEndTimestamp'] = gameEndTimestamp;

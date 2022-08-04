@@ -23,21 +23,21 @@ class HomeSection extends StatelessWidget {
           color: Colors.transparent,
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
-          child: Stack(
-            children: [
-              const FirstCardText(),
-              const BackgroundImageGradient(),
-              ConditionalRenderingMainChampionImage(
-                  mainChampion: controller.mainChampion),
-              const InfinityShimmerMainChampionImage(),
-              const SecondCardText(),
-              ConditionalRenderingLastMatches(
-                changeTypeOfGameMode: controller.changeTypeOfGameMode,
-                data: controller.data,
-                filterChampionList: controller.filterChampionList,
-              )
-            ],
-          ),
+          child: controller.obx((state) => (Stack(
+                children: [
+                  const FirstCardText(),
+                  const BackgroundImageGradient(),
+                  ConditionalRenderingMainChampionImage(
+                      mainChampion: controller.mainChampion),
+                  const InfinityShimmerMainChampionImage(),
+                  const SecondCardText(),
+                  ConditionalRenderingLastMatches(
+                    changeTypeOfGameMode: controller.changeTypeOfGameMode,
+                    data: controller.data,
+                    filterChampionList: controller.filterChampionList,
+                  )
+                ],
+              ))),
         ),
       );
     });
