@@ -2,14 +2,14 @@ import 'package:get/get.dart';
 
 import 'package:get_storage/get_storage.dart';
 
-import '../repository/i_champion_details_repository.dart';
+import '../service/champion_details/champion_details_repository.dart';
 
 class ChampionDetailsController extends GetxController
     with StateMixin<Map<String, dynamic>> {
   String championName = '';
   int selectedIndex = 0;
   int championSkins = 0;
-  final IChampionDetailsRepository _championDetailsRepository;
+  final ChampionDetailsRepository _championDetailsRepository;
   ChampionDetailsController(this._championDetailsRepository);
 
   final GetStorage _getStorage = GetStorage();
@@ -30,11 +30,11 @@ class ChampionDetailsController extends GetxController
   void getChampionDetails() async {
     change({}, status: RxStatus.loading());
     try {
-      final Map<String, dynamic> response = await _championDetailsRepository
-          .getChampionDetails(championName, language, apiVersion);
+      final response = await _championDetailsRepository.getChampionDetails(
+          championName, language, apiVersion);
       change(response, status: RxStatus.success());
     } catch (e) {
-      change({}, status: RxStatus.error('Ocorreu um erro !'));
+      change({}, status: RxStatus.error(e.toString()));
     }
   }
 

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:initial_app/service/champion_list/champion_list_repository.dart';
 
 import '../models/champion.dart';
 
@@ -9,7 +10,7 @@ import '../repository/i_champions_repository.dart';
 
 class ChampionListController extends GetxController
     with StateMixin<List<Champion>> {
-  final IChampionsRepository _httpRepository;
+  final IChampionsRepository _championListRepository;
 
   List<Champion> searchResult = [];
   List<Champion> championsList = [];
@@ -30,7 +31,7 @@ class ChampionListController extends GetxController
   String apiVersion = '';
 
   ChampionListController(
-    this._httpRepository,
+    this._championListRepository,
   );
   @override
   void onInit() {
@@ -57,7 +58,8 @@ class ChampionListController extends GetxController
     change([], status: RxStatus.loading());
     // Try to get the data when the app start
     try {
-      final resp = await _httpRepository.listAllChampions(version, language);
+      final resp =
+          await _championListRepository.listAllChampions(version, language);
       championsList.addAll(resp);
       // the data is correct populate the controller and show the success
 

@@ -38,7 +38,7 @@ class _ChampionContainerState extends State<ChampionContainer> {
               championImageUrl: widget.championData.image,
             ),
             const ChampionGradientBackground(),
-            ChampionIcon(widget.championData),
+            ChampionIcon(widget.championData, widget.version),
           ],
         ),
       ),

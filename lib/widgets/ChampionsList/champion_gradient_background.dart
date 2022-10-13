@@ -7,10 +7,10 @@ class ChampionGradientBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
       bottom: 0,
-      left: 32,
+      left: 35,
       right: 40,
       child: Container(
-        height: 180,
+        height: 185,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(20),

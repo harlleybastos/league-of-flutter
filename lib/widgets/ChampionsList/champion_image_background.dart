@@ -23,8 +23,9 @@ class ChampionImageBackground extends StatelessWidget {
         child: CachedNetworkImage(
           imageUrl: championImageUrl,
           height: MediaQuery.of(context).size.height * 0.6,
+          width: 100,
           fit: BoxFit.cover,
-          alignment: const Alignment(0.4, -1),
+          alignment: const Alignment(0.62, 0),
         ),
       ),
     );

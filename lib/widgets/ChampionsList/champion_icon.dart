@@ -4,8 +4,9 @@ import 'package:initial_app/models/champion.dart';
 
 class ChampionIcon extends StatelessWidget {
   final Champion championData;
+  final String version;
 
-  ChampionIcon(this.championData);
+  ChampionIcon(this.championData, this.version);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class ChampionIcon extends StatelessWidget {
             child: ClipOval(
               child: CachedNetworkImage(
                 imageUrl:
-                    'https://ddragon.leagueoflegends.com/cdn/11.24.1/img/champion/${championData.id}.png',
+                    'https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${championData.id}.png',
                 height: 50,
                 fit: BoxFit.contain,
               ),
