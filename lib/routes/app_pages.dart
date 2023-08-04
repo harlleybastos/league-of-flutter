@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
-import 'package:initial_app/bindings/conditional_login_bindings.dart';
-import 'package:initial_app/bindings/splash_screen_bindings.dart';
-import 'package:initial_app/screens/conditional_login.dart';
-import 'package:initial_app/screens/splash_screen.dart';
+import 'package:league_of_flutter/bindings/conditional_login_bindings.dart';
+import 'package:league_of_flutter/bindings/splash_screen_bindings.dart';
+import 'package:league_of_flutter/screens/conditional_login.dart';
+import 'package:league_of_flutter/screens/splash_screen.dart';
 
 import '../bindings/home_section_bindings.dart';
 import '../bindings/initial_screen_bindings.dart';

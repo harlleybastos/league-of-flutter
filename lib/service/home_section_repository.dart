@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:initial_app/credentials/app_credentials.dart';
-import 'package:initial_app/models/summoner_match.dart';
-import 'package:initial_app/models/summoner_plain_details.dart';
-import 'package:initial_app/repository/i_home_section_repository.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:league_of_flutter/models/summoner_match.dart';
+import 'package:league_of_flutter/models/summoner_plain_details.dart';
+import 'package:league_of_flutter/repository/i_home_section_repository.dart';
 import 'package:http/http.dart' as http;
 
 class HomeSectionRepository implements IHomeSectionRepository {
@@ -24,7 +24,7 @@ class HomeSectionRepository implements IHomeSectionRepository {
         (url) async => await http.get(
           Uri.parse(url),
           headers: {
-            'X-Riot-Token': AppCredentials.apiKey,
+            'X-Riot-Token': dotenv.env['RIOT_API']!,
             "Origin": "https://developer.riotgames.com",
           },
         ),
@@ -45,7 +45,7 @@ class HomeSectionRepository implements IHomeSectionRepository {
                   Uri.parse(
                       'https://americas.api.riotgames.com/lol/match/v5/matches/$element'),
                   headers: {
-                    "X-Riot-Token": AppCredentials.apiKey,
+                    "X-Riot-Token": dotenv.env['RIOT_API']!,
                     "Origin": "https://developer.riotgames.com",
                   })));
 

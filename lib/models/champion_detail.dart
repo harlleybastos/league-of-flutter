@@ -3,7 +3,7 @@
 
 // import 'package:flutter/foundation.dart';
 
-// import 'package:initial_app/models/champion_info.dart';
+// import 'package:league_of_flutter/models/champion_info.dart';
 
 // class ChampionDetailModel {
 //   String type;

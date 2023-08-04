@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:initial_app/models/champion.dart';
+import 'package:league_of_flutter/models/champion.dart';
 
 class ChampionContainerRole extends StatelessWidget {
   final Champion championData;
 
-  const ChampionContainerRole({Key? key, required this.championData}) : super(key: key);
+  const ChampionContainerRole({Key? key, required this.championData})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

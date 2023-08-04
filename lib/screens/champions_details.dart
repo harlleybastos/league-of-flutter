@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../controller/champion_details_controller.dart';
-import '../credentials/app_credentials.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../widgets/ChampionsList/skins_buttons.dart';
 
 class ChampionDetails extends GetView<ChampionDetailsController> {
@@ -151,9 +151,9 @@ class ChampionDetails extends GetView<ChampionDetailsController> {
                           child: CachedNetworkImage(
                             imageUrl:
                                 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${state['id']}_${state['skins'][controller.selectedIndex]['num']}.jpg',
-                            httpHeaders: const {
+                            httpHeaders: {
                               HttpHeaders.authorizationHeader:
-                                  AppCredentials.apiKey,
+                                  dotenv.env['RIOT_API']!,
                             },
                             progressIndicatorBuilder:
                                 (context, url, downloadProgress) => Center(

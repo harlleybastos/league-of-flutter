@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:initial_app/controller/search_section_controller.dart';
-import 'package:initial_app/widgets/global/app_name.dart';
-import 'package:initial_app/widgets/global/app_bar.dart';
-import 'package:initial_app/widgets/global/app_input.dart';
+import 'package:league_of_flutter/controller/search_section_controller.dart';
+import 'package:league_of_flutter/widgets/global/app_input.dart';
 
 class SearchPage extends StatelessWidget {
   final String? language;
@@ -46,11 +44,12 @@ class SearchPage extends StatelessWidget {
                               physics: const AlwaysScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemBuilder: (_, index) {
+                                print(state[index].tier);
                                 return GestureDetector(
                                   onTap: () {
                                     Get.toNamed('/summoner-details',
                                         arguments: {
-                                          'summonerData': state![index],
+                                          'summonerData': state[index],
                                           'summonerMainChampionSkin': controller
                                               .summonerMainChampionSkin,
                                         });
@@ -150,7 +149,7 @@ class SearchPage extends StatelessWidget {
                                                 left: 120,
                                                 right: 0,
                                                 child: Text(
-                                                  state![index]
+                                                  state[index]
                                                       .summonerName
                                                       .toString(),
                                                   textAlign: TextAlign.center,

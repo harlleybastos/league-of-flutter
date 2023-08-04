@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:initial_app/models/champion.dart';
+import 'package:league_of_flutter/models/champion.dart';
 
 class ChampionContainerRoleName extends StatelessWidget {
   final Champion championData;

@@ -1,4 +1,4 @@
-import 'package:initial_app/models/summoner_match.dart';
+import 'package:league_of_flutter/models/summoner_match.dart';
 
 class SummonerPlainDetails {
   int? championId;

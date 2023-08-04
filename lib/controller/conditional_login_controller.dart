@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:initial_app/repository/i_conditional_login_repository.dart';
+import 'package:league_of_flutter/repository/i_conditional_login_repository.dart';
 
 class ConditionalLoginController extends GetxController with StateMixin {
   String response = '';

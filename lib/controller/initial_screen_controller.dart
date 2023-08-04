@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:initial_app/repository/i_initial_screen.dart';
+import 'package:league_of_flutter/repository/i_initial_screen.dart';
 
 class InitialScreenController extends GetxController with StateMixin<String> {
   final IInitialScreenRepository _initialScreenRepository;

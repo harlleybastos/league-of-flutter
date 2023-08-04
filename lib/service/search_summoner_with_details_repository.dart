@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import '../credentials/app_credentials.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import '../models/summoner_details.dart';
 
@@ -24,7 +24,7 @@ class SearchSummonerWithDetailsRepository
         (url) async => await http.get(
           Uri.parse(url),
           headers: {
-            'X-Riot-Token': AppCredentials.apiKey,
+            'X-Riot-Token': dotenv.env['RIOT_API']!,
             "Origin": "https://developer.riotgames.com",
           },
         ),

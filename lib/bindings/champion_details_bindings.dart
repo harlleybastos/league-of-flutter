@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:initial_app/service/champion_details/champion_details_repository.dart';
-import 'package:initial_app/shared/rest_client.dart';
+import 'package:league_of_flutter/service/champion_details/champion_details_repository.dart';
+import 'package:league_of_flutter/shared/rest_client.dart';
 
 import '../controller/champion_details_controller.dart';
 

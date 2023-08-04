@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:initial_app/routes/app_routes.dart';
+import 'package:league_of_flutter/routes/app_routes.dart';
 
 import '../controller/initial_screen_controller.dart';
 

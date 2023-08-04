@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.initial_app">
+    package="com.example.league_of_flutter">
         <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="initial_app"
+        android:label="league_of_flutter"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

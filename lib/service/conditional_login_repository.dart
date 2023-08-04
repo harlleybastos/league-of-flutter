@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import '../credentials/app_credentials.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import '../repository/i_conditional_login_repository.dart';
 
@@ -16,7 +16,7 @@ class ConditionalLoginRepository implements IConditionalLoginRepository {
         Uri.parse(
             'https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/$summonerName'),
         headers: {
-          "X-Riot-Token": AppCredentials.apiKey,
+          "X-Riot-Token": dotenv.env['RIOT_API']!,
           "Origin": "https://developer.riotgames.com",
         });
     Map<String, dynamic> responseList = jsonDecode(response.body);

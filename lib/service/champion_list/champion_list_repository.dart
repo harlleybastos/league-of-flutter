@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:initial_app/credentials/app_credentials.dart';
-import 'package:initial_app/models/champion.dart';
-import 'package:initial_app/repository/i_champions_repository.dart';
-import 'package:initial_app/shared/rest_client.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:league_of_flutter/models/champion.dart';
+import 'package:league_of_flutter/repository/i_champions_repository.dart';
+import 'package:league_of_flutter/shared/rest_client.dart';
 
 class ChampionListRepository implements IChampionsRepository {
   final RestClient restClient;
@@ -16,7 +16,7 @@ class ChampionListRepository implements IChampionsRepository {
     final response = await restClient.get(
         'http://ddragon.leagueoflegends.com/cdn/$version/data/$language/champion.json',
         headers: {
-          HttpHeaders.authorizationHeader: AppCredentials.apiKey,
+          HttpHeaders.authorizationHeader: dotenv.env['RIOT_API']!,
         }, decoder: (body) {
       List<Champion> champions = [];
       body['data'].forEach((champion) {

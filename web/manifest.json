@@ -1,6 +1,6 @@
 {
-    "name": "initial_app",
-    "short_name": "initial_app",
+    "name": "league_of_flutter",
+    "short_name": "league_of_flutter",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:initial_app/credentials/app_credentials.dart';
-import 'package:initial_app/models/summoner.dart';
-import 'package:initial_app/repository/i_search_summoner_repository.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:league_of_flutter/models/summoner.dart';
+import 'package:league_of_flutter/repository/i_search_summoner_repository.dart';
 import 'package:http/http.dart' as http;
 
 class SearchSummonerRepository implements ISearchSummonerRepository {
@@ -15,7 +15,7 @@ class SearchSummonerRepository implements ISearchSummonerRepository {
         Uri.parse(
             'https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/$name'),
         headers: {
-          "X-Riot-Token": AppCredentials.apiKey,
+          "X-Riot-Token": dotenv.env['RIOT_API']!,
           "Origin": "https://developer.riotgames.com",
         });
     Map<String, dynamic> responseList = jsonDecode(response.body);

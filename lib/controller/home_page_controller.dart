@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:initial_app/controller/champion_list_controller.dart';
-import 'package:initial_app/models/champion.dart';
-import 'package:initial_app/models/summoner_match.dart';
-import 'package:initial_app/service/home_section_repository.dart';
+import 'package:league_of_flutter/controller/champion_list_controller.dart';
+import 'package:league_of_flutter/models/champion.dart';
+import 'package:league_of_flutter/models/summoner_match.dart';
+import 'package:league_of_flutter/service/home_section_repository.dart';
 
 class HomePageController extends GetxController with StateMixin<bool> {
   Map<String, dynamic> summonerData = {};

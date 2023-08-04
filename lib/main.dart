@@ -1,9 +1,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:initial_app/routes/app_pages.dart';
-import 'package:initial_app/routes/app_routes.dart';
+import 'package:league_of_flutter/routes/app_pages.dart';
+import 'package:league_of_flutter/routes/app_routes.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -14,7 +15,9 @@ class MyHttpOverrides extends HttpOverrides {
   }
 }
 
-void main() {
+Future main() async {
+  await dotenv.load(fileName: ".env");
+
   HttpOverrides.global = MyHttpOverrides();
   runApp(const MyApp());
 }
@@ -45,12 +48,10 @@ class _MyAppState extends State<MyApp> {
           backgroundColor: Color.fromARGB(255, 6, 6, 22),
           elevation: 0,
           centerTitle: true,
-          textTheme: TextTheme(
-            headline6: TextStyle(
-              color: Colors.white,
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-            ),
+          titleTextStyle: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
           ),
           iconTheme: IconThemeData(
             color: Colors.white,

@@ -1,5 +1,5 @@
-import 'package:initial_app/repository/i_champion_details_repository.dart';
-import 'package:initial_app/shared/rest_client.dart';
+import 'package:league_of_flutter/repository/i_champion_details_repository.dart';
+import 'package:league_of_flutter/shared/rest_client.dart';
 
 class ChampionDetailsRepository implements IChampionDetailsRepository {
   final RestClient restClient;

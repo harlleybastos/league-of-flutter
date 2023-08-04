@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
-import 'package:initial_app/controller/search_section_controller.dart';
-import 'package:initial_app/models/summoner_details.dart';
+import 'package:league_of_flutter/controller/search_section_controller.dart';
+import 'package:league_of_flutter/models/summoner_details.dart';
 
 class AppInput extends StatelessWidget {
   final FocusNode focusNode;

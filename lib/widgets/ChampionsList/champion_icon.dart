@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:initial_app/models/champion.dart';
+import 'package:league_of_flutter/models/champion.dart';
 
 class ChampionIcon extends StatelessWidget {
   final Champion championData;

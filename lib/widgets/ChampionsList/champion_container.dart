@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:initial_app/models/champion.dart';
+import 'package:league_of_flutter/models/champion.dart';
 import '../ChampionsList/champion_gradient_background.dart';
 import '../ChampionsList/champion_icon.dart';
 import '../ChampionsList/champion_image_background.dart';
